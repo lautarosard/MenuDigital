@@ -1,9 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\MenuDigital\\",
+  "WorkspaceRootPath": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A02A4FBA-235A-46C2-A834-3B2828DD7287}|Domain\\Domain.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\menudigital\\domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\aplication\\services\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\aplication\\models\\request\\dishrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\models\\request\\dishrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25C4151E-547D-4D51-8E22-100B876782CE}|TestProject\\TestProject.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{25C4151E-547D-4D51-8E22-100B876782CE}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\menudigital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\infrastructure\\querys\\dishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\querys\\dishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A02A4FBA-235A-46C2-A834-3B2828DD7287}|Domain\\Domain.csproj|f:\\facu\\proyecto-soft\\tp1-lautaro_sardina\\backend\\menudigital\\domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A02A4FBA-235A-46C2-A834-3B2828DD7287}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -14,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,13 +50,91 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestProject",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\TestProject\\TestProject.csproj",
+              "RelativeDocumentMoniker": "TestProject\\TestProject.csproj",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\TestProject\\TestProject.csproj",
+              "RelativeToolTip": "TestProject\\TestProject.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-28T05:13:34.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DishRequest.cs",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Aplication\\Models\\Request\\DishRequest.cs",
+              "RelativeDocumentMoniker": "Aplication\\Models\\Request\\DishRequest.cs",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Aplication\\Models\\Request\\DishRequest.cs",
+              "RelativeToolTip": "Aplication\\Models\\Request\\DishRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T05:13:05.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DishQuery.cs",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Infrastructure\\Querys\\DishQuery.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Querys\\DishQuery.cs",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Infrastructure\\Querys\\DishQuery.cs",
+              "RelativeToolTip": "Infrastructure\\Querys\\DishQuery.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T04:58:30.038Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\MenuDigital\\Program.cs",
+              "RelativeDocumentMoniker": "MenuDigital\\Program.cs",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\MenuDigital\\Program.cs",
+              "RelativeToolTip": "MenuDigital\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T04:15:36.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DishController.cs",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
+              "RelativeDocumentMoniker": "MenuDigital\\Controllers\\DishController.cs",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
+              "RelativeToolTip": "MenuDigital\\Controllers\\DishController.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEAAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T04:45:57.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DishService.cs",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Aplication\\Services\\DishService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\DishService.cs",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Aplication\\Services\\DishService.cs",
+              "RelativeToolTip": "Aplication\\Services\\DishService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T04:23:54.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Order.cs",
-              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\MenuDigital\\Domain\\Entities\\Order.cs",
+              "DocumentMoniker": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Domain\\Entities\\Order.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Order.cs",
-              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\MenuDigital\\Domain\\Entities\\Order.cs",
+              "ToolTip": "F:\\Facu\\Proyecto-Soft\\TP1-Lautaro_Sardina\\Backend\\MenuDigital\\Domain\\Entities\\Order.cs",
               "RelativeToolTip": "Domain\\Entities\\Order.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA7wAwAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-28T00:44:42.612Z",
               "EditorCaption": ""

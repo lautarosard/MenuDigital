@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Infrastructure.Data;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces.IDish;
 
 namespace Infrastructure.Querys
 {
-    public class DishQuery
+    public class DishQuery : IDishQuery
     {
         private readonly MenuDigitalDbContext _context;
         public DishQuery(MenuDigitalDbContext context)
@@ -20,9 +21,10 @@ namespace Infrastructure.Querys
         {
             return await _context.Dishes.ToListAsync();
         }
-        public async Task<Dish?> GetDishById(int id)
+        public async Task<Dish?> GetDishById(Guid id)
         {
             return await _context.Dishes.FindAsync(id).AsTask();
         }
+
     }
 }

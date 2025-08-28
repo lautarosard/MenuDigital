@@ -1,5 +1,10 @@
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Infrastructure.Command;
+using Infrastructure.Querys;
+using Application.Interfaces.IDish;
+using Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Configurar EF Core con SQL Server
 builder.Services.AddDbContext<MenuDigitalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//INJECTIONS
+//builder Dish
+builder.Services.AddScoped<IDishCommand, DishCommand>();
+builder.Services.AddScoped<IDishQuery, DishQuery>();
+builder.Services.AddScoped<IDishService, DishService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
