@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Application.Interfaces.IDish;
+using Application.Models.Request;
+using Application.Models.Response;
+using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using Domain.Entities;
-using Application.Interfaces.IDish;
-using Application.Models.Request;
-using Application.Models.Response;
 
 namespace Application.Services
 {
@@ -90,6 +91,31 @@ namespace Application.Services
                 CreateDate = dish.CreateDate,
                 UpdateDate = dish.UpdateDate
             };
+        }
+
+        public async Task<IEnumerable<DishResponse>> SearchAsync(string? name, int? categoryId, string? priceOrder)
+        {
+            if (!string.IsNullOrWhiteSpace(priceOrder))
+            {
+                var normalized = priceOrder.Trim().ToUpperInvariant();
+                if (normalized != "ASC" && normalized != "DESC")
+                {
+                    throw new ArgumentException("Invalid order. Use ASC or DESC.");
+                }
+            }
+
+            var list = await _query.GetAllAsync(name, categoryId, priceOrder);
+            return list.Select(dishes => new DishResponse
+            {
+                Id = dishes.DishId,
+                Name = dishes.Name,
+                Description = dishes.Description,
+                Price = dishes.Price,
+                Available = dishes.Available,
+                ImageUrl = dishes.ImageUrl,
+                CreateDate = dishes.CreateDate,
+                UpdateDate = dishes.UpdateDate
+            }).ToList();
         }
 
         public async Task<DishResponse> UpdateDish(Guid id, DishRequest dishRequest)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Application.Models.Response;
 
 namespace Application.Interfaces.IDish
 {
@@ -11,5 +12,7 @@ namespace Application.Interfaces.IDish
     {
         Task<Dish?> GetDishById(Guid id);
         Task<List<Dish>> GetAllDishes();
+        Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, string? priceOrder = null);
+        //Task<IReadOnlyList<Domain.Entities.Dish>> SearchAsync(string? name, int? categoryId, string? priceOrder);
     }
 }

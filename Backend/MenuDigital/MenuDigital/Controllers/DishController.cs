@@ -17,6 +17,23 @@ namespace MenuDigital.Controllers
         }
 
         // GETs
+        // GETs
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] int? categoryId, [FromQuery] string? orderPrice)
+        {
+            try
+            {
+                var list = await _dishService.SearchAsync(name, categoryId, orderPrice);
+                return Ok(list);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        //
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

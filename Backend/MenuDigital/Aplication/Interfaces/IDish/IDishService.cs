@@ -24,5 +24,6 @@ namespace Application.Interfaces.IDish
 
         // Queries
         Task<DishResponse> GetDishById(Guid id);
+        Task<IEnumerable<DishResponse>> SearchAsync(string? name, int? categoryId, string? priceOrder);
     }
 }
