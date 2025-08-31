@@ -20,11 +20,15 @@ namespace Application.Services
             _command = command;
             _query = query;
         }
-        public async Task<DishResponse> CreateDish(DishRequest dishRequest)
+        public async Task<DishResponse?> CreateDish(DishRequest dishRequest)
         {
             //validaciones
-
-
+            var existingDish = await _query.DishExists(dishRequest.Name);
+            
+            if (existingDish)
+            {
+                return null;
+            }
             var dish = new Dish
             {
                 DishId = Guid.NewGuid(),
@@ -93,17 +97,9 @@ namespace Application.Services
             };
         }
 
-        public async Task<IEnumerable<DishResponse>> SearchAsync(string? name, int? categoryId, string? priceOrder)
+        public async Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, string? priceOrder)
         {
-            if (!string.IsNullOrWhiteSpace(priceOrder))
-            {
-                var normalized = priceOrder.Trim().ToUpperInvariant();
-                if (normalized != "ASC" && normalized != "DESC")
-                {
-                    throw new ArgumentException("Invalid order. Use ASC or DESC.");
-                }
-            }
-
+            
             var list = await _query.GetAllAsync(name, categoryId, priceOrder);
             return list.Select(dishes => new DishResponse
             {

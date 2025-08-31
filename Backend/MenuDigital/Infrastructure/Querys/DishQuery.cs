@@ -60,5 +60,9 @@ namespace Infrastructure.Querys
             return await _context.Dishes.FindAsync(id).AsTask();
         }
 
+        public async Task<bool> DishExists(string name)
+        {
+            return await _context.Dishes.AnyAsync(d => d.Name == name);
+        }
     }
 }

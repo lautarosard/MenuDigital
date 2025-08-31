@@ -14,7 +14,7 @@ namespace Application.Interfaces.IDish
         Task<List<DishResponse>> GetAllDishesAsync();
 
         // Create
-        Task<DishResponse> CreateDish(DishRequest dishRequest);
+        Task<DishResponse?> CreateDish(DishRequest dishRequest);
 
         // Update
         Task<DishResponse> UpdateDish(Guid id, DishRequest dishRequest);
@@ -24,6 +24,6 @@ namespace Application.Interfaces.IDish
 
         // Queries
         Task<DishResponse> GetDishById(Guid id);
-        Task<IEnumerable<DishResponse>> SearchAsync(string? name, int? categoryId, string? priceOrder);
+        Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, string? priceOrder);
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces.IDish;
 using Application.Models.Request;
 using Application.Models.Response;
+using MenuDigital.Exeptions;
+using MenuDigital.Exceptions;
 
 namespace MenuDigital.Controllers
 {
@@ -15,25 +17,64 @@ namespace MenuDigital.Controllers
         {
             _dishService = dishService;
         }
+        //add exeptions handling =====>
+        // POST
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
+        { 
+            if (dishRequest == null)
+            {
+                throw new RequiredParameterException("Required dish data.");
+            }
+            if (string.IsNullOrWhiteSpace(dishRequest.Name))
+            {
+                throw new RequiredParameterException("Name is required.");
+            }
+            if (dishRequest.CategoryId == 0)
+            {
+                throw new RequiredParameterException("Category is required.");
+            }
+            if (dishRequest.Price <= 0)
+            {
+                throw new InvalidParameterException("Price must be greater than zero.");
+            }
 
+            var createdDish = await _dishService.CreateDish(dishRequest);
+            // Si ya existe un plato con ese nombre, devolver error 409
+            if (createdDish == null)
+            {
+                throw new ConflictException("A dish with this name already exists.");
+            }
+            return CreatedAtAction(nameof(GetDishById), new { id = createdDish.Id }, createdDish);
+
+        }
         // GETs
-        // GETs
-        [HttpGet]
+        // GET with filters
+        [HttpGet("search")]
         [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] int? categoryId, [FromQuery] string? orderPrice)
         {
-            try
+
+            if (!string.IsNullOrWhiteSpace(orderPrice))
             {
-                var list = await _dishService.SearchAsync(name, categoryId, orderPrice);
-                return Ok(list);
+                var normalized = orderPrice.Trim().ToUpperInvariant();
+                if (normalized != "ASC" && normalized != "DESC")
+                {
+                    throw new OrderPriceException("Invalid order. Use ASC or DESC.");
+                }
             }
-            catch (ArgumentException ex)
+            var list = await _dishService.SearchAsync(name, categoryId, orderPrice);
+            if (list == null || !list.Any())
             {
-                return BadRequest(new { message = ex.Message });
+                throw new NotFoundException("No dishes found matching the criteria.");
             }
+            return Ok(list);
+            
         }
-        //
+        //general GET
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -55,24 +96,11 @@ namespace MenuDigital.Controllers
             var dish = await _dishService.GetDishById(id);
             if (dish == null)
             {
-                return NotFound($"Dish with ID {id} not found.");
+                throw new NotFoundException($"Dish with ID {id} not found.");
             }
             return new JsonResult(dish);
         }
 
-        // POST
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
-        {
-            if (dishRequest == null || string.IsNullOrWhiteSpace(dishRequest.Name) || dishRequest.Price <= 0)
-            {
-                return BadRequest("Invalid dish data.");
-            }
-            var createdDish = await _dishService.CreateDish(dishRequest);
-            return new JsonResult(createdDish);
-        }
 
         // PUT
         [HttpPut("{id}")]
@@ -81,16 +109,34 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishRequest dishRequest)
         {
-            if (dishRequest == null || string.IsNullOrWhiteSpace(dishRequest.Name) || dishRequest.Price <= 0)
+            if (dishRequest == null)
             {
-                return BadRequest("Invalid dish data.");
+                throw new RequiredParameterException("Required dish data.");
+            }
+            if (string.IsNullOrWhiteSpace(dishRequest.Name))
+            {
+                throw new RequiredParameterException("Name is required.");
+            }
+            if (dishRequest.CategoryId == 0)
+            {
+                throw new RequiredParameterException("Category is required.");
+            }
+            if (string.IsNullOrWhiteSpace(dishRequest.ImageUrl))
+            {
+                throw new RequiredParameterException("ImageUrl is required.");
+            }
+            if (dishRequest.Price <= 0)
+            {
+                throw new InvalidParameterException("Price must be greater than zero.");
             }
             var updatedDish = await _dishService.UpdateDish(id, dishRequest);
             if (updatedDish == null)
             {
-                return NotFound($"Dish with ID {id} not found.");
+                throw new NotFoundException($"Dish with ID {id} not found.");
             }
             return new JsonResult(updatedDish);
         }
+
+        // DELETE
     }
 }

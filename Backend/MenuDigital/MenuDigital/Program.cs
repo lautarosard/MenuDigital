@@ -5,6 +5,7 @@ using Infrastructure.Command;
 using Infrastructure.Querys;
 using Application.Interfaces.IDish;
 using Application.Services;
+using MenuDigital.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddScoped<IDishCommand, DishCommand>();
 builder.Services.AddScoped<IDishQuery, DishQuery>();
 builder.Services.AddScoped<IDishService, DishService>();
 
+//
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,13 +36,17 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Middleware custom for exception handling
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
