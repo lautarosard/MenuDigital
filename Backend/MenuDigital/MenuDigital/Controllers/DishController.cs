@@ -43,7 +43,7 @@ namespace MenuDigital.Controllers
             }
 
             var createdDish = await _dishService.CreateDish(dishRequest);
-            // Si ya existe un plato con ese nombre, devolver error 409
+            // if already exist a dish with that name, throw a 409 Conflict 
             if (createdDish == null)
             {
                 throw new ConflictException("A dish with this name already exists.");
@@ -133,6 +133,7 @@ namespace MenuDigital.Controllers
             {
                 throw new InvalidParameterException("Price must be greater than zero.");
             }
+
             var result = await _dishService.UpdateDish(id, dishRequest);
             if (result.NotFound)
             {
