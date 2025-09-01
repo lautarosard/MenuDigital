@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.ICategory;
+﻿using Application.Enums;
+using Application.Interfaces.ICategory;
 using Application.Interfaces.IDish;
 using Application.Models.Request;
 using Application.Models.Response;
@@ -32,18 +33,18 @@ namespace Application.Services
             {
                 return null;
             }
-            var category = await _categoryQuery.GetCategoryById(dishRequest.CategoryId);
+            var category = await _categoryQuery.GetCategoryById(dishRequest.Category);
             var dish = new Dish
             {
                 DishId = Guid.NewGuid(),
                 Name = dishRequest.Name,
                 Description = dishRequest.Description,
                 Price = dishRequest.Price,
-                Available = dishRequest.Available,
+                Available = true,
                 ImageUrl = dishRequest.ImageUrl,
                 CreateDate = DateTime.UtcNow,
                 UpdateDate = DateTime.UtcNow,
-                CategoryId = dishRequest.CategoryId
+                CategoryId = dishRequest.Category
             };
             await _command.InsertDish(dish);
             return new DishResponse
@@ -53,10 +54,10 @@ namespace Application.Services
                 Description = dish.Description,
                 Price = dish.Price,
                 Category = new GenericResponse { Id = category.Id, Name = category.Name },
-                Available = dish.Available,
+                isActive = dish.Available,
                 ImageUrl = dish.ImageUrl,
-                CreateDate = dish.CreateDate,
-                UpdateDate = dish.UpdateDate
+                createdAt = dish.CreateDate,
+                updateAt = dish.UpdateDate
             };
         }
 
@@ -77,10 +78,10 @@ namespace Application.Services
                 Description = dishes.Description,
                 Price = dishes.Price,
                 Category = new GenericResponse { Id = dishes.CategoryId, Name = dishes.Category?.Name},
-                Available = dishes.Available,
+                isActive = dishes.Available,
                 ImageUrl = dishes.ImageUrl,
-                CreateDate = dishes.CreateDate,
-                UpdateDate = dishes.UpdateDate
+                createdAt = dishes.CreateDate,
+                updateAt = dishes.UpdateDate
             }).ToList();
         }
 
@@ -99,14 +100,14 @@ namespace Application.Services
                 Description = dish.Description,
                 Price = dish.Price,
                 Category = new GenericResponse { Id = dish.CategoryId, Name = dish.Category?.Name },
-                Available = dish.Available,
+                isActive = dish.Available,
                 ImageUrl = dish.ImageUrl,
-                CreateDate = dish.CreateDate,
-                UpdateDate = dish.UpdateDate
+                createdAt = dish.CreateDate,
+                updateAt = dish.UpdateDate
             };
         }
 
-        public async Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, string? priceOrder)
+        public async Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, OrderPrice? priceOrder = OrderPrice.ASC)
         {
             
             var list = await _query.GetAllAsync(name, categoryId, priceOrder);
@@ -117,10 +118,10 @@ namespace Application.Services
                 Description = dishes.Description,
                 Price = dishes.Price,
                 Category = new GenericResponse { Id = dishes.CategoryId, Name = dishes.Category?.Name },
-                Available = dishes.Available,
+                isActive = dishes.Available,
                 ImageUrl = dishes.ImageUrl,
-                CreateDate = dishes.CreateDate,
-                UpdateDate = dishes.UpdateDate
+                createdAt = dishes.CreateDate,
+                updateAt = dishes.UpdateDate
             }).ToList();
         }
 

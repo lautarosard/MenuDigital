@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.IDish;
+﻿using Application.Enums;
+using Application.Interfaces.IDish;
 using Application.Models.Response;
 using Domain.Entities;
 using Infrastructure.Data;
@@ -20,7 +21,7 @@ namespace Infrastructure.Querys
             _context = context;
         }
 
-        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, string? priceOrder = null)
+        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC)
         {
             var query = _context.Dishes.AsNoTracking().AsQueryable();
 
@@ -34,17 +35,17 @@ namespace Infrastructure.Querys
                 query = query.Where(d => d.CategoryId == categoryId.Value);
             }
 
-            if (!string.IsNullOrWhiteSpace(priceOrder))
+            switch(priceOrder)
             {
-                var normalized = priceOrder.Trim().ToUpperInvariant();
-                if (normalized == "ASC")
-                {
+                case OrderPrice.ASC:
                     query = query.OrderBy(d => d.Price);
-                }
-                else if (normalized == "DESC")
-                {
+                    break;
+                case OrderPrice.DESC:
                     query = query.OrderByDescending(d => d.Price);
-                }
+                    break;
+                default:
+                    throw new InvalidOperationException("Valor de ordenamiento inválido");
+                    
             }
 
             return await query.ToListAsync();

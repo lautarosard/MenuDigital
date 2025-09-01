@@ -6,6 +6,7 @@ using Infrastructure.Querys;
 using Application.Interfaces.IDish;
 using Application.Services;
 using MenuDigital.Middlewares;
+using Application.Interfaces.ICategory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,10 @@ builder.Services.AddDbContext<MenuDigitalDbContext>(options =>
 builder.Services.AddScoped<IDishCommand, DishCommand>();
 builder.Services.AddScoped<IDishQuery, DishQuery>();
 builder.Services.AddScoped<IDishService, DishService>();
+//builder Query
+builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
+builder.Services.AddScoped<ICategoryCommand, CategoryCommand>();
+
 
 //
 builder.Services.AddControllers();

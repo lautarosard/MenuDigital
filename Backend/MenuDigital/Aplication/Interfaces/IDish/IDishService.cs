@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Models.Response;
 using Application.Models.Request;
+using Application.Enums;
 
 namespace Application.Interfaces.IDish
 {
@@ -24,6 +25,6 @@ namespace Application.Interfaces.IDish
 
         // Queries
         Task<DishResponse?> GetDishById(Guid id);
-        Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, string? priceOrder);
+        Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, OrderPrice? priceOrder);
     }
 }

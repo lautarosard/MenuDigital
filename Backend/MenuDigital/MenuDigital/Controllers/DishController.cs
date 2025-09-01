@@ -5,6 +5,7 @@ using Application.Models.Request;
 using Application.Models.Response;
 using MenuDigital.Exeptions;
 using MenuDigital.Exceptions;
+using Application.Enums;
 
 namespace MenuDigital.Controllers
 {
@@ -33,7 +34,7 @@ namespace MenuDigital.Controllers
             {
                 throw new RequiredParameterException("Name is required.");
             }
-            if (dishRequest.CategoryId == 0)
+            if (dishRequest.Category == 0)
             {
                 throw new RequiredParameterException("Category is required.");
             }
@@ -53,21 +54,27 @@ namespace MenuDigital.Controllers
         }
         // GETs
         // GET with filters
+        
         //("search")
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] int? categoryId, [FromQuery] string? orderPrice, [FromQuery] bool onlyActive = true)
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Search(
+            [FromQuery] string? name, 
+            [FromQuery] int? categoryId, 
+            [FromQuery] OrderPrice? orderPrice = OrderPrice.ASC, 
+            [FromQuery] bool onlyActive = true)
         {
 
-            if (!string.IsNullOrWhiteSpace(orderPrice))
+            /*if (!string.IsNullOrWhiteSpace(orderPrice))
             {
                 var normalized = orderPrice.Trim().ToUpperInvariant();
                 if (normalized != "ASC" && normalized != "DESC")
                 {
                     throw new OrderPriceException("Invalid order. Use ASC or DESC.");
                 }
-            }
+            }*/
             var list = await _dishService.SearchAsync(name, categoryId, orderPrice);
             if (list == null || !list.Any())
             {
@@ -75,7 +82,7 @@ namespace MenuDigital.Controllers
             }
             if(onlyActive)
             {
-                list = list.Where(d => d.Available);
+                list = list.Where(d => d.isActive);
             }
             return Ok(list);
             
@@ -95,10 +102,11 @@ namespace MenuDigital.Controllers
             return new JsonResult(dishes);
         }*/
         //
+        
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetDishById(Guid id)
+        private async Task<IActionResult> GetDishById(Guid id)
         {
             var dish = await _dishService.GetDishById(id);
             if (dish == null)
@@ -107,7 +115,7 @@ namespace MenuDigital.Controllers
             }
             return new JsonResult(dish);
         }
-
+        
 
         // PUT
         [HttpPut("{id}")]
