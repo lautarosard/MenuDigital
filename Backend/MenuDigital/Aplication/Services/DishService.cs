@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.IDish;
+﻿using Application.Interfaces.ICategory;
+using Application.Interfaces.IDish;
 using Application.Models.Request;
 using Application.Models.Response;
 using Domain.Entities;
@@ -15,6 +16,7 @@ namespace Application.Services
     {
         private readonly IDishCommand _command;
         private readonly IDishQuery _query;
+        private readonly ICategoryQuery _categoryQuery;
         public DishService(IDishCommand command, IDishQuery query)
         {
             _command = command;
@@ -29,6 +31,7 @@ namespace Application.Services
             {
                 return null;
             }
+            var category = await _categoryQuery.GetCategoryById(dishRequest.CategoryId);
             var dish = new Dish
             {
                 DishId = Guid.NewGuid(),
@@ -48,6 +51,7 @@ namespace Application.Services
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
+                Category = new GenericResponse { Id = category.Id, Name = category.Name },
                 Available = dish.Available,
                 ImageUrl = dish.ImageUrl,
                 CreateDate = dish.CreateDate,
@@ -66,10 +70,12 @@ namespace Application.Services
 
             return dishes.Select(dishes => new DishResponse
             {
+
                 Id = dishes.DishId,
                 Name = dishes.Name,
                 Description = dishes.Description,
                 Price = dishes.Price,
+                Category = new GenericResponse { Id = dishes.CategoryId, Name = dishes.Category?.Name},
                 Available = dishes.Available,
                 ImageUrl = dishes.ImageUrl,
                 CreateDate = dishes.CreateDate,
@@ -84,12 +90,14 @@ namespace Application.Services
             {
                 throw new Exception("Dish not found");
             }
+
             return new DishResponse
             {
                 Id = dish.DishId,
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
+                Category = new GenericResponse { Id = dish.CategoryId, Name = dish.Category?.Name },
                 Available = dish.Available,
                 ImageUrl = dish.ImageUrl,
                 CreateDate = dish.CreateDate,
@@ -107,6 +115,7 @@ namespace Application.Services
                 Name = dishes.Name,
                 Description = dishes.Description,
                 Price = dishes.Price,
+                Category = new GenericResponse { Id = dishes.CategoryId, Name = dishes.Category?.Name },
                 Available = dishes.Available,
                 ImageUrl = dishes.ImageUrl,
                 CreateDate = dishes.CreateDate,
@@ -119,9 +128,15 @@ namespace Application.Services
             var existingDish = await _query.GetDishById(id);
 
             if (existingDish == null)
-            {
+            {//que retorne null si no encuantre
                 throw new Exception("Dish not found");
             }
+            var alreadyExist = _query.DishExists(dishRequest.Name);
+            if (alreadyExist == null)
+            {//buscar tirar la exception al controller
+                throw new Exception();
+            }
+
             existingDish.Name = dishRequest.Name;
             existingDish.Description = dishRequest.Description;
             existingDish.Price = dishRequest.Price;

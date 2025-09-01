@@ -55,7 +55,7 @@ namespace MenuDigital.Controllers
         [HttpGet("search")]
         [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] int? categoryId, [FromQuery] string? orderPrice)
+        public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] int? categoryId, [FromQuery] string? orderPrice, [FromQuery] bool onlyActive = true)
         {
 
             if (!string.IsNullOrWhiteSpace(orderPrice))
@@ -70,6 +70,10 @@ namespace MenuDigital.Controllers
             if (list == null || !list.Any())
             {
                 throw new NotFoundException("No dishes found matching the criteria.");
+            }
+            if(onlyActive)
+            {
+                list = list.Where(d => d.Available);
             }
             return Ok(list);
             
