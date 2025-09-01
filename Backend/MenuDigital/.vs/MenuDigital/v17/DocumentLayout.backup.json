@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\aplication\\services\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\aplication\\models\\response\\apierror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\models\\response\\apierror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\menudigital\\middlewares\\errorhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,21 +49,12 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DishResponse.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Models\\Response\\DishResponse.cs",
-              "RelativeDocumentMoniker": "Aplication\\Models\\Response\\DishResponse.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Models\\Response\\DishResponse.cs",
-              "RelativeToolTip": "Aplication\\Models\\Response\\DishResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T20:07:27.605Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ApiError.cs",
               "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Models\\Response\\ApiError.cs",
               "RelativeDocumentMoniker": "Aplication\\Models\\Response\\ApiError.cs",
@@ -71,16 +62,11 @@
               "RelativeToolTip": "Aplication\\Models\\Response\\ApiError.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T19:59:25.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "WhenOpened": "2025-08-31T19:59:25.546Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DishService.cs",
               "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishService.cs",
               "RelativeDocumentMoniker": "Aplication\\Services\\DishService.cs",
@@ -93,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DishController.cs",
               "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
               "RelativeDocumentMoniker": "MenuDigital\\Controllers\\DishController.cs",
@@ -106,6 +92,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DishResponse.cs",
+              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Models\\Response\\DishResponse.cs",
+              "RelativeDocumentMoniker": "Aplication\\Models\\Response\\DishResponse.cs",
+              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Models\\Response\\DishResponse.cs",
+              "RelativeToolTip": "Aplication\\Models\\Response\\DishResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T20:07:27.605Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "RequiredParameterExceptions.cs",
               "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Exceptions\\RequiredParameterExceptions.cs",
@@ -114,8 +112,7 @@
               "RelativeToolTip": "MenuDigital\\Exceptions\\RequiredParameterExceptions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T19:14:48.133Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-31T19:14:48.133Z"
             },
             {
               "$type": "Document",
@@ -127,8 +124,7 @@
               "RelativeToolTip": "Infrastructure\\Querys\\DishQuery.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAqwDMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T14:38:08.825Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-30T14:38:08.825Z"
             },
             {
               "$type": "Document",
@@ -140,8 +136,7 @@
               "RelativeToolTip": "MenuDigital\\Middlewares\\ErrorHandlingMiddleware.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwCIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T14:32:07.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-30T14:32:07.214Z"
             },
             {
               "$type": "Document",

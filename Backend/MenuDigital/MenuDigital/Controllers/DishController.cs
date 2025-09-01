@@ -8,7 +8,7 @@ using MenuDigital.Exceptions;
 
 namespace MenuDigital.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class DishController : ControllerBase
     {
@@ -17,11 +17,12 @@ namespace MenuDigital.Controllers
         {
             _dishService = dishService;
         }
-        //add exeptions handling =====>
+        
         // POST
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
         { 
             if (dishRequest == null)
@@ -52,9 +53,10 @@ namespace MenuDigital.Controllers
         }
         // GETs
         // GET with filters
-        [HttpGet("search")]
+        //("search")
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Search([FromQuery] string? name, [FromQuery] int? categoryId, [FromQuery] string? orderPrice, [FromQuery] bool onlyActive = true)
         {
 
@@ -78,6 +80,7 @@ namespace MenuDigital.Controllers
             return Ok(list);
             
         }
+        /*
         //general GET
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -87,14 +90,14 @@ namespace MenuDigital.Controllers
             var dishes = await _dishService.GetAllDishesAsync();
             if (dishes == null || !dishes.Any())
             {
-                return NotFound("No dishes found.");
+                throw new NotFoundException("No dishes found.");
             }
             return new JsonResult(dishes);
-        }
+        }*/
         //
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetDishById(Guid id)
         {
             var dish = await _dishService.GetDishById(id);
@@ -108,10 +111,11 @@ namespace MenuDigital.Controllers
 
         // PUT
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishRequest dishRequest)
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
+        public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishUpdateRequest dishRequest)
         {
             if (dishRequest == null)
             {
@@ -121,24 +125,26 @@ namespace MenuDigital.Controllers
             {
                 throw new RequiredParameterException("Name is required.");
             }
-            if (dishRequest.CategoryId == 0)
+            if (dishRequest.Category == 0)
             {
                 throw new RequiredParameterException("Category is required.");
-            }
-            if (string.IsNullOrWhiteSpace(dishRequest.ImageUrl))
-            {
-                throw new RequiredParameterException("ImageUrl is required.");
             }
             if (dishRequest.Price <= 0)
             {
                 throw new InvalidParameterException("Price must be greater than zero.");
             }
-            var updatedDish = await _dishService.UpdateDish(id, dishRequest);
-            if (updatedDish == null)
+            var result = await _dishService.UpdateDish(id, dishRequest);
+            if (result.NotFound)
             {
                 throw new NotFoundException($"Dish with ID {id} not found.");
             }
-            return new JsonResult(updatedDish);
+
+            if(result.NameConflict)
+            {
+                throw new ConflictException($"dish {dishRequest.Name} already exists");
+            }
+
+            return Ok(result.UpdatedDish);
         }
 
         // DELETE

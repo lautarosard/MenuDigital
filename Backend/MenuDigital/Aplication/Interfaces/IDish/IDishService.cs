@@ -17,13 +17,13 @@ namespace Application.Interfaces.IDish
         Task<DishResponse?> CreateDish(DishRequest dishRequest);
 
         // Update
-        Task<DishResponse> UpdateDish(Guid id, DishRequest dishRequest);
+        Task<UpdateDishResult> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest);
 
         // Delete
         Task<DishResponse> DeleteDish(Guid id);
 
         // Queries
-        Task<DishResponse> GetDishById(Guid id);
+        Task<DishResponse?> GetDishById(Guid id);
         Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, string? priceOrder);
     }
 }
