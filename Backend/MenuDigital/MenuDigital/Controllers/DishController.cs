@@ -6,6 +6,7 @@ using Application.Models.Response;
 using MenuDigital.Exeptions;
 using MenuDigital.Exceptions;
 using Application.Enums;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MenuDigital.Controllers
 {
@@ -18,9 +19,19 @@ namespace MenuDigital.Controllers
         {
             _dishService = dishService;
         }
-        
+
         // POST
+        /// <summary>
+        /// Crea un nuevo plato en el menú del restaurante.
+        /// </summary>
+        /// <remarks>
+        /// Este endpoint permite registrar un nuevo plato con sus detalles.
+        /// </remarks>
         [HttpPost]
+        [SwaggerOperation(
+        Summary = "Crear nuevo plato",
+        Description = "Crea un nuevo plato en el menú del restaurante."
+        )]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
@@ -54,9 +65,18 @@ namespace MenuDigital.Controllers
         }
         // GETs
         // GET with filters
-        
+        /// <summary>
+        /// Busca platos con opciones de filtrado y ordenamiento.
+        /// </summary>
+        /// <remarks>
+        /// Obtiene una lista de platos del menú que coinciden con los criterios de búsqueda.
+        /// </remarks>
         //("search")
         [HttpGet]
+        [SwaggerOperation(
+        Summary = "Buscar platos",
+        Description = "Obtiene una lista de platos del menú con opciones de filtrado y ordenamiento."
+        )]
         [ProducesResponseType(typeof(IEnumerable<DishResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
@@ -102,11 +122,20 @@ namespace MenuDigital.Controllers
             return new JsonResult(dishes);
         }*/
         //
-        
+        /// <summary>
+        /// Obtiene un plato por su ID.
+        /// </summary>
+        /// <remarks>
+        /// Busca un plato específico en el menú usando su identificador único.
+        /// </remarks>
         [HttpGet("{id}")]
+        [SwaggerOperation(
+        Summary = "Buscar platos por ID",
+        Description = "Buscar platos por ID."
+        )]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        private async Task<IActionResult> GetDishById(Guid id)
+        public async Task<IActionResult> GetDishById(Guid id)
         {
             var dish = await _dishService.GetDishById(id);
             if (dish == null)
@@ -115,10 +144,21 @@ namespace MenuDigital.Controllers
             }
             return new JsonResult(dish);
         }
-        
+
 
         // PUT
+        /// <summary>
+        /// Actualiza un plato existente en el menú.
+        /// </summary>
+        /// <remarks>
+        /// Actualiza todos los campos de un plato existente.
+        /// </remarks>
+
         [HttpPut("{id}")]
+        [SwaggerOperation(
+        Summary = "Actualizar plato existente",
+        Description = "Actualiza todos los campos de un plato existente en el menú."
+        )]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]

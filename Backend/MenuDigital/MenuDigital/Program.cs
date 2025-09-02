@@ -1,12 +1,14 @@
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using Application.Interfaces;
-using Infrastructure.Command;
-using Infrastructure.Querys;
+using Application.Interfaces.ICategory;
 using Application.Interfaces.IDish;
 using Application.Services;
+using Infrastructure.Command;
+using Infrastructure.Data;
+using Infrastructure.Querys;
 using MenuDigital.Middlewares;
-using Application.Interfaces.ICategory;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,9 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
         Description = "API del proyecto MenuDigital"
     });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 });
 
 var app = builder.Build();
