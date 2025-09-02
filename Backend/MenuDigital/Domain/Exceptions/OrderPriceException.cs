@@ -1,4 +1,4 @@
-﻿namespace MenuDigital.Exceptions
+﻿namespace Domain.Exceptions
 {
     public class OrderPriceException : Exception
     {

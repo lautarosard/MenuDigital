@@ -1,4 +1,4 @@
-﻿namespace MenuDigital.Exceptions
+﻿namespace Domain.Exceptions
 {
     [Serializable]
     public class RequiredParameterException : Exception

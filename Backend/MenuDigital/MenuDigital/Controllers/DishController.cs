@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces.IDish;
 using Application.Models.Request;
 using Application.Models.Response;
-using MenuDigital.Exeptions;
-using MenuDigital.Exceptions;
+using Domain.Exceptions;
 using Application.Enums;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -60,7 +59,7 @@ namespace MenuDigital.Controllers
             {
                 throw new ConflictException("A dish with this name already exists.");
             }
-            return CreatedAtAction(nameof(GetDishById), new { id = createdDish.Id }, createdDish);
+            return CreatedAtAction(nameof(Search), new {id = createdDish.Id},createdDish);
 
         }
         // GETs
@@ -95,6 +94,13 @@ namespace MenuDigital.Controllers
                     throw new OrderPriceException("Invalid order. Use ASC or DESC.");
                 }
             }*/
+            if(orderPrice != null)
+            {
+                if(orderPrice != OrderPrice.ASC && orderPrice != OrderPrice.DESC)
+                {
+                    throw new OrderPriceException("Invalid order. Use ASC or DESC.");
+                }
+            }
             var list = await _dishService.SearchAsync(name, categoryId, orderPrice);
             if (list == null || !list.Any())
             {
@@ -107,20 +113,7 @@ namespace MenuDigital.Controllers
             return Ok(list);
             
         }
-        /*
-        //general GET
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetAllDishes()
-        {
-            var dishes = await _dishService.GetAllDishesAsync();
-            if (dishes == null || !dishes.Any())
-            {
-                throw new NotFoundException("No dishes found.");
-            }
-            return new JsonResult(dishes);
-        }*/
+
         //
         /// <summary>
         /// Obtiene un plato por su ID.
@@ -128,6 +121,7 @@ namespace MenuDigital.Controllers
         /// <remarks>
         /// Busca un plato específico en el menú usando su identificador único.
         /// </remarks>
+        //
         [HttpGet("{id}")]
         [SwaggerOperation(
         Summary = "Buscar platos por ID",
@@ -142,7 +136,7 @@ namespace MenuDigital.Controllers
             {
                 throw new NotFoundException($"Dish with ID {id} not found.");
             }
-            return new JsonResult(dish);
+            return Ok(dish);
         }
 
 
@@ -195,7 +189,5 @@ namespace MenuDigital.Controllers
 
             return Ok(result.UpdatedDish);
         }
-
-        // DELETE
     }
 }

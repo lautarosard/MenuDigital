@@ -1,6 +1,5 @@
 ﻿using Application.Models.Response;
-using MenuDigital.Exceptions;
-using MenuDigital.Exeptions;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.Net;

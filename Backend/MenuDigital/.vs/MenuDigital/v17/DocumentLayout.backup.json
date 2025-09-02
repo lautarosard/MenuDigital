@@ -7,32 +7,8 @@
       "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\menudigital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\menudigital\\menudigital.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\menudigital.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\aplication\\enums\\orderprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\enums\\orderprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\aplication\\services\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\aplication\\interfaces\\idish\\idishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\interfaces\\idish\\idishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\aplication\\interfaces\\idish\\idishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\interfaces\\idish\\idishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\infrastructure\\querys\\dishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\querys\\dishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|c:\\users\\lauta\\onedrive\\documentos\\facultad\\proyecto-software\\menudigital\\backend\\menudigital\\menudigital\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,51 +34,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MenuDigital",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\MenuDigital.csproj",
-              "RelativeDocumentMoniker": "MenuDigital\\MenuDigital.csproj",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\MenuDigital.csproj",
-              "RelativeToolTip": "MenuDigital\\MenuDigital.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-02T00:04:42.244Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Program.cs",
-              "RelativeDocumentMoniker": "MenuDigital\\Program.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Program.cs",
-              "RelativeToolTip": "MenuDigital\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowCIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-02T00:01:29.206Z",
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "MenuDigital\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Properties\\launchSettings.json",
+              "RelativeToolTip": "MenuDigital\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-02T22:39:58.525Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IDishQuery.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAvwA8AAACAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T23:10:29.582Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IDishService.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\IDishService.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishService.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\IDishService.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwvxsAAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T23:08:53.692Z"
             },
             {
               "$type": "Document",
@@ -112,46 +53,10 @@
               "RelativeDocumentMoniker": "MenuDigital\\Controllers\\DishController.cs",
               "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
               "RelativeToolTip": "MenuDigital\\Controllers\\DishController.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAAwLUAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAiwD4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-28T19:05:21.172Z",
+              "WhenOpened": "2025-09-02T03:58:54.701Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DishQuery.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Querys\\DishQuery.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Querys\\DishQuery.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Querys\\DishQuery.cs",
-              "RelativeToolTip": "Infrastructure\\Querys\\DishQuery.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAawBcAAAB/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T23:11:19.689Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "OrderPrice.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Enums\\OrderPrice.cs",
-              "RelativeDocumentMoniker": "Aplication\\Enums\\OrderPrice.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Enums\\OrderPrice.cs",
-              "RelativeToolTip": "Aplication\\Enums\\OrderPrice.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T23:07:50.567Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DishService.cs",
-              "DocumentMoniker": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\DishService.cs",
-              "ToolTip": "C:\\Users\\lauta\\OneDrive\\Documentos\\Facultad\\Proyecto-Software\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishService.cs",
-              "RelativeToolTip": "Aplication\\Services\\DishService.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAmwHAAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T22:46:01.445Z"
             }
           ]
         }
