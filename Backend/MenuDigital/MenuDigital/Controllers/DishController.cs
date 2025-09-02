@@ -22,10 +22,10 @@ namespace MenuDigital.Controllers
 
         // POST
         /// <summary>
-        /// Crea un nuevo plato en el menú del restaurante.
+        /// Crear nuevo plato.
         /// </summary>
         /// <remarks>
-        /// Este endpoint permite registrar un nuevo plato con sus detalles.
+        /// Crea un nuevo plato en el menú del restaurante.
         /// </remarks>
         [HttpPost]
         [SwaggerOperation(
@@ -66,10 +66,10 @@ namespace MenuDigital.Controllers
         // GETs
         // GET with filters
         /// <summary>
-        /// Busca platos con opciones de filtrado y ordenamiento.
+        /// Busca platos.
         /// </summary>
         /// <remarks>
-        /// Obtiene una lista de platos del menú que coinciden con los criterios de búsqueda.
+        /// Obtiene una lista de platos del menú con opciones de filtrado y ordenamiento.
         /// </remarks>
         //("search")
         [HttpGet]
@@ -135,7 +135,7 @@ namespace MenuDigital.Controllers
         )]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetDishById(Guid id)
+        private async Task<IActionResult> GetDishById(Guid id)
         {
             var dish = await _dishService.GetDishById(id);
             if (dish == null)
@@ -148,10 +148,10 @@ namespace MenuDigital.Controllers
 
         // PUT
         /// <summary>
-        /// Actualiza un plato existente en el menú.
+        /// Actualizar plato existente.
         /// </summary>
         /// <remarks>
-        /// Actualiza todos los campos de un plato existente.
+        /// Actualiza todos los campos de un plato existente en el menú.
         /// </remarks>
 
         [HttpPut("{id}")]
