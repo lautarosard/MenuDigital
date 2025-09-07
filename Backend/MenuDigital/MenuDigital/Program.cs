@@ -2,6 +2,10 @@ using Application.Interfaces;
 using Application.Interfaces.ICategory;
 using Application.Interfaces.IDish;
 using Application.Services;
+using Application.Services.DishServices;
+using Application.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infrastructure.Command;
 using Infrastructure.Data;
 using Infrastructure.Querys;
@@ -9,6 +13,7 @@ using MenuDigital.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +27,9 @@ builder.Services.AddDbContext<MenuDigitalDbContext>(options =>
 //builder Dish
 builder.Services.AddScoped<IDishCommand, DishCommand>();
 builder.Services.AddScoped<IDishQuery, DishQuery>();
-builder.Services.AddScoped<IDishService, DishService>();
+builder.Services.AddScoped<ISearchAsyncUseCase, SearchAsyncUseCase>();
+builder.Services.AddScoped<IUpdateDishUseCase, UpdateDishUseCase>();
+builder.Services.AddScoped<ICreateDishUseCase, CreateDishUseCase>();
 //builder Query
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
 builder.Services.AddScoped<ICategoryCommand, CategoryCommand>();
@@ -30,6 +37,12 @@ builder.Services.AddScoped<ICategoryCommand, CategoryCommand>();
 
 //
 builder.Services.AddControllers();
+//Validation with FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<DishRequestValidator>();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ValidationFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

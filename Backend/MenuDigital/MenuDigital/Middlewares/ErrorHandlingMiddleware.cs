@@ -1,4 +1,5 @@
 ﻿using Application.Models.Response;
+using Application.Exceptions;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -49,7 +50,7 @@ namespace MenuDigital.Middlewares
                 case RequiredParameterException:
                     statusCode = HttpStatusCode.BadRequest;
                     break;
-                case InvalidParameterException:
+                case InvalidateParameterException:
                     statusCode = HttpStatusCode.BadRequest;
                     break;
                 case NotFoundException:
@@ -63,7 +64,7 @@ namespace MenuDigital.Middlewares
                     break;
                 default:
                     statusCode = HttpStatusCode.InternalServerError;
-                    message = "Internal Server Error";
+                    message = "public Server Error";
                     break;
                 
                 

@@ -12,6 +12,6 @@ namespace Application.Models.Response
         public bool Success { get; set; }
         public bool NotFound { get; set; }
         public bool NameConflict { get; set; }
-        public Dish? UpdatedDish { get; set; }
+        public DishResponse? UpdatedDish { get; set; }
     }
 }

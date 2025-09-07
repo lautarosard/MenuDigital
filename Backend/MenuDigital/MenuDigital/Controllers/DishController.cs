@@ -4,6 +4,7 @@ using Application.Interfaces.IDish;
 using Application.Models.Request;
 using Application.Models.Response;
 using Domain.Exceptions;
+using Application.Exceptions;
 using Application.Enums;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -13,10 +14,14 @@ namespace MenuDigital.Controllers
     [ApiController]
     public class DishController : ControllerBase
     {
-        private readonly IDishService _dishService;
-        public DishController(IDishService dishService)
+        private readonly ICreateDishUseCase _createDish;
+        private readonly IUpdateDishUseCase _UpdateDish;
+        private readonly ISearchAsyncUseCase _SearchAsync;
+        public DishController(ICreateDishUseCase createDish, IUpdateDishUseCase UpdateDish, ISearchAsyncUseCase SearchAsync)
         {
-            _dishService = dishService;
+            _createDish = createDish;
+            _UpdateDish = UpdateDish;
+            _SearchAsync = SearchAsync;
         }
 
         // POST
@@ -50,10 +55,10 @@ namespace MenuDigital.Controllers
             }
             if (dishRequest.Price <= 0)
             {
-                throw new InvalidParameterException("Price must be greater than zero.");
+                throw new InvalidateParameterException("Price must be greater than zero.");
             }
 
-            var createdDish = await _dishService.CreateDish(dishRequest);
+            var createdDish = await _createDish.CreateDish(dishRequest);
             // if already exist a dish with that name, throw a 409 Conflict 
             if (createdDish == null)
             {
@@ -101,7 +106,7 @@ namespace MenuDigital.Controllers
                     throw new OrderPriceException("Invalid order. Use ASC or DESC.");
                 }
             }
-            var list = await _dishService.SearchAsync(name, categoryId, orderPrice);
+            var list = await _SearchAsync.SearchAsync(name, categoryId, orderPrice, onlyActive);
             if (list == null || !list.Any())
             {
                 throw new NotFoundException("No dishes found matching the criteria.");
@@ -114,30 +119,30 @@ namespace MenuDigital.Controllers
             
         }
 
-        //
-        /// <summary>
-        /// Obtiene un plato por su ID.
-        /// </summary>
-        /// <remarks>
-        /// Busca un plato específico en el menú usando su identificador único.
-        /// </remarks>
-        //
-        [HttpGet("{id}")]
-        [SwaggerOperation(
-        Summary = "Buscar platos por ID",
-        Description = "Buscar platos por ID."
-        )]
-        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        private async Task<IActionResult> GetDishById(Guid id)
-        {
-            var dish = await _dishService.GetDishById(id);
-            if (dish == null)
-            {
-                throw new NotFoundException($"Dish with ID {id} not found.");
-            }
-            return Ok(dish);
-        }
+        ////
+        ///// <summary>
+        ///// Obtiene un plato por su ID.
+        ///// </summary>
+        ///// <remarks>
+        ///// Busca un plato específico en el menú usando su identificador único.
+        ///// </remarks>
+        ////
+        //[HttpGet("{id}")]
+        //[SwaggerOperation(
+        //Summary = "Buscar platos por ID",
+        //Description = "Buscar platos por ID."
+        //)]
+        //[ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        //[ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        //private async Task<IActionResult> GetDishById(Guid id)
+        //{
+        //    var dish = await _dishService.GetDishById(id);
+        //    if (dish == null)
+        //    {
+        //        throw new NotFoundException($"Dish with ID {id} not found.");
+        //    }
+        //    return Ok(dish);
+        //}
 
 
         // PUT
@@ -173,10 +178,10 @@ namespace MenuDigital.Controllers
             }
             if (dishRequest.Price <= 0)
             {
-                throw new InvalidParameterException("Price must be greater than zero.");
+                throw new InvalidateParameterException("Price must be greater than zero.");
             }
 
-            var result = await _dishService.UpdateDish(id, dishRequest);
+            var result = await _UpdateDish.UpdateDish(id, dishRequest);
             if (result.NotFound)
             {
                 throw new NotFoundException($"Dish with ID {id} not found.");

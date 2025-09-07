@@ -1,4 +1,4 @@
-﻿namespace Domain.Exceptions
+﻿namespace Application.Exceptions
 {
     [Serializable]
     public class RequiredParameterException : Exception

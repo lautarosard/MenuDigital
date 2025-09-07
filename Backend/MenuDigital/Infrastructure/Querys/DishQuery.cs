@@ -21,7 +21,7 @@ namespace Infrastructure.Querys
             _context = context;
         }
 
-        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC)
+        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = true)
         {
             var query = _context.Dishes.AsNoTracking().AsQueryable();
 
@@ -30,11 +30,11 @@ namespace Infrastructure.Querys
                 query = query.Where(d => d.Name.Contains(name));
             }
 
-            if (categoryId.HasValue)
+            if (categoryId >= 1 && categoryId <= 10)
             {
                 query = query.Where(d => d.CategoryId == categoryId.Value);
             }
-
+            
             switch(priceOrder)
             {
                 case OrderPrice.ASC:
@@ -47,8 +47,22 @@ namespace Infrastructure.Querys
                     throw new InvalidOperationException("Valor de ordenamiento inválido");
                     
             }
-
-            return await query.ToListAsync();
+            
+            switch(onlyActive)
+            {
+                case true:
+                    query = query.Where(d => d.Available == true);
+                    break;
+                case false:
+                    query = query.Where(d => d.Available == false);
+                    break;
+                default:
+                    break;
+            }
+            
+            return await query
+            .Include(d => d.Category)
+            .ToListAsync();
 
         }
 
