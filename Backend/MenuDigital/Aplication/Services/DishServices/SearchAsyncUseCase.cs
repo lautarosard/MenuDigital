@@ -26,6 +26,9 @@ namespace Application.Services.DishServices
         {
 
             var list = await _query.GetAllAsync(name, categoryId, priceOrder, onlyActive);
+
+
+
             return list.Select(dishes => new DishResponse
             {
                 Id = dishes.DishId,

@@ -18,6 +18,11 @@ namespace Infrastructure.Querys
             _context = context;
         }
 
+        public async Task<bool> CategoryExistAsync(int id)
+        {
+            return await _context.Categories.AnyAsync(c => c.Id == id);
+        }
+
         public async Task<List<Category>> GetAllCategories()
         {
             return await _context.Categories.ToListAsync();

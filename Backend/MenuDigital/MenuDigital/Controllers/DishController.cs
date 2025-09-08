@@ -7,6 +7,7 @@ using Domain.Exceptions;
 using Application.Exceptions;
 using Application.Enums;
 using Swashbuckle.AspNetCore.Annotations;
+using Application.Interfaces.ICategory;
 
 namespace MenuDigital.Controllers
 {
@@ -17,11 +18,17 @@ namespace MenuDigital.Controllers
         private readonly ICreateDishUseCase _createDish;
         private readonly IUpdateDishUseCase _UpdateDish;
         private readonly ISearchAsyncUseCase _SearchAsync;
-        public DishController(ICreateDishUseCase createDish, IUpdateDishUseCase UpdateDish, ISearchAsyncUseCase SearchAsync)
+        private readonly ICategoryExistUseCase _CategoryExist;
+        public DishController(
+            ICreateDishUseCase createDish, 
+            IUpdateDishUseCase UpdateDish, 
+            ISearchAsyncUseCase SearchAsync, 
+            ICategoryExistUseCase CategoryExist)
         {
             _createDish = createDish;
             _UpdateDish = UpdateDish;
             _SearchAsync = SearchAsync;
+            _CategoryExist = CategoryExist;
         }
 
         // POST
