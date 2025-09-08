@@ -41,22 +41,22 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
         { 
-            if (dishRequest == null)
-            {
-                throw new RequiredParameterException("Required dish data.");
-            }
-            if (string.IsNullOrWhiteSpace(dishRequest.Name))
-            {
-                throw new RequiredParameterException("Name is required.");
-            }
-            if (dishRequest.Category == 0)
-            {
-                throw new RequiredParameterException("Category is required.");
-            }
-            if (dishRequest.Price <= 0)
-            {
-                throw new InvalidateParameterException("Price must be greater than zero.");
-            }
+            ////if (dishRequest == null)
+            ////{
+            ////    throw new RequiredParameterException("Required dish data.");
+            ////}
+            ////if (string.IsNullOrWhiteSpace(dishRequest.Name))
+            ////{
+            ////    throw new RequiredParameterException("Name is required.");
+            ////}
+            ////if (dishRequest.Category == 0)
+            ////{
+            ////    throw new RequiredParameterException("Category is required.");
+            ////}
+            //if (dishRequest.Price <= 0)
+            //{
+            //    throw new InvalidateParameterException("Price must be greater than zero.");
+            //}
 
             var createdDish = await _createDish.CreateDish(dishRequest);
             // if already exist a dish with that name, throw a 409 Conflict 

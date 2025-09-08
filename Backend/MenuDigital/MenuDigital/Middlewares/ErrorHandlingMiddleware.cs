@@ -47,12 +47,12 @@ namespace MenuDigital.Middlewares
 
             switch(ex)
             {
-                case RequiredParameterException:
-                    statusCode = HttpStatusCode.BadRequest;
-                    break;
-                case InvalidateParameterException:
-                    statusCode = HttpStatusCode.BadRequest;
-                    break;
+                //case RequiredParameterException:
+                //    statusCode = HttpStatusCode.BadRequest;
+                //    break;
+                //case InvalidateParameterException:
+                //    statusCode = HttpStatusCode.BadRequest;
+                //    break;
                 case NotFoundException:
                     statusCode = HttpStatusCode.NotFound;
                     break;
@@ -61,6 +61,9 @@ namespace MenuDigital.Middlewares
                     break;
                 case OrderPriceException:
                     statusCode = HttpStatusCode.BadRequest;
+                    break;
+                case KeyNotFoundException:
+                    statusCode = HttpStatusCode.NotFound;
                     break;
                 default:
                     statusCode = HttpStatusCode.InternalServerError;
