@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Application.Enums;
+using Application.Exceptions;
+using Application.Interfaces.ICategory;
 using Application.Interfaces.IDish;
 using Application.Models.Request;
 using Application.Models.Response;
+using Domain.Entities;
 using Domain.Exceptions;
-using Application.Exceptions;
-using Application.Enums;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using Application.Interfaces.ICategory;
 
 namespace MenuDigital.Controllers
 {
@@ -106,6 +107,15 @@ namespace MenuDigital.Controllers
                     throw new OrderPriceException("Invalid order. Use ASC or DESC.");
                 }
             }*/
+            if(categoryId !=0  && categoryId != null)
+            {
+                var categoryExists = await _CategoryExist.CategoryExist(categoryId.Value);
+                if (!categoryExists)
+                {
+                    throw new NotFoundException($"Category with ID {categoryId} not found.");
+                }
+            }
+
             if(orderPrice != null)
             {
                 if(orderPrice != OrderPrice.ASC && orderPrice != OrderPrice.DESC)
@@ -118,10 +128,7 @@ namespace MenuDigital.Controllers
             {
                 throw new NotFoundException("No dishes found matching the criteria.");
             }
-            if(onlyActive)
-            {
-                list = list.Where(d => d.isActive);
-            }
+            
             return Ok(list);
             
         }
@@ -171,23 +178,27 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishUpdateRequest dishRequest)
         {
-            if (dishRequest == null)
+            //if (dishRequest == null)
+            //{
+            //    throw new RequiredParameterException("Required dish data.");
+            //}
+            //if (string.IsNullOrWhiteSpace(dishRequest.Name))
+            //{
+            //    throw new RequiredParameterException("Name is required.");
+            //}
+            //if (dishRequest.Category == 0)
+            //{
+            //    throw new RequiredParameterException("Category is required.");
+            //}
+            //if (dishRequest.Price <= 0)
+            //{
+            //    throw new InvalidateParameterException("Price must be greater than zero.");
+            //}
+            var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
+            if (!categoryExists)
             {
-                throw new RequiredParameterException("Required dish data.");
+                throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
             }
-            if (string.IsNullOrWhiteSpace(dishRequest.Name))
-            {
-                throw new RequiredParameterException("Name is required.");
-            }
-            if (dishRequest.Category == 0)
-            {
-                throw new RequiredParameterException("Category is required.");
-            }
-            if (dishRequest.Price <= 0)
-            {
-                throw new InvalidateParameterException("Price must be greater than zero.");
-            }
-
             var result = await _UpdateDish.UpdateDish(id, dishRequest);
             if (result.NotFound)
             {

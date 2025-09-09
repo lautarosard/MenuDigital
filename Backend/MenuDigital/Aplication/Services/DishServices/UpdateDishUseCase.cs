@@ -34,11 +34,13 @@ namespace Application.Services.DishServices
             {//buscar tirar la exception al controller
                 return new UpdateDishResult { NameConflict = true };
             }
+            var category = await _categoryQuery.GetCategoryById(DishUpdateRequest.Category);
 
             existingDish.Name = DishUpdateRequest.Name;
             existingDish.Description = DishUpdateRequest.Description;
             existingDish.Price = DishUpdateRequest.Price;
             existingDish.Available = DishUpdateRequest.IsActive;
+            existingDish.CategoryId = DishUpdateRequest.Category;
             existingDish.ImageUrl = DishUpdateRequest.Image;
             existingDish.UpdateDate = DateTime.UtcNow;
 
@@ -53,7 +55,7 @@ namespace Application.Services.DishServices
                     Name = existingDish.Name,
                     Description = existingDish.Description,
                     Price = existingDish.Price,
-                    Category = new GenericResponse { Id = existingDish.CategoryId, Name = existingDish.Category?.Name },
+                    Category = new GenericResponse { Id = category.Id, Name = category.Name},
                     isActive = existingDish.Available,
                     ImageUrl = existingDish.ImageUrl,
                     createdAt = existingDish.CreateDate,

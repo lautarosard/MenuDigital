@@ -2,6 +2,7 @@ using Application.Interfaces;
 using Application.Interfaces.ICategory;
 using Application.Interfaces.IDish;
 using Application.Services;
+using Application.Services.CategoryService;
 using Application.Services.DishServices;
 using Application.Validators;
 using FluentValidation;
@@ -33,6 +34,7 @@ builder.Services.AddScoped<ICreateDishUseCase, CreateDishUseCase>();
 //builder Query
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
 builder.Services.AddScoped<ICategoryCommand, CategoryCommand>();
+builder.Services.AddScoped<ICategoryExistUseCase, CategoryExistUseCase>();
 
 
 //
