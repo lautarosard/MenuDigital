@@ -42,7 +42,7 @@ namespace Application.Services.DishServices
                 ImageUrl = dishRequest.ImageUrl,
                 CreateDate = DateTime.UtcNow,
                 UpdateDate = DateTime.UtcNow,
-                CategoryId = dishRequest.Category
+                Category = dishRequest.Category
             };
             await _command.InsertDish(dish);
             return new DishResponse

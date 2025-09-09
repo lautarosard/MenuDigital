@@ -18,8 +18,8 @@ namespace Domain.Entities
         public DateTime UpdateDate { get; set; }
 
         //FK CATEGORY
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int Category { get; set; }
+        public Category CategoryEnt { get; set; }
 
         //RELATIONSHIP ORDERITEM
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

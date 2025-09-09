@@ -30,7 +30,7 @@ namespace Application.Services.DishServices
                 return new UpdateDishResult { NotFound = true };
             }
             var alreadyExist = await _query.DishExists(DishUpdateRequest.Name);
-            if (alreadyExist == null)
+            if (alreadyExist)
             {//buscar tirar la exception al controller
                 return new UpdateDishResult { NameConflict = true };
             }
@@ -40,7 +40,7 @@ namespace Application.Services.DishServices
             existingDish.Description = DishUpdateRequest.Description;
             existingDish.Price = DishUpdateRequest.Price;
             existingDish.Available = DishUpdateRequest.IsActive;
-            existingDish.CategoryId = DishUpdateRequest.Category;
+            existingDish.Category = DishUpdateRequest.Category;
             existingDish.ImageUrl = DishUpdateRequest.Image;
             existingDish.UpdateDate = DateTime.UtcNow;
 

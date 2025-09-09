@@ -35,7 +35,7 @@ namespace Application.Services.DishServices
                 Name = dishes.Name,
                 Description = dishes.Description,
                 Price = dishes.Price,
-                Category = new GenericResponse { Id = dishes.CategoryId, Name = dishes.Category?.Name },
+                Category = new GenericResponse {Id = dishes.Category, Name = dishes.CategoryEnt?.Name },
                 isActive = dishes.Available,
                 ImageUrl = dishes.ImageUrl,
                 createdAt = dishes.CreateDate,

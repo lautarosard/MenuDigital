@@ -32,7 +32,7 @@ namespace Infrastructure.Querys
 
             if (categoryId >= 1 && categoryId <= 10)
             {
-                query = query.Where(d => d.CategoryId == categoryId.Value);
+                query = query.Where(d => d.Category == categoryId.Value);
             }
             
             switch(priceOrder)

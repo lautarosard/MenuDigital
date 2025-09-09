@@ -48,7 +48,7 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
-        { 
+        {
             ////if (dishRequest == null)
             ////{
             ////    throw new RequiredParameterException("Required dish data.");
@@ -65,7 +65,11 @@ namespace MenuDigital.Controllers
             //{
             //    throw new InvalidateParameterException("Price must be greater than zero.");
             //}
-
+            var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
+            if (!categoryExists)
+            {
+                throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
+            }
             var createdDish = await _createDish.CreateDish(dishRequest);
             // if already exist a dish with that name, throw a 409 Conflict 
             if (createdDish == null)
@@ -194,6 +198,9 @@ namespace MenuDigital.Controllers
             //{
             //    throw new InvalidateParameterException("Price must be greater than zero.");
             //}
+            
+            dishRequest.IsActive = bool.Parse(dishRequest.IsActive.ToString().ToLower());
+            
             var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
             if (!categoryExists)
             {

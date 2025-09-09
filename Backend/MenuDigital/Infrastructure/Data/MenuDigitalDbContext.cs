@@ -72,6 +72,7 @@ namespace Infrastructure.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(25);
+                // Seed data
                 entity.HasData(
                 new Status { Id = 1, Name = "Pending" },
                 new Status { Id = 2, Name = "In progress" },
@@ -86,6 +87,7 @@ namespace Infrastructure.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired().HasColumnName("nvarchar(25)");
+                // Seed data
                 entity.HasData(
                 new DeliveryType { Id = 1, Name = "Delivery" },
                 new DeliveryType { Id = 2, Name = "Takeaway" },
@@ -102,9 +104,9 @@ namespace Infrastructure.Data
                 entity.Property(e => e.CreateDate).IsRequired();
                 entity.Property(e => e.UpdateDate).IsRequired();
                 // Relationship with Category
-                entity.HasOne(e => e.Category)
+                entity.HasOne(e => e.CategoryEnt)
                       .WithMany(c => c.Dishes)
-                      .HasForeignKey(e => e.CategoryId)
+                      .HasForeignKey(e => e.Category)
                       .OnDelete(DeleteBehavior.Restrict);
                 // Relationship with OrderItems
                 entity.HasMany(e => e.OrderItems)
@@ -121,8 +123,8 @@ namespace Infrastructure.Data
                 entity.Property(e => e.Description).HasMaxLength(255);
                 // "order" indica el orden de visualización de las categorías, no es una relación con la entidad Order
                 entity.Property(e => e.Order).IsRequired();
-                
-                // entradas
+
+                // Seed data
                 entity.HasData(
                 new Category { Id = 1, Name = "Entradas", Description = "Pequeñas porciones para abrir el apetito antes del plato principal.", Order = 1 },
                 new Category { Id = 2, Name = "Ensaladas", Description = "Opciones frescas y livianas, ideales como acompañamiento o plato principal.", Order = 2 },
