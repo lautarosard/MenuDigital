@@ -65,6 +65,10 @@ namespace MenuDigital.Middlewares
                 case KeyNotFoundException:
                     statusCode = HttpStatusCode.NotFound;
                     break;
+                case JsonException:
+                    statusCode = HttpStatusCode.BadRequest;
+                    message = "El formato JSON de la solicitud es inválido. Asegúrate de que los valores booleanos sean 'true' o 'false' sin comillas si no son strings.";
+                    break;
                 default:
                     statusCode = HttpStatusCode.InternalServerError;
                     message = "public Server Error";

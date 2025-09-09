@@ -137,32 +137,6 @@ namespace MenuDigital.Controllers
             
         }
 
-        ////
-        ///// <summary>
-        ///// Obtiene un plato por su ID.
-        ///// </summary>
-        ///// <remarks>
-        ///// Busca un plato específico en el menú usando su identificador único.
-        ///// </remarks>
-        ////
-        //[HttpGet("{id}")]
-        //[SwaggerOperation(
-        //Summary = "Buscar platos por ID",
-        //Description = "Buscar platos por ID."
-        //)]
-        //[ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
-        //[ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        //private async Task<IActionResult> GetDishById(Guid id)
-        //{
-        //    var dish = await _dishService.GetDishById(id);
-        //    if (dish == null)
-        //    {
-        //        throw new NotFoundException($"Dish with ID {id} not found.");
-        //    }
-        //    return Ok(dish);
-        //}
-
-
         // PUT
         /// <summary>
         /// Actualizar plato existente.
@@ -198,9 +172,7 @@ namespace MenuDigital.Controllers
             //{
             //    throw new InvalidateParameterException("Price must be greater than zero.");
             //}
-            
-            dishRequest.IsActive = bool.Parse(dishRequest.IsActive.ToString().ToLower());
-            
+
             var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
             if (!categoryExists)
             {

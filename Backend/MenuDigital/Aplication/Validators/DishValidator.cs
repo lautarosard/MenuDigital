@@ -18,6 +18,7 @@ namespace Application.Validators
             RuleFor(x => x.Category)
                 .NotEmpty().WithMessage("La categoria es necesaria")
                 .GreaterThan(0).WithMessage("Debe seleccionar una categoría válida");
+            
         }
     }
 }
