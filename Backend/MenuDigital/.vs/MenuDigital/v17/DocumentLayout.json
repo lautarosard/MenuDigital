@@ -3,22 +3,6 @@
   "WorkspaceRootPath": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\menudigital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\validators\\dishvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\validators\\dishvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\menudigital\\middlewares\\errorhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\middlewares\\errorhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\dishservices\\createdishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\dishservices\\createdishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,16 +15,20 @@
       "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\interfaces\\idish\\idishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\interfaces\\idish\\iupdatedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\interfaces\\idish\\iupdatedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\dishservices\\updatedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\dishservices\\updatedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\interfaces\\idish\\ideletedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\interfaces\\idish\\ideletedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\infrastructure\\command\\dishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\command\\dishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\interfaces\\idish\\icreatedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\interfaces\\idish\\icreatedishusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A02A4FBA-235A-46C2-A834-3B2828DD7287}|Domain\\Domain.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\domain\\entities\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A02A4FBA-235A-46C2-A834-3B2828DD7287}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,8 +38,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UpdateDishUseCase.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishServices\\UpdateDishUseCase.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\DishServices\\UpdateDishUseCase.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishServices\\UpdateDishUseCase.cs",
+              "RelativeToolTip": "Aplication\\Services\\DishServices\\UpdateDishUseCase.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAB8AAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T02:47:31.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IDishQuery.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishQuery.cs",
+              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\IDishQuery.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishQuery.cs",
+              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\IDishQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T02:46:16.506Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -63,127 +77,67 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Program.cs",
-              "RelativeDocumentMoniker": "MenuDigital\\Program.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Program.cs*",
-              "RelativeToolTip": "MenuDigital\\Program.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAABCAAAAAAAAAA==",
+              "Title": "CreateDishUseCase.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishServices\\CreateDishUseCase.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\DishServices\\CreateDishUseCase.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishServices\\CreateDishUseCase.cs*",
+              "RelativeToolTip": "Aplication\\Services\\DishServices\\CreateDishUseCase.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAwwBsAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-09T01:45:18.934Z",
+              "WhenOpened": "2025-09-11T01:40:14.397Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ErrorHandlingMiddleware.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Middlewares\\ErrorHandlingMiddleware.cs",
-              "RelativeDocumentMoniker": "MenuDigital\\Middlewares\\ErrorHandlingMiddleware.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Middlewares\\ErrorHandlingMiddleware.cs",
-              "RelativeToolTip": "MenuDigital\\Middlewares\\ErrorHandlingMiddleware.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAAAEcAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "DishCommand.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Command\\DishCommand.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Command\\DishCommand.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Command\\DishCommand.cs",
+              "RelativeToolTip": "Infrastructure\\Command\\DishCommand.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T17:07:09.51Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DishValidator.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Validators\\DishValidator.cs",
-              "RelativeDocumentMoniker": "Aplication\\Validators\\DishValidator.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Validators\\DishValidator.cs",
-              "RelativeToolTip": "Aplication\\Validators\\DishValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T16:51:52.057Z",
+              "WhenOpened": "2025-09-11T01:33:44.093Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DishController.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
-              "RelativeDocumentMoniker": "MenuDigital\\Controllers\\DishController.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
-              "RelativeToolTip": "MenuDigital\\Controllers\\DishController.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAQwMYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T17:11:59.131Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "DishQuery.cs",
               "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Querys\\DishQuery.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Querys\\DishQuery.cs",
               "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Querys\\DishQuery.cs",
               "RelativeToolTip": "Infrastructure\\Querys\\DishQuery.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABcAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAwFQAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T17:08:56.567Z"
+              "WhenOpened": "2025-09-11T01:27:32.198Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IUpdateDishUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IUpdateDishUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\IUpdateDishUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IUpdateDishUseCase.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\IUpdateDishUseCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABYAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "DishController.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
+              "RelativeDocumentMoniker": "MenuDigital\\Controllers\\DishController.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DishController.cs",
+              "RelativeToolTip": "MenuDigital\\Controllers\\DishController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:52:37.55Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CreateDishUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishServices\\CreateDishUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\DishServices\\CreateDishUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\DishServices\\CreateDishUseCase.cs",
-              "RelativeToolTip": "Aplication\\Services\\DishServices\\CreateDishUseCase.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAA3wDAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:53:07.586Z",
+              "WhenOpened": "2025-09-11T00:35:56.024Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "IDishQuery.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\IDishQuery.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAASwA8AAACZAAAAAAAAAA==",
+              "Title": "Dish.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Domain\\Entities\\Dish.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Dish.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Domain\\Entities\\Dish.cs",
+              "RelativeToolTip": "Domain\\Entities\\Dish.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T17:23:41.788Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IDeleteDishUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDeleteDishUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\IDeleteDishUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\IDeleteDishUseCase.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\IDeleteDishUseCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:55:02.265Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ICreateDishUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\ICreateDishUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDish\\ICreateDishUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Interfaces\\IDish\\ICreateDishUseCase.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IDish\\ICreateDishUseCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:54:29.507Z"
+              "WhenOpened": "2025-09-09T20:17:47.109Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -21,7 +21,7 @@ namespace Infrastructure.Querys
             _context = context;
         }
 
-        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = true)
+        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = null)
         {
             var query = _context.Dishes.AsNoTracking().AsQueryable();
 
@@ -61,7 +61,7 @@ namespace Infrastructure.Querys
             }
             
             return await query
-            .Include(d => d.Category)
+            .Include(d => d.CategoryEnt)
             .ToListAsync();
 
         }
@@ -75,9 +75,19 @@ namespace Infrastructure.Querys
             return await _context.Dishes.FindAsync(id).AsTask();
         }
 
-        public async Task<bool> DishExists(string name)
+        public async Task<bool> DishExists(string name, Guid? id)
         {
-            return await _context.Dishes.AnyAsync(d => d.Name == name);
+            var query = _context.Dishes.AsQueryable();
+
+            if (id.HasValue)
+            {
+                // Si estamos actualizando, excluimos el ID actual de la búsqueda
+                query = query.Where(d => d.DishId != id.Value);
+            }
+
+            // Ahora la búsqueda de conflicto solo se hará en los OTROS platos
+            return await query.AnyAsync(d => d.Name == name);
+
         }
     }
 }

@@ -9,11 +9,13 @@ using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Asp.Versioning;
 
 namespace MenuDigital.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class DishController : ControllerBase
     {
         private readonly ICreateDishUseCase _createDish;
@@ -21,9 +23,9 @@ namespace MenuDigital.Controllers
         private readonly ISearchAsyncUseCase _SearchAsync;
         private readonly ICategoryExistUseCase _CategoryExist;
         public DishController(
-            ICreateDishUseCase createDish, 
-            IUpdateDishUseCase UpdateDish, 
-            ISearchAsyncUseCase SearchAsync, 
+            ICreateDishUseCase createDish,
+            IUpdateDishUseCase UpdateDish,
+            ISearchAsyncUseCase SearchAsync,
             ICategoryExistUseCase CategoryExist)
         {
             _createDish = createDish;
@@ -76,7 +78,7 @@ namespace MenuDigital.Controllers
             {
                 throw new ConflictException("A dish with this name already exists.");
             }
-            return CreatedAtAction(nameof(Search), new {id = createdDish.Id},createdDish);
+            return CreatedAtAction(nameof(Search), new { id = createdDish.Id }, createdDish);
 
         }
         // GETs
@@ -97,10 +99,10 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Search(
-            [FromQuery] string? name, 
-            [FromQuery] int? categoryId, 
-            [FromQuery] OrderPrice? orderPrice = OrderPrice.ASC, 
-            [FromQuery] bool onlyActive = true)
+            [FromQuery] string? name,
+            [FromQuery] int? category,
+            [FromQuery] OrderPrice? sortByPrice = OrderPrice.ASC,
+            [FromQuery] bool? onlyActive = null)
         {
 
             /*if (!string.IsNullOrWhiteSpace(orderPrice))
@@ -111,30 +113,30 @@ namespace MenuDigital.Controllers
                     throw new OrderPriceException("Invalid order. Use ASC or DESC.");
                 }
             }*/
-            if(categoryId !=0  && categoryId != null)
+            if (category != 0 && category != null)
             {
-                var categoryExists = await _CategoryExist.CategoryExist(categoryId.Value);
+                var categoryExists = await _CategoryExist.CategoryExist(category.Value);
                 if (!categoryExists)
                 {
-                    throw new NotFoundException($"Category with ID {categoryId} not found.");
+                    throw new NotFoundException($"Category with ID {category} not found.");
                 }
             }
 
-            if(orderPrice != null)
+            if (sortByPrice != null)
             {
-                if(orderPrice != OrderPrice.ASC && orderPrice != OrderPrice.DESC)
+                if (sortByPrice != OrderPrice.ASC && sortByPrice != OrderPrice.DESC)
                 {
                     throw new OrderPriceException("Invalid order. Use ASC or DESC.");
                 }
             }
-            var list = await _SearchAsync.SearchAsync(name, categoryId, orderPrice, onlyActive);
+            var list = await _SearchAsync.SearchAsync(name, category, sortByPrice, onlyActive);
             if (list == null || !list.Any())
             {
                 throw new NotFoundException("No dishes found matching the criteria.");
             }
-            
+
             return Ok(list);
-            
+
         }
 
         // PUT
@@ -184,7 +186,7 @@ namespace MenuDigital.Controllers
                 throw new NotFoundException($"Dish with ID {id} not found.");
             }
 
-            if(result.NameConflict)
+            if (result.NameConflict)
             {
                 throw new ConflictException($"dish {dishRequest.Name} already exists");
             }
@@ -193,3 +195,4 @@ namespace MenuDigital.Controllers
         }
     }
 }
+

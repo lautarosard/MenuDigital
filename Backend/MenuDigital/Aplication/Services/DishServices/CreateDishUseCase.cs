@@ -25,7 +25,7 @@ namespace Application.Services.DishServices
         public async Task<DishResponse?> CreateDish(DishRequest dishRequest)
         {
             //validaciones
-            var existingDish = await _query.DishExists(dishRequest.Name);
+            var existingDish = await _query.DishExists(dishRequest.Name,null);
 
             if (existingDish)
             {
@@ -39,7 +39,7 @@ namespace Application.Services.DishServices
                 Description = dishRequest.Description,
                 Price = dishRequest.Price,
                 Available = true,
-                ImageUrl = dishRequest.ImageUrl,
+                ImageUrl = dishRequest.Image,
                 CreateDate = DateTime.UtcNow,
                 UpdateDate = DateTime.UtcNow,
                 Category = dishRequest.Category

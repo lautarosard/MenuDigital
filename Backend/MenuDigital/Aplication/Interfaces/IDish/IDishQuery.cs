@@ -15,7 +15,7 @@ namespace Application.Interfaces.IDish
         Task<List<Dish>> GetAllDishes();
         Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = true);
 
-        Task<bool> DishExists(string name);
+        Task<bool> DishExists(string name, Guid? id);
         //Task<IReadOnlyList<Domain.Entities.Dish>> SearchAsync(string? name, int? categoryId, string? priceOrder);
     }
 }

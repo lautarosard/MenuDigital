@@ -29,7 +29,7 @@ namespace Application.Services.DishServices
             {//que retorne null si no encuantre
                 return new UpdateDishResult { NotFound = true };
             }
-            var alreadyExist = await _query.DishExists(DishUpdateRequest.Name);
+            var alreadyExist = await _query.DishExists(DishUpdateRequest.Name, id);
             if (alreadyExist)
             {//buscar tirar la exception al controller
                 return new UpdateDishResult { NameConflict = true };
