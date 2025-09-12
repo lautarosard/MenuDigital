@@ -45,6 +45,7 @@ builder.Services.AddControllers();
 //Validation with FluentValidation
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<DishRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<DishUpdateRequestValidator>();
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -114,7 +115,8 @@ using (var scope = app.Services.CreateScope())
 // Middleware custom for exception handling
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
-app.UseHttpsRedirection();
+//Desconmentar despues de terminar las pruebas 
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

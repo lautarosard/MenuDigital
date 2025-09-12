@@ -53,9 +53,6 @@ namespace Infrastructure.Querys
                 case true:
                     query = query.Where(d => d.Available == true);
                     break;
-                case false:
-                    query = query.Where(d => d.Available == false);
-                    break;
                 default:
                     break;
             }
