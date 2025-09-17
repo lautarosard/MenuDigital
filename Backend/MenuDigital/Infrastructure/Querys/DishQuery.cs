@@ -1,5 +1,5 @@
 ﻿using Application.Enums;
-using Application.Interfaces.IDish;
+using Application.Interfaces.IDish.Repository;
 using Application.Models.Response;
 using Domain.Entities;
 using Infrastructure.Data;
@@ -63,10 +63,6 @@ namespace Infrastructure.Querys
 
         }
 
-        public async Task<List<Dish>> GetAllDishes()
-        {
-            return await _context.Dishes.ToListAsync();
-        }
         public async Task<Dish?> GetDishById(Guid id)
         {
             return await _context.Dishes.FindAsync(id).AsTask();

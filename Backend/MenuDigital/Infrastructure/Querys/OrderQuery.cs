@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Interfaces.IOrder.Repository;
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Querys
 {
-    public class OrderQuery
+    public class OrderQuery : IOrderQuery
     {
         private readonly MenuDigitalDbContext _context;
         public OrderQuery(MenuDigitalDbContext context)

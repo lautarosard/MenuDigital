@@ -31,9 +31,10 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.HasKey(e => e.OrderId);
+                entity.Property(e => e.OrderId).ValueGeneratedOnAdd();
                 entity.Property(e => e.Price).HasPrecision(18, 2).IsRequired();
                 //entity.Property(e => e.Notes).HasMaxLength(255); Si lo comento o no esta, EF Core lo crea como nvarchar(max)
-                entity.Property(e => e.OrderDate).IsRequired();
+                entity.Property(e => e.UpdateDate).IsRequired();
                 entity.Property(e => e.CreateDate).IsRequired();
 
                 // Relationship with DeliveryType
@@ -57,6 +58,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<OrderItem>(entity =>
             {
                 entity.HasKey(e => e.OrderItemId);
+                entity.Property(e => e.OrderItemId).ValueGeneratedOnAdd();
                 entity.Property(e => e.Quantity).IsRequired(); 
                 entity.Property(e => e.CreateDate).IsRequired();
 

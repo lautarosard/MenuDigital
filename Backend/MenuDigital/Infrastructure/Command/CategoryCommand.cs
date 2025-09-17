@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.Interfaces.ICategory;
+using Application.Interfaces.ICategory.Repository;
 using Domain.Entities;
 using Infrastructure.Data;
 
@@ -16,22 +16,22 @@ namespace Infrastructure.Command
         {
             _context = context;
         }
-        public async Task InsertCategory(Category category)
+        public Task InsertCategory(Category category)
         {
             _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
-        public async Task RemoveCategory(Category category)
+        public Task RemoveCategory(Category category)
         {
             _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
-        public async Task UpdateCategory(Category category)
+        public Task UpdateCategory(Category category)
         {
             _context.Categories.Update(category);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
     }
 }

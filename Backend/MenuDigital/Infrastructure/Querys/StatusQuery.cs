@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Data;
-using Application.Interfaces.IStatus;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces.IStatus.Repository;
 
 
 namespace Infrastructure.Querys

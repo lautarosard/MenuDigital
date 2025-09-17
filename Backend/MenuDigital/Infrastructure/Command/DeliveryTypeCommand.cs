@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.Interfaces.IDeliveryType;
+using Application.Interfaces.IDeliveryType.Repository;
 using Domain.Entities;
 using Infrastructure.Data;
 
@@ -17,22 +17,22 @@ namespace Infrastructure.Command
         {
             _context = context;
         }
-        public async Task InsertDeliveryType(DeliveryType deliveryType)
+        public Task InsertDeliveryType(DeliveryType deliveryType)
         {
             _context.DeliveryTypes.Add(deliveryType);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
-        public async Task UpdateDeliveryType(DeliveryType deliveryType)
+        public Task UpdateDeliveryType(DeliveryType deliveryType)
         {
             _context.DeliveryTypes.Update(deliveryType);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
-        public async Task RemoveDeliveryType(DeliveryType deliveryType)
+        public Task RemoveDeliveryType(DeliveryType deliveryType)
         {
             _context.DeliveryTypes.Remove(deliveryType);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
     }

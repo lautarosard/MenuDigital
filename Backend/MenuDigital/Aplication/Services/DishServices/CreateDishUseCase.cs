@@ -1,7 +1,9 @@
-﻿using Application.Interfaces.ICategory;
+﻿using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
+using Application.Interfaces.IDish.Repository;
 using Application.Models.Request;
 using Application.Models.Response;
+using Application.Models.Response.Dish;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,25 +15,24 @@ namespace Application.Services.DishServices
 {
     public class CreateDishUseCase : ICreateDishUseCase
     {
-        private readonly IDishCommand _command;
-        private readonly IDishQuery _query;
-        private readonly ICategoryQuery _categoryQuery;
-        public CreateDishUseCase(IDishCommand command, IDishQuery query, ICategoryQuery categoryQuery)
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IDishRepository _dishRepository;
+        
+        public CreateDishUseCase(ICategoryRepository categoryRepository, IDishRepository dishRepository)
         {
-            _command = command;
-            _query = query;
-            _categoryQuery = categoryQuery;
+            _categoryRepository = categoryRepository;
+            _dishRepository = dishRepository;
         }
         public async Task<DishResponse?> CreateDish(DishRequest dishRequest)
         {
             //validaciones
-            var existingDish = await _query.DishExists(dishRequest.Name,null);
+            var existingDish = await _dishRepository.DishExists(dishRequest.Name,null);
 
             if (existingDish)
             {
                 return null;
             }
-            var category = await _categoryQuery.GetCategoryById(dishRequest.Category);
+            var category = await _categoryRepository.GetCategoryById(dishRequest.Category);
             var dish = new Dish
             {
                 DishId = Guid.NewGuid(),
@@ -44,7 +45,7 @@ namespace Application.Services.DishServices
                 UpdateDate = DateTime.UtcNow,
                 Category = dishRequest.Category
             };
-            await _command.InsertDish(dish);
+            await _dishRepository.InsertDish(dish);
             return new DishResponse
             {
                 Id = dish.DishId,

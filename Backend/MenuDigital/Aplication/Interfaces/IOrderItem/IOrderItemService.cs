@@ -14,10 +14,10 @@ namespace Application.Interfaces.IOrderItem
         Task<List<OrderItemResponse>> GetAllOrderItems();
 
         // Create
-        Task<OrderItemResponse> CreateOrderItem(OrderItemRequest orderItemRequest);
+        Task<OrderItemResponse> CreateOrderItem(OrderItemUpdateRequest orderItemRequest);
 
         // Update
-        Task<OrderItemResponse> UpdateOrderItem(int id, OrderItemRequest orderItemRequest);
+        Task<OrderItemResponse> UpdateOrderItem(int id, OrderItemUpdateRequest orderItemRequest);
 
         // Delete
         Task<OrderItemResponse> DeleteOrderItem(int id);

@@ -11,7 +11,7 @@ namespace Domain.Entities
         public long OrderId { get; set; }
         public decimal Price { get; set; }
         public string Notes { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public DateTime CreateDate { get; set; }
         //FK DELIVERYTYPE
         public int DeliveryTypeId { get; set; }

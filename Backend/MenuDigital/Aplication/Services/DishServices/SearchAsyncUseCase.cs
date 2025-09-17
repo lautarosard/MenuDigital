@@ -1,7 +1,9 @@
 ﻿using Application.Enums;
-using Application.Interfaces.ICategory;
+using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
+using Application.Interfaces.IDish.Repository;
 using Application.Models.Response;
+using Application.Models.Response.Dish;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +14,16 @@ namespace Application.Services.DishServices
 {
     public class SearchAsyncUseCase : ISearchAsyncUseCase
     {
-        private readonly IDishCommand _command;
-        private readonly IDishQuery _query;
-        private readonly ICategoryQuery _categoryQuery;
-        public SearchAsyncUseCase(IDishCommand command, IDishQuery query, ICategoryQuery categoryQuery)
+        private readonly IDishRepository _dishRepository;
+        public SearchAsyncUseCase(IDishRepository dishRepository)
         {
-            _command = command;
-            _query = query;
-            _categoryQuery = categoryQuery;
+            _dishRepository = dishRepository;
         }
 
         public async Task<IEnumerable<DishResponse?>> SearchAsync(string? name, int? categoryId, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = null)
         {
 
-            var list = await _query.GetAllAsync(name, categoryId, priceOrder, onlyActive);
+            var list = await _dishRepository.GetAllAsync(name, categoryId, priceOrder, onlyActive);
 
 
 

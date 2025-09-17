@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.Interfaces.IDish;
+using Application.Interfaces.IDish.Repository;
 using Domain.Entities;
 using Infrastructure.Data;
 
@@ -23,16 +23,16 @@ namespace Infrastructure.Command
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveDish(Dish dish)
+        public Task RemoveDish(Dish dish)
         {
             _context.Dishes.Remove(dish);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
 
-        public async Task UpdateDish(Dish dish)
+        public Task UpdateDish(Dish dish)
         {
             _context.Dishes.Update(dish);
-            await _context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
     }
 }

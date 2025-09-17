@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Data;
 using Domain.Entities;
-using Application.Interfaces.ICategory;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces.ICategory.Repository;
 
 namespace Infrastructure.Querys
 {

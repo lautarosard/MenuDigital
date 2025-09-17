@@ -1,6 +1,8 @@
-﻿using Application.Interfaces.ICategory;
+﻿using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
+using Application.Interfaces.IDish.Repository;
 using Application.Models.Response;
+using Application.Models.Response.Dish;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +13,14 @@ namespace Application.Services.DishServices
 {
     public class GetDishByIdUseCase : IGetDishByIdUseCase
     {
-        private readonly IDishCommand _command;
-        private readonly IDishQuery _query;
-        private readonly ICategoryQuery _categoryQuery;
-        public GetDishByIdUseCase(IDishCommand command, IDishQuery query, ICategoryQuery categoryQuery)
+        private readonly IDishRepository _dishRepository;
+        public GetDishByIdUseCase(IDishRepository dishRepository)
         {
-            _command = command;
-            _query = query;
-            _categoryQuery = categoryQuery;
+            _dishRepository = dishRepository;
         }
         public async Task<DishResponse?> GetDishById(Guid id)
         {
-            var dish = await _query.GetDishById(id);
+            var dish = await _dishRepository.GetDishById(id);
             if (dish == null)
             {
                 return null;

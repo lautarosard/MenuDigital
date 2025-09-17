@@ -1,7 +1,9 @@
-﻿using Application.Interfaces.ICategory;
+﻿using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
+using Application.Interfaces.IDish.Repository;
 using Application.Models.Request;
 using Application.Models.Response;
+using Application.Models.Response.Dish;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,29 +14,27 @@ namespace Application.Services.DishServices
 {
     public class UpdateDishUseCase : IUpdateDishUseCase
     {
-        private readonly IDishCommand _command;
-        private readonly IDishQuery _query;
-        private readonly ICategoryQuery _categoryQuery;
-        public UpdateDishUseCase(IDishCommand command, IDishQuery query, ICategoryQuery categoryQuery)
+        private readonly IDishRepository _dishRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        public UpdateDishUseCase(IDishRepository dishRepository, ICategoryRepository categoryRepository)
         {
-            _command = command;
-            _query = query;
-            _categoryQuery = categoryQuery;
+            _dishRepository = dishRepository;
+            _categoryRepository = categoryRepository;
         }
         public async Task<UpdateDishResult> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest)
         {
-            var existingDish = await _query.GetDishById(id);
+            var existingDish = await _dishRepository.GetDishById(id);
 
             if (existingDish == null)
             {//que retorne null si no encuantre
                 return new UpdateDishResult { NotFound = true };
             }
-            var alreadyExist = await _query.DishExists(DishUpdateRequest.Name, id);
+            var alreadyExist = await _dishRepository.DishExists(DishUpdateRequest.Name, id);
             if (alreadyExist)
             {//buscar tirar la exception al controller
                 return new UpdateDishResult { NameConflict = true };
             }
-            var category = await _categoryQuery.GetCategoryById(DishUpdateRequest.Category);
+            var category = await _categoryRepository.GetCategoryById(DishUpdateRequest.Category);
 
             existingDish.Name = DishUpdateRequest.Name;
             existingDish.Description = DishUpdateRequest.Description;
@@ -44,7 +44,7 @@ namespace Application.Services.DishServices
             existingDish.ImageUrl = DishUpdateRequest.Image;
             existingDish.UpdateDate = DateTime.UtcNow;
 
-            await _command.UpdateDish(existingDish);
+            await _dishRepository.UpdateDish(existingDish);
 
             return new UpdateDishResult
             {

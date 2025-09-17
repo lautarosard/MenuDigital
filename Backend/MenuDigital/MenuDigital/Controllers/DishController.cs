@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Asp.Versioning;
+using Application.Models.Response.Dish;
 
 namespace MenuDigital.Controllers
 {
@@ -22,6 +23,7 @@ namespace MenuDigital.Controllers
         private readonly IUpdateDishUseCase _UpdateDish;
         private readonly ISearchAsyncUseCase _SearchAsync;
         private readonly ICategoryExistUseCase _CategoryExist;
+        private readonly IGetDishByIdUseCase _getDishByIdUseCase;
         public DishController(
             ICreateDishUseCase createDish,
             IUpdateDishUseCase UpdateDish,
@@ -138,6 +140,31 @@ namespace MenuDigital.Controllers
             return Ok(list);
 
         }
+
+        /// <summary>
+        /// Obtiene un plato por su ID.
+        /// </summary>
+        /// <remarks>
+        /// Busca un plato específico en el menú usando su identificador único.
+        /// </remarks>
+        //
+        [HttpGet("{id}")]
+        [SwaggerOperation(
+        Summary = "Buscar platos por ID",
+        Description = "Buscar platos por ID."
+        )]
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        private async Task<IActionResult> GetDishById(Guid id)
+        {
+            var dish = await _getDishByIdUseCase.GetDishById(id);
+            if (dish == null)
+            {
+                throw new NotFoundException($"Dish with ID {id} not found.");
+            }
+            return Ok(dish);
+        }
+
 
         // PUT
         /// <summary>
