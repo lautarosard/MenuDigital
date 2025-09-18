@@ -40,7 +40,7 @@ namespace Infrastructure.Repositories
         {
             await _orderItemCommand.UpdateOrderItem(orderItem);
         }
-        public async Task RemoveOrderItem(OrderItem orderItem)
+        public async Task RemoveOrderItem(IEnumerable<OrderItem> orderItem)
         {
             await _orderItemCommand.RemoveOrderItem(orderItem);
         }

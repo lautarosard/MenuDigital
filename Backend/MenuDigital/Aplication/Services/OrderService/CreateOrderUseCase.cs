@@ -39,6 +39,7 @@ namespace Application.Services.OrderService
                 DeliveryTypeId = orderRequest.delivery.id,
                 Price = 0, 
                 StatusId = 1, 
+                DeliveryTo = orderRequest.delivery.to,
                 Notes = orderRequest.notes,
                 UpdateDate = DateTime.Now,
                 CreateDate = DateTime.Now
@@ -56,7 +57,6 @@ namespace Application.Services.OrderService
                                     OrderId = order.OrderId,
             }).ToList();
             order.Price = await CalculateTotalPrice(listItems);
-            order.OverallStatus = null;
             await _orderItemRepository.InsertOrderItemRange(listorderItems);
             await _orderRepository.UpdateOrder(order);
             //relacionar orderItem con dish

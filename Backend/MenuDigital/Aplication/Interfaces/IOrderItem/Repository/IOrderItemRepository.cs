@@ -17,7 +17,7 @@ namespace Application.Interfaces.IOrderItem.Repository
         Task InsertOrderItem(OrderItem orderItem);
         Task InsertOrderItemRange(List<OrderItem> orderItems);
         Task UpdateOrderItem(OrderItem orderItem);
-        Task RemoveOrderItem(OrderItem orderItem);
+        Task RemoveOrderItem(IEnumerable<OrderItem> orderItem);
 
     }
 }

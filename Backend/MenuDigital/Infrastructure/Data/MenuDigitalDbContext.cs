@@ -32,6 +32,7 @@ namespace Infrastructure.Data
             {
                 entity.HasKey(e => e.OrderId);
                 entity.Property(e => e.OrderId).ValueGeneratedOnAdd();
+                entity.Property(e => e.DeliveryTo).HasMaxLength(255);
                 entity.Property(e => e.Price).HasPrecision(18, 2).IsRequired();
                 //entity.Property(e => e.Notes).HasMaxLength(255); Si lo comento o no esta, EF Core lo crea como nvarchar(max)
                 entity.Property(e => e.UpdateDate).IsRequired();

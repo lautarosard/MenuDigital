@@ -26,6 +26,10 @@ namespace Infrastructure.Repositories
         {
             return _orderQuery.GetAllOrders();
         }
+        public Task<IEnumerable<Order?>> GetOrderWithFilter(int? statusId, DateTime? from, DateTime? to)
+        {
+            return _orderQuery.GetOrderWithFilter(statusId, from, to);
+        }
         //Commands
         public Task InsertOrder(Order order)
         {

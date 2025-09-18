@@ -80,7 +80,7 @@ namespace MenuDigital.Controllers
             {
                 throw new ConflictException("A dish with this name already exists.");
             }
-            return CreatedAtAction(nameof(Search), new { id = createdDish.Id }, createdDish);
+            return CreatedAtAction(nameof(GetDishById), new { id = createdDish.Id }, createdDish);
 
         }
         // GETs
@@ -106,15 +106,6 @@ namespace MenuDigital.Controllers
             [FromQuery] OrderPrice? sortByPrice = OrderPrice.ASC,
             [FromQuery] bool? onlyActive = null)
         {
-
-            /*if (!string.IsNullOrWhiteSpace(orderPrice))
-            {
-                var normalized = orderPrice.Trim().ToUpperInvariant();
-                if (normalized != "ASC" && normalized != "DESC")
-                {
-                    throw new OrderPriceException("Invalid order. Use ASC or DESC.");
-                }
-            }*/
             if (category != 0 && category != null)
             {
                 var categoryExists = await _CategoryExist.CategoryExist(category.Value);
@@ -141,13 +132,13 @@ namespace MenuDigital.Controllers
 
         }
 
+        //GET by ID
         /// <summary>
         /// Obtiene un plato por su ID.
         /// </summary>
         /// <remarks>
         /// Busca un plato específico en el menú usando su identificador único.
         /// </remarks>
-        //
         [HttpGet("{id}")]
         [SwaggerOperation(
         Summary = "Buscar platos por ID",
@@ -185,23 +176,6 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishUpdateRequest dishRequest)
         {
-            //if (dishRequest == null)
-            //{
-            //    throw new RequiredParameterException("Required dish data.");
-            //}
-            //if (string.IsNullOrWhiteSpace(dishRequest.Name))
-            //{
-            //    throw new RequiredParameterException("Name is required.");
-            //}
-            //if (dishRequest.Category == 0)
-            //{
-            //    throw new RequiredParameterException("Category is required.");
-            //}
-            //if (dishRequest.Price <= 0)
-            //{
-            //    throw new InvalidateParameterException("Price must be greater than zero.");
-            //}
-
             var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
             if (!categoryExists)
             {
@@ -220,6 +194,7 @@ namespace MenuDigital.Controllers
 
             return Ok(result.UpdatedDish);
         }
+
     }
 }
 

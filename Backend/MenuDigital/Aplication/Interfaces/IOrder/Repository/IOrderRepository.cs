@@ -11,6 +11,7 @@ namespace Application.Interfaces.IOrder.Repository
     {
         //Queries
         Task<Order?> GetOrderById(long id);
+        Task<IEnumerable<Order?>> GetOrderWithFilter(int? statusId, DateTime? from, DateTime? to);
         Task<List<Order>> GetAllOrders();
         //Commands
         Task InsertOrder(Order order);

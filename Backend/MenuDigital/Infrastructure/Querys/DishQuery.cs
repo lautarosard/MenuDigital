@@ -1,4 +1,5 @@
 ﻿using Application.Enums;
+using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish.Repository;
 using Application.Models.Response;
 using Domain.Entities;
@@ -16,12 +17,14 @@ namespace Infrastructure.Querys
     public class DishQuery : IDishQuery
     {
         private readonly MenuDigitalDbContext _context;
-        public DishQuery(MenuDigitalDbContext context)
+        private readonly ICategoryQuery _categoryQuery;
+        public DishQuery(MenuDigitalDbContext context, ICategoryQuery categoryQuery)
         {
             _context = context;
+            _categoryQuery = categoryQuery;
         }
 
-        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = null, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = null)
+        public async Task<IEnumerable<Dish>> GetAllAsync(string? name = null, int? categoryId = 0, OrderPrice? priceOrder = OrderPrice.ASC, bool? onlyActive = null)
         {
             var query = _context.Dishes.AsNoTracking().AsQueryable();
 
@@ -30,7 +33,7 @@ namespace Infrastructure.Querys
                 query = query.Where(d => d.Name.Contains(name));
             }
 
-            if (categoryId >= 1 && categoryId <= 10)
+            if (await _categoryQuery.CategoryExistAsync(categoryId.Value))
             {
                 query = query.Where(d => d.Category == categoryId.Value);
             }

@@ -65,7 +65,9 @@ builder.Services.AddScoped<IOrderCommand, OrderCommand>();
 builder.Services.AddScoped<IOrderQuery,OrderQuery>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ICreateOrderUseCase, CreateOrderUseCase>();
-
+builder.Services.AddScoped<IGetOrderWithFilterUseCase, GetOrderWithFilterUseCase>();
+builder.Services.AddScoped<IGetOrderByIdUseCase, GetOrderByIdUseCase>();
+builder.Services.AddScoped<IUpdateItemFromOrder, UpdateItemFromOrder>();
 //builder Status
 builder.Services.AddScoped<IStatusQuery, StatusQuery>();
 builder.Services.AddScoped<IGetAllStatusAsyncUseCase, GetAllStatusAsyncUseCase>();

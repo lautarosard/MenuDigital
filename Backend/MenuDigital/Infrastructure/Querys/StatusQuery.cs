@@ -19,9 +19,10 @@ namespace Infrastructure.Querys
             _context = context;
         }
 
-        public async Task<Status?> GetStatusById(int id)
+        public async Task<string> GetStatusById(int id)
         {
-            return await _context.Statuses.FindAsync(id).AsTask();
+            var status= await _context.Statuses.FindAsync(id).AsTask();
+            return status.Name;
         }
 
         public async Task<List<Status>> GetAllStatuses()
