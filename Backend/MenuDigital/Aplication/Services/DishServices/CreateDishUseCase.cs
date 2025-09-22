@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.ICategory.Repository;
+﻿using Application.Exceptions;
+using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
 using Application.Interfaces.IDish.Repository;
 using Application.Models.Request;
@@ -28,9 +29,10 @@ namespace Application.Services.DishServices
             //validaciones
             var existingDish = await _dishRepository.DishExists(dishRequest.Name,null);
 
+            // if already exist a dish with that name, throw a 409 Conflict 
             if (existingDish)
             {
-                return null;
+                throw new ConflictException($"A dish with this name {dishRequest.Name} already exists.");
             }
             var category = await _categoryRepository.GetCategoryById(dishRequest.Category);
             var dish = new Dish

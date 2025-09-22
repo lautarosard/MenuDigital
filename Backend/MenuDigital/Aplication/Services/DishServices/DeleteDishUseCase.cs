@@ -1,6 +1,9 @@
-﻿using Application.Interfaces.ICategory.Repository;
+﻿using Application.Exceptions;
+using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
 using Application.Interfaces.IDish.Repository;
+using Application.Interfaces.IOrder.Repository;
+using Application.Interfaces.IOrderItem.Repository;
 using Application.Models.Response;
 using Application.Models.Response.Dish;
 using System;
@@ -15,11 +18,12 @@ namespace Application.Services.DishServices
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IDishRepository _dishRepository;
-        
-        public DeleteDishUseCase(ICategoryRepository categoryRepository, IDishRepository dishRepository)
+        private readonly IOrderItemRepository _orderItemRepository;
+        public DeleteDishUseCase(ICategoryRepository categoryRepository, IDishRepository dishRepository, IOrderItemRepository orderItemRepository)
         {
             _categoryRepository = categoryRepository;
             _dishRepository = dishRepository;
+            _orderItemRepository = orderItemRepository;
         }
 
         public async Task<DishResponse?> DeleteDish(Guid id)
@@ -27,9 +31,15 @@ namespace Application.Services.DishServices
             var dish = await _dishRepository.GetDishById(id);
             if (dish == null)
             {
-                return null;
+                throw new NotFoundException($"Dish with ID {id} not found.");
             }
-            await _dishRepository.RemoveDish(dish);
+            bool usedInOrders = await _orderItemRepository.ExistsByDishId(id);
+            if (usedInOrders)
+            {
+                throw new ConflictException($"Dish with ID {id} cannot be deleted because it is used in existing orders.");
+            }
+            dish.Available = false; // Set the dish as inactive before deletion
+            await _dishRepository.UpdateDish(dish);
             return new DishResponse
             {
                 Id = id,

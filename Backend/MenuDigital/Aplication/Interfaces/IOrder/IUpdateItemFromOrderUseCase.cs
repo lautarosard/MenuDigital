@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces.IOrder
 {
-    public interface IUpdateItemFromOrder
+    public interface IUpdateItemFromOrderUseCase
     {
         public Task<OrderUpdateReponse> UpdateItemQuantity(long orderId, OrderUpdateRequest listItems);
     }

@@ -12,6 +12,8 @@ namespace Application.Interfaces.IOrderItem.Repository
         // queries
         Task<OrderItem?> GetOrderItemById(long id);
         Task<List<OrderItem>> GetAllOrderItems();
+        Task<bool> ExistsByDishId(Guid dishId);
+
 
         // commands
         Task InsertOrderItem(OrderItem orderItem);

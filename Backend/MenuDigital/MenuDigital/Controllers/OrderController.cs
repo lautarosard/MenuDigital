@@ -19,16 +19,19 @@ namespace MenuDigital.Controllers
         private readonly ICreateOrderUseCase _createOrderUseCase;
         private readonly IGetOrderWithFilterUseCase _getOrderWithFilterUseCase;
         private readonly IGetOrderByIdUseCase _getOrderById;
-        private readonly IUpdateItemFromOrder _updateItemFromOrder;
+        private readonly IUpdateItemFromOrderUseCase _updateItemFromOrder;
+        private readonly IUpdateOrderItemStatusUseCase _updateOrderItemStatus;
         public OrderController(ICreateOrderUseCase createOrderUseCase, 
             IGetOrderWithFilterUseCase getOrderWithFilterUseCase,
             IGetOrderByIdUseCase getOrderById,
-            IUpdateItemFromOrder updateItemFromOrder)
+            IUpdateItemFromOrderUseCase updateItemFromOrder,
+            IUpdateOrderItemStatusUseCase updateOrderItemStatus)
         {
             _createOrderUseCase = createOrderUseCase;
             _getOrderWithFilterUseCase = getOrderWithFilterUseCase;
             _getOrderById = getOrderById;
             _updateItemFromOrder = updateItemFromOrder;
+            _updateOrderItemStatus = updateOrderItemStatus;
         }
 
         // POST
@@ -113,7 +116,7 @@ namespace MenuDigital.Controllers
         }
         // PUT to update order items
         [HttpPut("{orderId}")]
-        public async Task<IActionResult> UpdateOrderItemStatus(long orderId, [FromBody] OrderUpdateRequest request)
+        public async Task<IActionResult> UpdateOrderItems(long orderId, [FromBody] OrderUpdateRequest request)
         {
             var response = await _updateItemFromOrder.UpdateItemQuantity(orderId, request);
             return Ok(response);
@@ -121,5 +124,10 @@ namespace MenuDigital.Controllers
         // PATCH: api/v1/order/1001/item/1
         [HttpPatch("{orderId}/item/{itemId}")]
         //aplicar
+        public async Task<IActionResult> UpdateOrderItemStatus(long orderId, int itemId, [FromBody] OrderItemUpdateRequest request)
+        {
+            var response = await _updateOrderItemStatus.UpdateItemStatus(orderId, itemId, request);
+            return Ok(response);
+        }
     }   
 }

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.ICategory.Repository;
+﻿using Application.Exceptions;
+using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
 using Application.Interfaces.IDish.Repository;
 using Application.Models.Response;
@@ -23,7 +24,7 @@ namespace Application.Services.DishServices
             var dish = await _dishRepository.GetDishById(id);
             if (dish == null)
             {
-                return null;
+                throw new NotFoundException($"Dish with ID {id} not found.");
             }
 
             return new DishResponse

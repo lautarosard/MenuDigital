@@ -11,7 +11,7 @@ namespace Application.Models.Response.Order
         
         public int orderNumber { get; set; }
         public double totalAmount { get; set; }
-        public DateTime createAt { get; set; }
+        public DateTime createdAt { get; set; }
         
     }
 }

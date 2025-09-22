@@ -25,6 +25,10 @@ namespace Infrastructure.Querys
         {
             return await _context.OrderItems.ToListAsync();
         }
+        public async Task<bool> ExistsByDishId(Guid dishId)
+        {
+            return await _context.OrderItems.AnyAsync(oi => oi.DishId == dishId);
+        }
 
         public Task<OrderItem?> GetOrderItemById(long id)
         {

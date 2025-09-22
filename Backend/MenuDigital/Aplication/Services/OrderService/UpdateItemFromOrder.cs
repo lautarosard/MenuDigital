@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.OrderService
 {
-    public class UpdateItemFromOrder : IUpdateItemFromOrder
+    public class UpdateItemFromOrder : IUpdateItemFromOrderUseCase
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderItemRepository _orderItemRepository;

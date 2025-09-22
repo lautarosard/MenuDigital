@@ -27,6 +27,10 @@ namespace Infrastructure.Repositories
         {
             return await _orderItemQuery.GetAllOrderItems();
         }
+        public async Task<bool> ExistsByDishId(Guid dishId)
+        {
+            return await _orderItemQuery.ExistsByDishId(dishId);
+        }
         // commands
         public async Task InsertOrderItem(OrderItem orderItem)
         {

@@ -11,6 +11,6 @@ namespace Application.Interfaces.IDish
     public interface IUpdateDishUseCase
     {
         // Update
-        Task<UpdateDishResult> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest);
+        Task<DishResponse> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest);
     }
 }

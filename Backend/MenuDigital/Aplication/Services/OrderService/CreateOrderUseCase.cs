@@ -65,7 +65,7 @@ namespace Application.Services.OrderService
             {
                 orderNumber = (int)order.OrderId,// se genera auto, ver
                 totalAmount = (double)order.Price,
-                createAt = DateTime.Now
+                createdAt = DateTime.Now
             };
 
         }

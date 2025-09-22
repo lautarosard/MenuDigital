@@ -53,33 +53,15 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
         {
-            ////if (dishRequest == null)
-            ////{
-            ////    throw new RequiredParameterException("Required dish data.");
-            ////}
-            ////if (string.IsNullOrWhiteSpace(dishRequest.Name))
-            ////{
-            ////    throw new RequiredParameterException("Name is required.");
-            ////}
-            ////if (dishRequest.Category == 0)
-            ////{
-            ////    throw new RequiredParameterException("Category is required.");
-            ////}
-            //if (dishRequest.Price <= 0)
-            //{
-            //    throw new InvalidateParameterException("Price must be greater than zero.");
-            //}
+            
             var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
+            //mover al service
             if (!categoryExists)
             {
                 throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
             }
             var createdDish = await _createDish.CreateDish(dishRequest);
-            // if already exist a dish with that name, throw a 409 Conflict 
-            if (createdDish == null)
-            {
-                throw new ConflictException("A dish with this name already exists.");
-            }
+            
             return CreatedAtAction(nameof(GetDishById), new { id = createdDish.Id }, createdDish);
 
         }
@@ -114,19 +96,11 @@ namespace MenuDigital.Controllers
                     throw new NotFoundException($"Category with ID {category} not found.");
                 }
             }
-
-            if (sortByPrice != null)
-            {
-                if (sortByPrice != OrderPrice.ASC && sortByPrice != OrderPrice.DESC)
-                {
-                    throw new OrderPriceException("Invalid order. Use ASC or DESC.");
-                }
-            }
             var list = await _SearchAsync.SearchAsync(name, category, sortByPrice, onlyActive);
-            if (list == null || !list.Any())
-            {
-                throw new NotFoundException("No dishes found matching the criteria.");
-            }
+            //if (list == null || !list.Any())
+            //{
+            //    throw new NotFoundException("No dishes found matching the criteria.");
+            //}combiene que retorne una lista vacia
 
             return Ok(list);
 
@@ -149,10 +123,6 @@ namespace MenuDigital.Controllers
         private async Task<IActionResult> GetDishById(Guid id)
         {
             var dish = await _getDishByIdUseCase.GetDishById(id);
-            if (dish == null)
-            {
-                throw new NotFoundException($"Dish with ID {id} not found.");
-            }
             return Ok(dish);
         }
 
@@ -182,19 +152,22 @@ namespace MenuDigital.Controllers
                 throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
             }
             var result = await _UpdateDish.UpdateDish(id, dishRequest);
-            if (result.NotFound)
-            {
-                throw new NotFoundException($"Dish with ID {id} not found.");
-            }
 
-            if (result.NameConflict)
-            {
-                throw new ConflictException($"dish {dishRequest.Name} already exists");
-            }
-
-            return Ok(result.UpdatedDish);
+            return Ok(result);
         }
 
+        // DELETE
+        /// <summary>
+        /// Eliminar plato
+        /// </summary>
+        /// <remarks>
+        /// Elimina un plato del menú del restaurante.
+        /// </remarks>
+        /// 
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
     }
 }
 

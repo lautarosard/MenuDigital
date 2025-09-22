@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.ICategory.Repository;
+﻿using Application.Exceptions;
+using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
 using Application.Interfaces.IDish.Repository;
 using Application.Models.Request;
@@ -21,18 +22,18 @@ namespace Application.Services.DishServices
             _dishRepository = dishRepository;
             _categoryRepository = categoryRepository;
         }
-        public async Task<UpdateDishResult> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest)
+        public async Task<DishResponse> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest)
         {
             var existingDish = await _dishRepository.GetDishById(id);
 
             if (existingDish == null)
             {//que retorne null si no encuantre
-                return new UpdateDishResult { NotFound = true };
+                throw new NotFoundException($"Dish with ID {id} not found.");
             }
             var alreadyExist = await _dishRepository.DishExists(DishUpdateRequest.Name, id);
             if (alreadyExist)
             {//buscar tirar la exception al controller
-                return new UpdateDishResult { NameConflict = true };
+                throw new ConflictException($"dish {DishUpdateRequest.Name} already exists");
             }
             var category = await _categoryRepository.GetCategoryById(DishUpdateRequest.Category);
 
@@ -46,21 +47,17 @@ namespace Application.Services.DishServices
 
             await _dishRepository.UpdateDish(existingDish);
 
-            return new UpdateDishResult
+            return new DishResponse
             {
-                Success = true,
-                UpdatedDish = new DishResponse
-                {
-                    Id = existingDish.DishId,
-                    Name = existingDish.Name,
-                    Description = existingDish.Description,
-                    Price = existingDish.Price,
-                    Category = new GenericResponse { Id = category.Id, Name = category.Name},
-                    isActive = existingDish.Available,
-                    ImageUrl = existingDish.ImageUrl,
-                    createdAt = existingDish.CreateDate,
-                    updateAt = existingDish.UpdateDate
-                }
+                Id = existingDish.DishId,
+                Name = existingDish.Name,
+                Description = existingDish.Description,
+                Price = existingDish.Price,
+                Category = new GenericResponse { Id = category.Id, Name = category.Name},
+                isActive = existingDish.Available,
+                ImageUrl = existingDish.ImageUrl,
+                createdAt = existingDish.CreateDate,
+                updateAt = existingDish.UpdateDate                
             };
         }
     }
