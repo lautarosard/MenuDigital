@@ -98,7 +98,7 @@ namespace MenuDigital.Controllers
             }
             var list = await _SearchAsync.SearchAsync(name, category, sortByPrice, onlyActive);
             //if (list == null || !list.Any())
-            //{
+            ///{
             //    throw new NotFoundException("No dishes found matching the criteria.");
             //}combiene que retorne una lista vacia
 
@@ -120,7 +120,7 @@ namespace MenuDigital.Controllers
         )]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        private async Task<IActionResult> GetDishById(Guid id)
+        public async Task<IActionResult> GetDishById(Guid id)
         {
             var dish = await _getDishByIdUseCase.GetDishById(id);
             return Ok(dish);
@@ -168,6 +168,11 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
+        public async Task<IActionResult> DeleteDish(Guid id, [FromServices] IDeleteDishUseCase _deleteDish)
+        {
+            var result = await _deleteDish.DeleteDish(id);
+            return Ok(result);
+        }
     }
 }
 

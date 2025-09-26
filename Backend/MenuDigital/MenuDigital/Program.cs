@@ -48,6 +48,7 @@ builder.Services.AddScoped<IDishRepository, DishRepositories>();
 builder.Services.AddScoped<ISearchAsyncUseCase, SearchAsyncUseCase>();
 builder.Services.AddScoped<IUpdateDishUseCase, UpdateDishUseCase>();
 builder.Services.AddScoped<ICreateDishUseCase, CreateDishUseCase>();
+builder.Services.AddScoped<IDeleteDishUseCase, DeleteDishUseCase>();
 //builder Category
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
@@ -68,6 +69,8 @@ builder.Services.AddScoped<ICreateOrderUseCase, CreateOrderUseCase>();
 builder.Services.AddScoped<IGetOrderWithFilterUseCase, GetOrderWithFilterUseCase>();
 builder.Services.AddScoped<IGetOrderByIdUseCase, GetOrderByIdUseCase>();
 builder.Services.AddScoped<IUpdateItemFromOrderUseCase, UpdateItemFromOrder>();
+builder.Services.AddScoped<IUpdateOrderItemStatusUseCase, UpdateOrderItemStatusUseCase>();
+
 //builder Status
 builder.Services.AddScoped<IStatusQuery, StatusQuery>();
 builder.Services.AddScoped<IGetAllStatusAsyncUseCase, GetAllStatusAsyncUseCase>();
@@ -83,7 +86,13 @@ builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<DishRequestValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<DishUpdateRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<OrderRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ItemsValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<DeliveryValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<OrderUpdateValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<StatusRequestValidator>();
 
+//
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0);

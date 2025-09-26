@@ -1,10 +1,13 @@
-﻿using Application.Interfaces.IDish.Repository;
+﻿using Application.Exceptions;
+using Application.Interfaces.IDish.Repository;
 using Application.Interfaces.IOrder;
 using Application.Interfaces.IOrder.Repository;
 using Application.Interfaces.IOrderItem.Repository;
 using Application.Models.Request;
 using Application.Models.Response.Order;
 using Domain.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +33,13 @@ namespace Application.Services.OrderService
             var order = await _orderRepository.GetOrderById(orderId);
             if (order == null)
             {
-                throw new Exception(""); 
+                throw new NotFoundException("Order not found"); 
             }
 
             //2. no se puede modificar si no está 'Pending'
             if (order.OverallStatus.Id != 1) 
             {
-                throw new Exception("");
+                throw new BadHttpRequestException("No se puede modificar una orden que ya está en preparación");
             }
             //3. borrar todos los items de la orden
             await _orderItemRepository.RemoveOrderItem(order.OrderItems);

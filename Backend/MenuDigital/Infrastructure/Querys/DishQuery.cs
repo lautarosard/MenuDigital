@@ -33,12 +33,13 @@ namespace Infrastructure.Querys
                 query = query.Where(d => d.Name.Contains(name));
             }
 
-            if (await _categoryQuery.CategoryExistAsync(categoryId.Value))
+            if (categoryId.HasValue)
             {
                 query = query.Where(d => d.Category == categoryId.Value);
+                
             }
-            
-            switch(priceOrder)
+
+            switch (priceOrder)
             {
                 case OrderPrice.ASC:
                     query = query.OrderBy(d => d.Price);
@@ -68,7 +69,9 @@ namespace Infrastructure.Querys
 
         public async Task<Dish?> GetDishById(Guid id)
         {
-            return await _context.Dishes.FindAsync(id).AsTask();
+            return await _context.Dishes
+            .Include(d => d.CategoryEnt)
+            .FirstOrDefaultAsync(d => d.DishId == id);
         }
 
         public async Task<bool> DishExists(string name, Guid? id)

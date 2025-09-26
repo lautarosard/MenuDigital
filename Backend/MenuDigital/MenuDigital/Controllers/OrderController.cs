@@ -43,7 +43,6 @@ namespace MenuDigital.Controllers
         /// </remarks>
         [HttpPost]
         [ProducesResponseType(typeof(OrderCreateResponse), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateOrder([FromBody] Application.Models.Request.OrderRequest orderRequest)
         {
@@ -72,24 +71,18 @@ namespace MenuDigital.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<OrderDetailsResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetOrders([FromQuery] int? statusId, [FromQuery] DateTime? from, [FromQuery] DateTime? to)
-        {
-            //sacar try
-            try
+        {    
+            var result = await _getOrderWithFilterUseCase.GetOrderWithFilter(statusId, from, to);
+            if (result == null || !result.Any())
             {
-                var result = await _getOrderWithFilterUseCase.GetOrderWithFilter(statusId, from, to);
-                if (result == null || !result.Any())
-                {
-                    return NotFound(new ApiError("No orders found with the specified filters."));
-                }
-                return Ok(result);
+                throw new NotFoundException("No orders found with the specified filters.");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return BadRequest(new ApiError("An error occurred while processing the request."));
-            }
+            return Ok(result);
+               
+            
+            //return BadRequest(new ApiError("An error occurred while processing the request."));
+            
         }
         //GET by ID
         /// <summary>
@@ -105,7 +98,7 @@ namespace MenuDigital.Controllers
         )]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
-        private async Task<IActionResult> GetDishById(long id)
+        public async Task<IActionResult> GetOrderById(long id)
         {
             var dish = await _getOrderById.GetOrderById(id);
             if (dish == null)
@@ -115,15 +108,29 @@ namespace MenuDigital.Controllers
             return Ok(dish);
         }
         // PUT to update order items
+        /// <summary>
+        /// Actualizar orden existente
+        /// </summary>
+        /// <remarks>
+        /// Actualiza los items de una orden existente.
+        /// </remarks>
         [HttpPut("{orderId}")]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateOrderItems(long orderId, [FromBody] OrderUpdateRequest request)
         {
             var response = await _updateItemFromOrder.UpdateItemQuantity(orderId, request);
             return Ok(response);
         }
         // PATCH: api/v1/order/1001/item/1
+        /// <summary>
+        /// Actualizar estado de item individual
+        /// </summary>
+        /// <remarks>
+        /// Actualiza el estado de un item específico dentro de una orden.
+        /// </remarks>
         [HttpPatch("{orderId}/item/{itemId}")]
-        //aplicar
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateOrderItemStatus(long orderId, int itemId, [FromBody] OrderItemUpdateRequest request)
         {
             var response = await _updateOrderItemStatus.UpdateItemStatus(orderId, itemId, request);

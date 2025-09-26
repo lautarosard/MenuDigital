@@ -23,16 +23,16 @@ namespace Infrastructure.Command
             await _context.SaveChangesAsync();
         }
 
-        public Task RemoveDish(Dish dish)
+        public async Task RemoveDish(Dish dish)
         {
             _context.Dishes.Remove(dish);
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateDish(Dish dish)
+        public async Task UpdateDish(Dish dish)
         {
             _context.Dishes.Update(dish);
-            return Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
     }
 }

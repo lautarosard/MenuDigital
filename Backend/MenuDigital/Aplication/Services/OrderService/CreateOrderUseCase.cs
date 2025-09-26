@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Exceptions;
 using Application.Interfaces.IDeliveryType.Repository;
 using Application.Interfaces.IDish.Repository;
 using Application.Interfaces.IOrder;
@@ -35,6 +36,11 @@ namespace Application.Services.OrderService
 
             //crear order
             var deliveryType =  await _deliveryTypeQuery.GetDeliveryTypeById(orderRequest.delivery.id);
+            if (deliveryType == null)
+            {
+                throw new NotFoundException("Tipo de entrega no existe");
+            }
+            
             var order = new Order{
                 DeliveryTypeId = orderRequest.delivery.id,
                 Price = 0, 

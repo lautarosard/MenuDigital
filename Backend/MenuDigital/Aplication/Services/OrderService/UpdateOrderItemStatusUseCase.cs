@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.IOrder;
+﻿using Application.Exceptions;
+using Application.Interfaces.IOrder;
 using Application.Interfaces.IOrder.Repository;
 using Application.Models.Request;
 using Application.Models.Response.Order;
@@ -25,12 +26,12 @@ namespace Application.Services.OrderService
             // 1. Buscar la orden
             var order = await _orderRepository.GetOrderById(orderId);
             if (order == null)
-                throw new Exception("Order not found");
+                throw new NotFoundException("Order not found");
 
             // 2. Buscar el item dentro de la orden
             var item = order.OrderItems.FirstOrDefault(i => i.OrderItemId == itemId);
             if (item == null)
-                throw new Exception("Item not found in the order");
+                throw new NotFoundException("Item not found in the order");
 
             // 3. Actualizar estado del ítem
             item.StatusId = request.status;
