@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
               "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
               "RelativeToolTip": "Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAAAEwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-25T23:58:10.651Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "Aplication\\Services\\OrderService\\UpdateItemFromOrder.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAAACkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:53:49.239Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-25T23:53:49.239Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "MenuDigital\\Controllers\\OrderController.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAAAEgAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:49:27.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-25T23:49:27.674Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "Aplication\\Services\\OrderService\\GetOrderWithFilterUseCase.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:52:21.524Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-25T23:52:21.524Z"
             },
             {
               "$type": "Document",
@@ -106,8 +103,7 @@
               "RelativeToolTip": "Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:50:18.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-25T23:50:18.697Z"
             },
             {
               "$type": "Document",
@@ -119,8 +115,7 @@
               "RelativeToolTip": "Aplication\\Services\\OrderService\\CreateOrderUseCase.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAAADgAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T18:00:11.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-25T18:00:11.745Z"
             }
           ]
         }

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Enums;
 
 namespace Application.Services.OrderService
 {
@@ -34,7 +35,7 @@ namespace Application.Services.OrderService
                 throw new NotFoundException("Item not found in the order");
 
             // 3. Actualizar estado del ítem
-            item.StatusId = request.status;
+            item.StatusId = (int)request.status;
 
             // 4. Actualizar estado general de la orden
             UpdateOrderStatus(order);
@@ -54,29 +55,25 @@ namespace Application.Services.OrderService
         private void UpdateOrderStatus(Order order)
         {
             // Si todos los ítems están Ready -> orden Ready
-            if (order.OrderItems.All(i => i.StatusId == 3))
+            if (order.OrderItems.All(i => i.StatusId == (int)OrderStatus.Closed))
             {
-                order.StatusId = 3;
+                order.StatusId = (int)OrderStatus.Closed;
             }
-            // Si al menos uno está In Progress -> orden In Progress
-            else if (order.OrderItems.Any(i => i.StatusId == 2))
+            else if (order.OrderItems.All(i => i.StatusId == (int)OrderStatus.Ready))
             {
-                order.StatusId = 2;
+                order.StatusId = (int)OrderStatus.Ready;
             }
-            // Si al menos uno está Delivery -> orden Delivery
-            else if (order.OrderItems.Any(i => i.StatusId == 4))
+            else if (order.OrderItems.Any(i => i.StatusId == (int)OrderStatus.Delivery))
             {
-                order.StatusId = 4;
+                order.StatusId = (int)OrderStatus.Delivery;
             }
-            // Si todos los ítems están Closed -> orden Closed
-            else if (order.OrderItems.All(i => i.StatusId == 5))
+            else if (order.OrderItems.Any(i => i.StatusId == (int)OrderStatus.InProgress))
             {
-                order.StatusId = 5;
+                order.StatusId = (int)OrderStatus.InProgress;
             }
-            // Caso inicial -> Pending
             else
             {
-                order.StatusId = 1;
+                order.StatusId = (int)OrderStatus.Pending;
             }
         }
     }
