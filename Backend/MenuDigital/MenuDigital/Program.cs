@@ -49,6 +49,7 @@ builder.Services.AddScoped<ISearchAsyncUseCase, SearchAsyncUseCase>();
 builder.Services.AddScoped<IUpdateDishUseCase, UpdateDishUseCase>();
 builder.Services.AddScoped<ICreateDishUseCase, CreateDishUseCase>();
 builder.Services.AddScoped<IDeleteDishUseCase, DeleteDishUseCase>();
+builder.Services.AddScoped<IGetDishByIdUseCase, GetDishByIdUseCase>();
 //builder Category
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();

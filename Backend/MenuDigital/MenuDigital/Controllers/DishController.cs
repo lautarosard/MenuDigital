@@ -24,16 +24,21 @@ namespace MenuDigital.Controllers
         private readonly ISearchAsyncUseCase _SearchAsync;
         private readonly ICategoryExistUseCase _CategoryExist;
         private readonly IGetDishByIdUseCase _getDishByIdUseCase;
+        private readonly IDeleteDishUseCase _deleteDishUseCase;
         public DishController(
             ICreateDishUseCase createDish,
             IUpdateDishUseCase UpdateDish,
             ISearchAsyncUseCase SearchAsync,
-            ICategoryExistUseCase CategoryExist)
+            ICategoryExistUseCase CategoryExist,
+            IGetDishByIdUseCase getDishByIdUseCase,
+            IDeleteDishUseCase deleteDishUseCase)
         {
             _createDish = createDish;
             _UpdateDish = UpdateDish;
             _SearchAsync = SearchAsync;
             _CategoryExist = CategoryExist;
+            _getDishByIdUseCase = getDishByIdUseCase;
+            _deleteDishUseCase = deleteDishUseCase;
         }
 
         // POST
@@ -168,9 +173,9 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
-        public async Task<IActionResult> DeleteDish(Guid id, [FromServices] IDeleteDishUseCase _deleteDish)
+        public async Task<IActionResult> DeleteDish(Guid id)
         {
-            var result = await _deleteDish.DeleteDish(id);
+            var result = await _deleteDishUseCase.DeleteDish(id);
             return Ok(result);
         }
     }

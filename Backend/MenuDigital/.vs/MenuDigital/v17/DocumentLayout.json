@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\menudigital\\controllers\\deliverytypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|solutionrelative:menudigital\\controllers\\deliverytypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\orderservice\\getorderbyidusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\orderservice\\getorderbyidusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\orderservice\\updateorderitemstatususecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\orderservice\\updateorderitemstatususecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\orderservice\\updateitemfromorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\orderservice\\updateitemfromorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\orderservice\\createorderusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\orderservice\\createorderusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\orderservice\\getorderbyidusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\orderservice\\getorderbyidusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\aplication\\services\\orderservice\\getorderwithfilterusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B0EB52A-4120-04CA-D851-CB2EF5914820}|Aplication\\Application.csproj|solutionrelative:aplication\\services\\orderservice\\getorderwithfilterusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\infrastructure\\querys\\orderitemquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCBC9A4A-47D7-435F-AE51-BEB713AD62A5}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\querys\\orderitemquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7639E225-1E58-4BA7-A02F-70F759D41069}|MenuDigital\\MenuDigital.csproj|f:\\facu\\proyectosoft\\menudigital\\backend\\menudigital\\menudigital\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,21 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DeliveryTypeController.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DeliveryTypeController.cs",
-              "RelativeDocumentMoniker": "MenuDigital\\Controllers\\DeliveryTypeController.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\DeliveryTypeController.cs",
-              "RelativeToolTip": "MenuDigital\\Controllers\\DeliveryTypeController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T00:48:51.922Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -63,76 +38,55 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetOrderByIdUseCase.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
+              "RelativeToolTip": "Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-30T16:28:10.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderItemQuery.cs",
+              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Querys\\OrderItemQuery.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Querys\\OrderItemQuery.cs",
+              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Infrastructure\\Querys\\OrderItemQuery.cs",
+              "RelativeToolTip": "Infrastructure\\Querys\\OrderItemQuery.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAmwCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-30T15:26:49.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UpdateOrderItemStatusUseCase.cs",
               "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
               "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
               "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
               "RelativeToolTip": "Aplication\\Services\\OrderService\\UpdateOrderItemStatusUseCase.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAAAEwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACcAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:58:10.651Z",
+              "WhenOpened": "2025-09-30T15:04:19.295Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UpdateItemFromOrder.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\UpdateItemFromOrder.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\UpdateItemFromOrder.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\UpdateItemFromOrder.cs",
-              "RelativeToolTip": "Aplication\\Services\\OrderService\\UpdateItemFromOrder.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAACkAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:53:49.239Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "OrderController.cs",
               "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "MenuDigital\\Controllers\\OrderController.cs",
               "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\MenuDigital\\Controllers\\OrderController.cs",
               "RelativeToolTip": "MenuDigital\\Controllers\\OrderController.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEgAAABRAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAAAGYAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:49:27.674Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GetOrderWithFilterUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\GetOrderWithFilterUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\GetOrderWithFilterUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\GetOrderWithFilterUseCase.cs",
-              "RelativeToolTip": "Aplication\\Services\\OrderService\\GetOrderWithFilterUseCase.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:52:21.524Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GetOrderByIdUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
-              "RelativeToolTip": "Aplication\\Services\\OrderService\\GetOrderByIdUseCase.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T23:50:18.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateOrderUseCase.cs",
-              "DocumentMoniker": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\CreateOrderUseCase.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\OrderService\\CreateOrderUseCase.cs",
-              "ToolTip": "F:\\Facu\\ProyectoSoft\\MenuDigital\\Backend\\MenuDigital\\Aplication\\Services\\OrderService\\CreateOrderUseCase.cs",
-              "RelativeToolTip": "Aplication\\Services\\OrderService\\CreateOrderUseCase.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAAADgAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-25T18:00:11.745Z"
+              "WhenOpened": "2025-09-25T23:49:27.674Z",
+              "EditorCaption": ""
             }
           ]
         }

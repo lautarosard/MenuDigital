@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Services.OrderService
 {
@@ -29,53 +30,57 @@ namespace Application.Services.OrderService
             if (order == null)
                 throw new NotFoundException("Order not found");
 
-            // 2. Buscar el item dentro de la orden
+            // 2. Buscar el item
             var item = order.OrderItems.FirstOrDefault(i => i.OrderItemId == itemId);
             if (item == null)
                 throw new NotFoundException("Item not found in the order");
 
-            // 3. Actualizar estado del ítem
-            item.StatusId = (int)request.status;
+            // 3. Validar transición de estado (opcional, según reglas de negocio)
+            if (!IsValidTransition(item.StatusId, request.status))
+                throw new BadHttpRequestException("Invalid status transition");
 
-            // 4. Actualizar estado general de la orden
+            // 4. Actualizar estado del ítem
+            item.StatusId = request.status;
+
+            // 5. Recalcular estado de la orden
             UpdateOrderStatus(order);
 
-            // 5. Persistir cambios
+            // 6. Guardar cambios
             await _orderRepository.UpdateOrder(order);
 
-            // 6. Devolver respuesta
+            // 7. Respuesta
             return new OrderUpdateReponse
             {
-                orderNumber = (int)order.OrderId,                
-                totalAmount = (double)order.Price,     
-                UpdateAt = DateTime.UtcNow             
+                orderNumber = (int)order.OrderId,
+                totalAmount = (double)order.Price,
+                UpdateAt = DateTime.UtcNow
             };
         }
 
         private void UpdateOrderStatus(Order order)
         {
-            // Si todos los ítems están Ready -> orden Ready
             if (order.OrderItems.All(i => i.StatusId == (int)OrderStatus.Closed))
-            {
                 order.StatusId = (int)OrderStatus.Closed;
-            }
             else if (order.OrderItems.All(i => i.StatusId == (int)OrderStatus.Ready))
-            {
                 order.StatusId = (int)OrderStatus.Ready;
-            }
-            else if (order.OrderItems.Any(i => i.StatusId == (int)OrderStatus.Delivery))
-            {
-                order.StatusId = (int)OrderStatus.Delivery;
-            }
             else if (order.OrderItems.Any(i => i.StatusId == (int)OrderStatus.InProgress))
-            {
                 order.StatusId = (int)OrderStatus.InProgress;
-            }
+            else if (order.OrderItems.Any(i => i.StatusId == (int)OrderStatus.Delivery))
+                order.StatusId = (int)OrderStatus.Delivery;
             else
-            {
                 order.StatusId = (int)OrderStatus.Pending;
-            }
         }
+
+        private bool IsValidTransition(int current, int next)
+        {
+            // Ejemplo de reglas básicas: Pendiente -> En preparación -> Listo -> Entregado
+            if (current == (int)OrderStatus.Closed && next != (int)OrderStatus.Closed)
+                return false; // no se puede reabrir
+            if (current == (int)OrderStatus.Delivery && next == (int)OrderStatus.InProgress)
+                return false; // no volver atrás
+            return true;
+        }
+
     }
 
 }

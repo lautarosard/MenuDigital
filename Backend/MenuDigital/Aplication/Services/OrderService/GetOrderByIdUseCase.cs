@@ -1,8 +1,10 @@
-﻿using Application.Interfaces.IOrder;
+﻿using Application.Exceptions;
+using Application.Interfaces.IOrder;
 using Application.Interfaces.IOrder.Repository;
 using Application.Models.Response;
 using Application.Models.Response.Dish;
 using Application.Models.Response.Order;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,10 @@ namespace Application.Services.OrderService
         public async Task<OrderDetailsResponse?> GetOrderById(long id)
         {
             var order = await _orderRepository.GetOrderById(id);
+            if (order == null)
+            {
+                throw new NotFoundException($"Order with ID {id} not found.");
+            }
             if (order != null)
             {
                 var orderDetails = new OrderDetailsResponse
@@ -33,9 +39,9 @@ namespace Application.Services.OrderService
                     deliveryType = new GenericResponse { Id = order.DeliveryTypeId, Name = order.DeliveryType?.Name ?? "Desconocido" },
                     items = order.OrderItems.Select(item => new OrderItemResponse
                     {
-                        Id = 2,
+                        Id = (int)item.OrderItemId,
                         Quantity = item.Quantity,
-                        notes = item.Dish?.Name,
+                        notes = item.Notes,
                         dish = new DishShortResponse { Id = item.DishId, Name = item.Dish?.Name ?? "Desconocido", Image = item.Dish?.ImageUrl ?? "No encontrada" },
                         status = new GenericResponse { Id = item.Status.Id, Name = item.Status?.Name ?? "Desconocido" }
                     }).ToList(),

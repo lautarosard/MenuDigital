@@ -100,12 +100,8 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetOrderById(long id)
         {
-            var dish = await _getOrderById.GetOrderById(id);
-            if (dish == null)
-            {
-                throw new NotFoundException($"Order with ID {id} not found.");
-            }
-            return Ok(dish);
+            var order = await _getOrderById.GetOrderById(id);
+            return Ok(order);
         }
         // PUT to update order items
         /// <summary>
