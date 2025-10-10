@@ -83,6 +83,18 @@ builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
 //
 builder.Services.AddControllers();
+
+var MyAllowSpecificOrigins = "AllowFrontend";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://127.0.0.1:5500") // dirección del frontend
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
+});
 //Validation with FluentValidation
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<DishRequestValidator>();
@@ -123,6 +135,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+app.UseCors(MyAllowSpecificOrigins);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -163,7 +178,7 @@ using (var scope = app.Services.CreateScope())
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 //Desconmentar despues de terminar las pruebas 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

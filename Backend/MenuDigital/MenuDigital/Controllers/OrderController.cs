@@ -110,7 +110,7 @@ namespace MenuDigital.Controllers
         /// <remarks>
         /// Actualiza los items de una orden existente.
         /// </remarks>
-        [HttpPut("{orderId}")]
+        [HttpPatch("{orderId}")]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateOrderItems(long orderId, [FromBody] OrderUpdateRequest request)
         {

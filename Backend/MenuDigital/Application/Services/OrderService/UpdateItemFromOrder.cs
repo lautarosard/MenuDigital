@@ -41,8 +41,21 @@ namespace Application.Services.OrderService
             {
                 throw new BadHttpRequestException("No se puede modificar una orden que ya está en preparación");
             }
-            //3. borrar todos los items de la orden
-            await _orderItemRepository.RemoveOrderItem(order.OrderItems);
+            //3. borrar todos los items de la orden ---- como es patch lo deje comentado
+            //await _orderItemRepository.RemoveOrderItem(order.OrderItems);
+            //3. validar que los platos existan
+            listItems.items.ForEach(async item =>
+            {
+                var dish = await _dishRepository.GetDishById(item.id);
+                if (dish == null)
+                {
+                    throw new NotFoundException($"Dish with id {item.id} not found");
+                }
+                if (dish.Available == false)
+                {
+                    throw new BadHttpRequestException($"Dish with id {item.id} is not Available");
+                }
+            });
             //4. crear los nuevos items
             var newOrderItems = listItems.items.Select(item => new OrderItem
             {
