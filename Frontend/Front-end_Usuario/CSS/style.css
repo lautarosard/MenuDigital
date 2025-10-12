@@ -1,0 +1,61 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* vh = viewport height */
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* HEADER */
+.header-content-custom {
+    max-width: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* MAIN */
+.main-content-custom {
+    max-width: 100%; 
+    margin-left: auto; 
+    margin-right: auto;
+    padding: 1rem; 
+}
+
+/* FOOTER */
+.main-content-custom {
+    max-width: 100%; 
+    padding: 1rem; 
+}
+
+/* ================================== */
+/* Estilos FINALES para Fila de Filtros */
+/* ================================== */
+
+/* 1. Contenedor principal de TODOS los filtros */
+#filters-container {
+    display: flex; /* Lo convertimos en un contenedor flex */
+    align-items: center; /* Alineamos todo verticalmente al centro */
+    gap: 2rem; /* Creamos un espacio grande (32px aprox) ENTRE los dos grupos de filtros */
+    flex-wrap: wrap; /* Permite que los filtros se vayan abajo en pantallas muy pequeñas */
+}
+
+/* 2. Contenedor de los filtros de la derecha (orden y activos) */
+#secondary-filters {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    margin-left: 2rem; 
+}
+.secondary-filters-sortByPrice {
+    display: flex;
+    align-items: center;
+    margin-right: .4rem ; 
+}
+.secondary-filters-onlyActive {
+    display: flex;
+    margin: 5px;
+    align-items: center;
+    gap: 0.5rem; 
+}

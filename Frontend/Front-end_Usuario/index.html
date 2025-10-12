@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="./JS/main.js" type="module"></script>
     <link rel="stylesheet" href="./CSS/style.css">
     <title>MenuDigital</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
-            <div class="container">
+            <div class="container-fluid header-content-custom">
                 <a class="navbar-brand" href="#">Makkatillas</a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Mis Órdenes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./HTML/MisOrdenes.html">Mis Órdenes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
                     </ul>
                 </div>
@@ -25,23 +30,40 @@
         </nav>
     </header>
 
-    <main class="container mt-4">
+    <main class="container-fluid mt-4 main-content-custom">
         <div class="row mb-4">
             <div class="col-md-8">
-                <input type="search" class="form-control" placeholder="Buscar plato por nombre...">
+                <input type="search" class="form-control" id="input-busqueda" placeholder="Buscar plato por nombre...">
             </div>
         </div>
+        <div class="mb-4" id="filters-container">
+    
+        <div id="category-filters-container" class="btn-group flex-wrap" role="group">
+        </div>
+
+        <div id="secondary-filters">
+            <div class="secondary-filters-sortByPrice">
+                <select class="form-select" id="sort-by-price" style="width: auto;">
+                    <option value="ASC">Menor precio</option>
+                    <option value="DESC">Mayor precio</option>
+                </select>
+            </div>
+            <div class="form-check border p-1 rounded secondary-filters-onlyActive">
+                <input type="checkbox" role="switch" id="only-active-checkbox">
+                <label class="form-check-label" for="only-active-checkbox">Activos</label>
+            </div>
+        </div>
+    </div>
         <h2>Platos</h2>
-        <div class="row" id="platos-container"></div>
+        <div class="row" id="dishes-container"></div>
     </main>
 
     <footer class="bg-dark text-white text-center p-3 mt-5">
-        <div class="container">
+        <div class="container-fluid footer-content-custom">
             <p class="m-0">El Gran Sabor &copy; 2025 - Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
 </body>
 </html>

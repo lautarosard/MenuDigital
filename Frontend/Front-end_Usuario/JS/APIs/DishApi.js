@@ -1,13 +1,36 @@
 const API_BASE = "https://localhost:7280/api/v1/Dish";
 
-export async function getDishes() {
+export async function getDishes(filters = {}) {
     try {
-        const response = await axios.get(API_BASE);
-        if(response.data && Array.isArray(response.data)) 
-        {
+        const params = new URLSearchParams();
+        
+        // Desestructuramos los filtros para que sea más fácil de leer
+        const { name, category, sortByPrice, onlyActive } = filters;
+
+        // Añadimos cada parámetro a la URL SÓLO SI tiene un valor
+        if (name) {
+            params.append('name', name);
+        }
+        if (category) {
+            params.append('category', category);
+        }
+        if (sortByPrice) {
+            params.append('sortByPrice', sortByPrice);
+        }
+        // Ojo con los booleanos: hay que verificar que no sean undefined o null
+        if (onlyActive !== undefined && onlyActive !== null) {
+            params.append('onlyActive', onlyActive);
+        }
+
+        const url = `${API_BASE}?${params.toString()}`;
+        console.log("Llamando a la API con filtros:", url);
+
+        const response = await axios.get(url);
+        
+        if (response.data && Array.isArray(response.data)) {
             return response.data;
         } else {
-            console.warn("No se encontraron platos en la respuesta de la API.");
+            console.warn("La respuesta de la API no contiene una lista de platos.");
             return [];
         }
     } catch (error) {
