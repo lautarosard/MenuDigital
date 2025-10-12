@@ -3,6 +3,8 @@
 import { getDishes } from '../APIs/DishApi.js'; 
 import { renderCardDish } from '../Components/Dishes/renderCardDish.js'; 
 import { getCategories } from '../APIs/CategoryApi.js';
+import * as CartHandler from '../Handlers/CarritoHandler.js';
+import { actualizarVistaCarrito } from '../Components/Dishes/renderCarritoItem.js';
 //Referencias a los elementos del DOM que usaremos
 const contenedorDishes = document.getElementById('dishes-container');
 const inputBusqueda = document.getElementById('input-busqueda');
@@ -19,7 +21,8 @@ let currentFilters = {
 };
 
 let debounceTimeout;
-
+// Array para guardar los items del carrito
+let carrito = [];
 /**
  * Función reutilizable que renderiza una lista de dishs en el contenedor.
  * @param {Array} DishList - La lista de dishs a mostrar.
@@ -73,13 +76,13 @@ function renderCategoryFilters(categories) {
 /**
  * Función principal que se encarga de iniciar la lógica de esta página.
  */
+
 async function inicializar() {
     console.log("Inicializando página de dishs...");
     try {
         // --- Carga de datos iniciales ---
         const categories = await getCategories();
         renderCategoryFilters(categories);
-        await applyFiltersAndRender();
 
         // Carga inicial (podríamos pasar { onlyActive: true } por defecto, por ejemplo)
         await applyFiltersAndRender();
@@ -118,6 +121,52 @@ async function inicializar() {
             currentFilters.onlyActive = onlyActiveCheckbox.checked ? true : null;
             applyFiltersAndRender();
         });
+        // Listener para los botones "Agregar al pedido"
+        contenedorDishes.addEventListener('click', (event) => {
+            const botonAgregar = event.target.closest('.btn-agregar-pedido');
+            if (botonAgregar) {
+                // =============================================
+                // LÍNEAS DE DEPURACIÓN (NUEVO)
+                // =============================================
+                console.log("Se hizo clic en un botón. Inspeccionando:");
+                console.log("El elemento del botón es:", botonAgregar);
+                console.log("El 'dataset' del botón contiene:", botonAgregar.dataset);
+                // =====================================================
+                const dishData = { 
+                    id: botonAgregar.dataset.dishId,
+                    name: botonAgregar.dataset.dishName,
+                    price: parseFloat(botonAgregar.dataset.dishPrice),
+                    imageUrl: botonAgregar.dataset.dishImageUrl
+                };
+                
+                // --- Llama a la lógica del Handler ---
+                CartHandler.agregarAlCarrito(dishData);
+                // --- Llama a la vista del Render ---
+                actualizarVistaCarrito(CartHandler.getCarrito());
+            }
+        });
+            
+        // Listener para los botones DENTRO del modal del carrito
+        const carritoModalBody = document.getElementById('carrito-items-container');
+        carritoModalBody.addEventListener('click', (event) => {
+            const target = event.target;
+            const dishId = target.dataset.dishId;
+            if (!dishId) return;
+
+            if (target.classList.contains('btn-incrementar')) {
+                CartHandler.modificarCantidad(dishId, 1);
+            }
+            if (target.classList.contains('btn-decrementar')) {
+                CartHandler.modificarCantidad(dishId, -1);
+            }
+            if (target.closest('.btn-eliminar')) {
+                CartHandler.eliminarDelCarrito(dishId);
+            }
+            
+            // Después de cualquier cambio, actualizamos la vista
+            actualizarVistaCarrito(CartHandler.getCarrito());
+        });
+
     } catch (error) {
         console.error("Error al inicializar la página:", error);
         contenedorDishes.innerHTML = '<p class="text-center text-danger">No se pudo cargar el menú. Intente más tarde.</p>';

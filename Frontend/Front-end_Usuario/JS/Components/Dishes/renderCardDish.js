@@ -17,9 +17,13 @@ export function renderCardDish(dish) {
             </div>
             <div class="card-footer">
                 <p class="h4 m-0 mb-3">$${dish.price}</p>
-                <button class="btn btn-primary w-100">
-                    <i class="bi bi-cart-plus"></i> Agregar al pedido
-                </button>
+                <button class="btn btn-primary btn-agregar-pedido" 
+                            data-dish-id="${dish.id}"
+                            data-dish-name="${dish.name}"
+                            data-dish-price="${dish.price}"
+                            data-dish-image-url="${dish.imageUrl}">
+                        <i class="bi bi-cart-plus"></i> Agregar
+                    </button>
             </div>
         </div>
     `;
