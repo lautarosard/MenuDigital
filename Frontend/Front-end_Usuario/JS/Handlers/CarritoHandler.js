@@ -46,3 +46,6 @@ export function modificarCantidad(dishId, change) {
 export function eliminarDelCarrito(dishId) {
     carrito = carrito.filter(i => i.dish.id !== dishId);
 }
+export function limpiarCarrito() {
+    carrito = [];
+}

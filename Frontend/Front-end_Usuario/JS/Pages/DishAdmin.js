@@ -5,6 +5,9 @@ import { renderCardDish } from '../Components/Dishes/renderCardDish.js';
 import { getCategories } from '../APIs/CategoryApi.js';
 import * as CartHandler from '../Handlers/CarritoHandler.js';
 import { actualizarVistaCarrito } from '../Components/Dishes/renderCarritoItem.js';
+import { buildOrderRequest } from '../Handlers/OrderHandler.js';
+import * as OrderApi from './../APIs/OrderApi.js';
+
 //Referencias a los elementos del DOM que usaremos
 const contenedorDishes = document.getElementById('dishes-container');
 const inputBusqueda = document.getElementById('input-busqueda');
@@ -21,8 +24,7 @@ let currentFilters = {
 };
 
 let debounceTimeout;
-// Array para guardar los items del carrito
-let carrito = [];
+
 /**
  * Función reutilizable que renderiza una lista de dishs en el contenedor.
  * @param {Array} DishList - La lista de dishs a mostrar.
@@ -125,13 +127,6 @@ async function inicializar() {
         contenedorDishes.addEventListener('click', (event) => {
             const botonAgregar = event.target.closest('.btn-agregar-pedido');
             if (botonAgregar) {
-                // =============================================
-                // LÍNEAS DE DEPURACIÓN (NUEVO)
-                // =============================================
-                console.log("Se hizo clic en un botón. Inspeccionando:");
-                console.log("El elemento del botón es:", botonAgregar);
-                console.log("El 'dataset' del botón contiene:", botonAgregar.dataset);
-                // =====================================================
                 const dishData = { 
                     id: botonAgregar.dataset.dishId,
                     name: botonAgregar.dataset.dishName,
@@ -165,6 +160,39 @@ async function inicializar() {
             
             // Después de cualquier cambio, actualizamos la vista
             actualizarVistaCarrito(CartHandler.getCarrito());
+        });
+        // Listener para el botón de CONFIRMAR PEDIDO (Versión Modular)
+        const confirmarPedidoBtn = document.getElementById('confirmar-pedido-btn');
+        confirmarPedidoBtn.addEventListener('click', async () => {
+            
+            // 1. Le pedimos al Handler que construya el objeto del pedido
+            const orderRequest = buildOrderRequest();
+
+            // Si buildOrderRequest devuelve null (carrito vacío o falta tipo de entrega), no hacemos nada
+            if (!orderRequest) {
+                return;
+            }
+
+            console.log("Enviando orden a la API:", orderRequest);
+
+            // 2. Intentamos enviar el pedido y manejamos la respuesta
+            try {
+                // <-- CORRECCIÓN: Ahora `OrderApi` está definido y se puede llamar
+                const respuesta = await OrderApi.createOrder(orderRequest);
+                alert(`¡Pedido creado con éxito! Número de orden: ${respuesta.orderNumber}`);
+                
+                // 3. Acciones de éxito
+                CartHandler.limpiarCarrito();
+                actualizarVistaCarrito(CartHandler.getCarrito());
+
+                const modal = bootstrap.Modal.getInstance(document.getElementById('carritoModal'));
+                modal.hide();
+
+            } catch (apiError) {
+                // Mejoramos el mensaje de error para que sea más claro
+                const errorMessage = apiError.response?.data?.message || "Ocurrió un error al procesar el pedido.";
+                alert(`Error al crear el pedido:\n${errorMessage}`);
+            }
         });
 
     } catch (error) {

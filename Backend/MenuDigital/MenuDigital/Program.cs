@@ -90,7 +90,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy => policy
-            .WithOrigins("http://127.0.0.1:5500") // dirección del frontend
+            .WithOrigins("http://127.0.0.1:5500", "http://localhost:5500") // dirección del frontend
             .AllowAnyHeader()
             .AllowAnyMethod()
     );

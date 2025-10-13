@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <title>MenuDigital</title>
     <link rel="apple-touch-icon" sizes="180x180" href="./Assets/img/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicons/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <header>
@@ -21,7 +21,7 @@
                 <a class="navbar-brand" href="#">Makkatillas</a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="./HTML/MisOrdenes.html">Mis Órdenes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
                     </ul>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="mb-4" id="filters-container">
-    
+
         <div id="category-filters-container" class="btn-group flex-wrap" role="group">
         </div>
 
@@ -59,6 +59,7 @@
                 <label class="form-check-label" for="only-active-checkbox">Activos</label>
             </div>
         </div>
+
     </div>
         <h2>Platos</h2>
         <div class="row" id="dishes-container"></div>
@@ -77,12 +78,52 @@
                     <h5 class="modal-title">Mi Pedido</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body" id="carrito-items-container">
-                    <p>Tu carrito está vacío.</p>
+                <div class="modal-body">
+                    <div id="carrito-items-container">
+                        <p>Tu carrito está vacío.</p>
+                    </div>
+                    <hr>
+                    <h5>Detalles de Entrega</h5>
+                    
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="deliveryTypeSalon" value="3" checked>
+                            <label class="form-check-label" for="deliveryTypeSalon">Consumir en el Salón</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="deliveryTypeLlevar" value="2">
+                            <label class="form-check-label" for="deliveryTypeLlevar">Para Llevar</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="deliveryTypeDelivery" value="1">
+                            <label class="form-check-label" for="deliveryTypeDelivery">Delivery</label>
+                        </div>
+                    </div>
+
+                    <div id="delivery-details-inputs">
+                        <div id="input-container-table" class="mb-3">
+                            <label for="table-number" class="form-label">Número de Mesa:</label>
+                            <input type="text" class="form-control" id="table-number" placeholder="Ej: 5">
+                        </div>
+                        <div id="input-container-name" class="mb-3" style="display: none;">
+                            <label for="diner-name" class="form-label">Nombre para el Retiro:</label>
+                            <input type="text" class="form-control" id="diner-name" placeholder="Nombre de quien retira">
+                        </div>
+                        <div id="input-container-address" class="mb-3" style="display: none;">
+                            <label for="delivery-address" class="form-label">Dirección de Entrega:</label>
+                            <input type="text" class="form-control" id="delivery-address" placeholder="Calle, Número, Ciudad">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="order-notes" class="form-label">Notas Adicionales:</label>
+                        <textarea class="form-control" id="order-notes" rows="2" placeholder="¿Alguna indicación especial para tu pedido?"></textarea>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
-                    <button type="button" class="btn btn-success">Confirmar Pedido</button>
+                    <button type="button" class="btn btn-success" id="confirmar-pedido-btn">Confirmar Pedido</button>
                 </div>
             </div>
         </div>
