@@ -2,11 +2,7 @@
 
 import * as CartHandler from './CarritoHandler.js';
 
-/**
- * Recolecta los datos del carrito y del formulario del DOM para construir
- * el objeto de solicitud de orden que espera la API.
- * @returns {object | null} El objeto orderRequest o null si hay un error.
- */
+
 export function buildOrderRequest() {
     const carritoActual = CartHandler.getCarrito();
     if (carritoActual.length === 0) {
