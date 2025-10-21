@@ -81,6 +81,8 @@ function renderCategoryFilters(categories) {
 
 async function inicializar() {
     console.log("Inicializando página de dishs...");
+    const orders = await OrderApi.getOrders();
+    console.log(orders);
     try {
         // --- Carga de datos iniciales ---
         const categories = await getCategories();
