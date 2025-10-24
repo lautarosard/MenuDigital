@@ -73,7 +73,12 @@ namespace Infrastructure.Querys
             .Include(d => d.CategoryEnt)
             .FirstOrDefaultAsync(d => d.DishId == id);
         }
-
+        public async Task<List<Dish>> GetDishesByIds(List<Guid> dishIds)
+        {
+            return await _context.Dishes
+                .Where(d => dishIds.Contains(d.DishId))
+                .ToListAsync();
+        }
         public async Task<bool> DishExists(string name, Guid? id)
         {
             var query = _context.Dishes.AsQueryable();

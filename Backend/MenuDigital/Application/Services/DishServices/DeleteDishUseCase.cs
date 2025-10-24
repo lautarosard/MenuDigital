@@ -16,30 +16,44 @@ namespace Application.Services.DishServices
 {
     public class DeleteDishUseCase : IDeleteDishUseCase
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IDishRepository _dishRepository;
-        private readonly IOrderItemRepository _orderItemRepository;
-        public DeleteDishUseCase(ICategoryRepository categoryRepository, IDishRepository dishRepository, IOrderItemRepository orderItemRepository)
+        private readonly ICategoryQuery _categoryQuery;
+        private readonly ICategoryCommand _categoryCommand;
+        private readonly IDishCommand _dishCommand;
+        private readonly IDishQuery _dishQuery;
+        private readonly IOrderItemCommand _orderItemCommand;
+        private readonly IOrderItemQuery _orderItemQuery;
+
+        public DeleteDishUseCase(
+            ICategoryQuery categoryQuery,
+            ICategoryCommand categoryCommand,
+            IDishCommand dishCommand,
+            IDishQuery dishQuery,
+            IOrderItemCommand orderItemCommand,
+            IOrderItemQuery orderItemQuery
+            )
         {
-            _categoryRepository = categoryRepository;
-            _dishRepository = dishRepository;
-            _orderItemRepository = orderItemRepository;
+            _categoryQuery = categoryQuery;
+            _categoryCommand = categoryCommand;
+            _dishCommand = dishCommand;
+            _dishQuery = dishQuery;
+            _orderItemCommand = orderItemCommand;
+            _orderItemQuery = orderItemQuery;
         }
 
         public async Task<DishResponse?> DeleteDish(Guid id)
         {
-            var dish = await _dishRepository.GetDishById(id);
+            var dish = await _dishQuery.GetDishById(id);
             if (dish == null)
             {
                 throw new NotFoundException($"Dish with ID {id} not found.");
             }
-            bool usedInOrders = await _orderItemRepository.ExistsByDishId(id);
+            bool usedInOrders = await _orderItemQuery.ExistsByDishId(id);
             if (usedInOrders)
             {
                 throw new ConflictException($"Dish with ID {id} cannot be deleted because it is used in existing orders.");
             }
             dish.Available = false; // Set the dish as inactive before deletion
-            await _dishRepository.UpdateDish(dish);
+            await _dishCommand.UpdateDish(dish);
             return new DishResponse
             {
                 Id = id,

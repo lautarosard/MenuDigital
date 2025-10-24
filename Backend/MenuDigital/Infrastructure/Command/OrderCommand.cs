@@ -25,12 +25,12 @@ namespace Infrastructure.Command
         public Task RemoveOrder(Domain.Entities.Order order)
         {
             _context.Orders.Remove(order);
-            return Task.CompletedTask;
+            return _context.SaveChangesAsync();
         }
         public Task UpdateOrder(Domain.Entities.Order order)
         {
             _context.Orders.Update(order);
-            return Task.CompletedTask;
+            return _context.SaveChangesAsync();
         }
     }
 }

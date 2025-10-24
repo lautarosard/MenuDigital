@@ -14,14 +14,16 @@ namespace Application.Services.DishServices
 {
     public class GetDishByIdUseCase : IGetDishByIdUseCase
     {
-        private readonly IDishRepository _dishRepository;
-        public GetDishByIdUseCase(IDishRepository dishRepository)
+        private readonly IDishCommand _dishCommand;
+        private readonly IDishQuery _dishQuery;
+        public GetDishByIdUseCase(IDishCommand dishCommand, IDishQuery dishQuery)
         {
-            _dishRepository = dishRepository;
+            _dishCommand = dishCommand;
+            _dishQuery = dishQuery;
         }
         public async Task<DishResponse?> GetDishById(Guid id)
         {
-            var dish = await _dishRepository.GetDishById(id);
+            var dish = await _dishQuery.GetDishById(id);
             if (dish == null)
             {
                 throw new NotFoundException($"Dish with ID {id} not found.");

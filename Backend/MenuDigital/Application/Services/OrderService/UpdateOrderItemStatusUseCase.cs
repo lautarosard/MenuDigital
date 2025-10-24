@@ -11,22 +11,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Enums;
 using Microsoft.AspNetCore.Http;
+using Application.Interfaces.IStatus.Repository;
 
 namespace Application.Services.OrderService
 {
     public class UpdateOrderItemStatusUseCase : IUpdateOrderItemStatusUseCase
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderCommand _orderCommand;
+        private readonly IOrderQuery _orderQuery;
+        private readonly IStatusQuery _statusQuery;
 
-        public UpdateOrderItemStatusUseCase(IOrderRepository orderRepository)
+        public UpdateOrderItemStatusUseCase(IOrderCommand orderCommand, IOrderQuery orderQuery, IStatusQuery statusQuery)
         {
-            _orderRepository = orderRepository;
+            _orderQuery = orderQuery;
+            _orderCommand = orderCommand;
+            _statusQuery = statusQuery;
         }
 
         public async Task<OrderUpdateReponse> UpdateItemStatus(long orderId, int itemId, OrderItemUpdateRequest request)
         {
             // 1. Buscar la orden
-            var order = await _orderRepository.GetOrderById(orderId);
+            var order = await _orderQuery.GetOrderById(orderId);
             if (order == null)
                 throw new NotFoundException("Order not found");
 
@@ -39,14 +44,18 @@ namespace Application.Services.OrderService
             if (!IsValidTransition(item.StatusId, request.status))
                 throw new BadHttpRequestException("Invalid status transition");
 
+            var newStatus = await _statusQuery.GetStatusById(request.status);
+            if (newStatus == null)
+                throw new NotFoundException("Status not found");
+
             // 4. Actualizar estado del ítem
             item.StatusId = request.status;
-
+            item.Status = newStatus;
             // 5. Recalcular estado de la orden
             UpdateOrderStatus(order);
 
             // 6. Guardar cambios
-            await _orderRepository.UpdateOrder(order);
+            await _orderCommand.UpdateOrder(order);
 
             // 7. Respuesta
             return new OrderUpdateReponse

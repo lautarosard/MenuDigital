@@ -1,7 +1,6 @@
 ﻿using Application.Interfaces.ICategory;
 using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish.Repository;
-using Application.Interfaces.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +11,16 @@ namespace Application.Services.CategoryService
 {
     public class CategoryExistUseCase : ICategoryExistUseCase
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IDishRepository _dishRepository;
-        public CategoryExistUseCase(ICategoryRepository categoryRepository, IDishRepository dishRepository)
+        private readonly ICategoryQuery _categoryQuery;
+        private readonly ICategoryCommand _categoryCommand;
+        public CategoryExistUseCase(ICategoryQuery categoryQuery, ICategoryCommand categoryCommand)
         {
-            _categoryRepository = categoryRepository; 
-            _dishRepository = dishRepository;
+            _categoryQuery = categoryQuery;
+            _categoryCommand = categoryCommand;
         }
         public async Task<bool> CategoryExist(int id)
         {
-            var category = await _categoryRepository.CategoryExistAsync(id);
+            var category = await _categoryQuery.CategoryExistAsync(id);
             return category;
         }
     }

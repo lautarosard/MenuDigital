@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="./../JS/main.js" type="module"></script>
     <link rel="stylesheet" href="./../CSS/style.css">
-    <title>Document</title>
+    <title>MenuDigital</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./../Assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./../Assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./../Assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <header>
@@ -19,18 +23,87 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="./../index.html">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="./HTML/MisOrdenes.html">Mis Órdenes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./../../Front-end_Panel/index.html">Panel</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main>  </main>
+    <main class="container mt-4">
+    <h2 class="mb-4 text-center">Mis Pedidos</h2>
+
+    <ul class="nav nav-tabs mb-3" id="ordersTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-orders-panel" type="button" role="tab" aria-controls="active-orders-panel" aria-selected="true">
+                Pedidos en Curso
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-orders-panel" type="button" role="tab" aria-controls="history-orders-panel" aria-selected="false">
+                Historial
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="ordersTabContent">
+        
+        <div class="tab-pane fade show active" id="active-orders-panel" role="tabpanel" aria-labelledby="active-tab">
+            <div id="active-orders-container" class="d-grid gap-3">
+                <p class="text-center">Buscando pedidos en curso...</p>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="history-orders-panel" role="tabpanel" aria-labelledby="history-tab">
+            <div id="history-orders-container" class="d-grid gap-3">
+                <p class="text-center">No tienes pedidos en tu historial.</p>
+            </div>
+        </div>
+    </div>
+</main>
     <footer class="bg-dark text-white text-center p-3 mt-5">
         <div class="container-fluid footer-content-custom">
             <p class="m-0">El Gran Sabor &copy; 2025 - Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderDetailModalTitle">Detalles de la Orden #...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    <h5>Ítems en la Orden</h5>
+                    <div id="order-items-container" class="d-grid gap-3 mb-3">
+                        </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-success btn-lg" disabled>
+                            Agregar Platos (Próximamente)
+                        </button>
+                    </div>
+                    
+                    <hr>
+
+                    <h5 class="mb-3">Detalles del Pedido</h5>
+                    <div id="order-summary-details" class="row">
+                        </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-guardar-cambios">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

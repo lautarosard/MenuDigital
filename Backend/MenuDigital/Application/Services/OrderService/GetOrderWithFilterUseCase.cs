@@ -15,18 +15,25 @@ namespace Application.Services.OrderService
 {
     public class GetOrderWithFilterUseCase : IGetOrderWithFilterUseCase
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderCommand _orderCommand;
+        private readonly IOrderQuery _orderQuery;
         private readonly IStatusQuery _statusQuery;
         private readonly IDeliveryTypeQuery _deliveryTypeQuery;
-        public GetOrderWithFilterUseCase(IOrderRepository orderRepository, IStatusQuery statusQuery, IDeliveryTypeQuery deliveryTypeQuery)
+        public GetOrderWithFilterUseCase(
+            IOrderQuery orderQuery,
+            IOrderCommand orderCommand,
+            IStatusQuery statusQuery,
+            IDeliveryTypeQuery deliveryTypeQuery
+            )
         {
-            _orderRepository = orderRepository;
+            _orderQuery = orderQuery;
+            _orderCommand = orderCommand;
             _statusQuery = statusQuery;
             _deliveryTypeQuery = deliveryTypeQuery;
         }
         public async Task<IEnumerable<OrderDetailsResponse?>> GetOrderWithFilter(int? statusId, DateTime? from, DateTime? to)
         {
-            var orders = await _orderRepository.GetOrderWithFilter(statusId, from, to);
+            var orders = await _orderQuery.GetOrderWithFilter(statusId, from, to);
             
             if (orders == null || !orders.Any())
             {
@@ -44,7 +51,7 @@ namespace Application.Services.OrderService
                 deliveryType = new GenericResponse { Id = order.DeliveryTypeId, Name= order.DeliveryType?.Name ?? "Desconocido"},
                 items = order.OrderItems.Select(item => new OrderItemResponse
                 {
-                    Id = 2,
+                    Id = (int)item.OrderItemId,
                     Quantity = item.Quantity,
                     notes = item.Dish?.Name,
                     dish = new DishShortResponse { Id = item.DishId, Name = item.Dish?.Name ?? "Desconocido", Image = item.Dish?.ImageUrl ?? "No encontrada"},

@@ -1,4 +1,5 @@
 ﻿using Application.Exceptions;
+using Application.Interfaces.ICategory;
 using Application.Interfaces.ICategory.Repository;
 using Application.Interfaces.IDish;
 using Application.Interfaces.IDish.Repository;
@@ -16,25 +17,39 @@ namespace Application.Services.DishServices
 {
     public class CreateDishUseCase : ICreateDishUseCase
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IDishRepository _dishRepository;
-        
-        public CreateDishUseCase(ICategoryRepository categoryRepository, IDishRepository dishRepository)
+        private readonly ICategoryQuery _categoryQuery;
+        private readonly ICategoryCommand _categoryCommand;
+        private readonly IDishCommand _dishCommand;
+        private readonly IDishQuery _dishQuery;
+        private readonly ICategoryExistUseCase _categoryExist;
+
+        public CreateDishUseCase(
+            ICategoryQuery categoryQuery,
+            ICategoryCommand categoryCommand,
+            IDishCommand dishCommand,
+            IDishQuery dishQuery
+            )
         {
-            _categoryRepository = categoryRepository;
-            _dishRepository = dishRepository;
+            _categoryQuery = categoryQuery;
+            _categoryCommand = categoryCommand;
+            _dishCommand = dishCommand;
+            _dishQuery = dishQuery;
         }
         public async Task<DishResponse?> CreateDish(DishRequest dishRequest)
         {
             //validaciones
-            var existingDish = await _dishRepository.DishExists(dishRequest.Name,null);
-
+            var existingDish = await _dishQuery.DishExists(dishRequest.Name,null);
             // if already exist a dish with that name, throw a 409 Conflict 
             if (existingDish)
             {
                 throw new ConflictException($"A dish with this name {dishRequest.Name} already exists.");
             }
-            var category = await _categoryRepository.GetCategoryById(dishRequest.Category);
+            var categoryExists = await _categoryQuery.CategoryExistAsync(dishRequest.Category);
+            if (!categoryExists)
+            {
+                throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
+            }
+            var category = await _categoryQuery.GetCategoryById(dishRequest.Category);
             var dish = new Dish
             {
                 DishId = Guid.NewGuid(),
@@ -47,7 +62,7 @@ namespace Application.Services.DishServices
                 UpdateDate = DateTime.UtcNow,
                 Category = dishRequest.Category
             };
-            await _dishRepository.InsertDish(dish);
+            await _dishCommand.InsertDish(dish);
             return new DishResponse
             {
                 Id = dish.DishId,
