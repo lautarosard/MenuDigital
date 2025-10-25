@@ -1,10 +1,5 @@
 const API_BASE = "https://localhost:7280/api/v1/Order";
 
-/**
- * Crea una nueva orden.
- * @param {object} orderRequest - El objeto de la orden a crear.
- * @returns {Promise<object>} La respuesta de la orden creada.
- */
 export async function createOrder(orderRequest) {
     try {
         const response = await axios.post(API_BASE, orderRequest, {
@@ -57,12 +52,6 @@ export async function getOrderById(id) {
     }
 }
 
-/**
- * Actualiza los items de una orden existente.
- * @param {number} orderId - El ID de la orden a actualizar.
- * @param {object} orderUpdated - El objeto con los items actualizados.
- * @returns {Promise<object|null>} La respuesta de la actualización o null en caso de error.
- */
 export async function updateOrderItems(orderId, orderUpdated) {
     try {
         const response = await axios.patch(`${API_BASE}/${orderId}`, orderUpdated, {
@@ -73,17 +62,10 @@ export async function updateOrderItems(orderId, orderUpdated) {
         return response.data;
     } catch (error) {
         console.error(`Error al actualizar la orden ${orderId}:`, error.response?.data || error.message);
-        return null;
+        throw error;
     }
 }
 
-/**
- * Actualiza el estado de un item específico en una orden.
- * @param {number} orderId - El ID de la orden.
- * @param {number} itemId - El ID del item dentro de la orden.
- * @param {object} itemUpdate - El objeto con el nuevo estado. Ej: { status: 3 }[cite: 122, 169].
- * @returns {Promise<object|null>} La respuesta de la actualización o null en caso de error.
- */
 export async function updateOrderItemStatus(orderId, itemId, itemUpdate) {
     try {
         // CORRECCIÓN: La ruta es /item/ en singular, no /items/

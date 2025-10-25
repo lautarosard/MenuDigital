@@ -11,14 +11,16 @@ namespace Application.Services.CategoryService
 {
     public class GetAllCategoryAsyncUseCase : IGetAllCategoryAsyncUseCase
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public GetAllCategoryAsyncUseCase(ICategoryRepository categoryRepository)
+        private readonly ICategoryCommand _command;
+        private readonly ICategoryQuery _query;
+        public GetAllCategoryAsyncUseCase(ICategoryCommand command, ICategoryQuery query)
         {
-            _categoryRepository = categoryRepository;
+            _command = command;
+            _query = query;
         }
         public async Task<List<CategoryResponse>> GetAllAsync()
         {
-            var categories = await _categoryRepository.GetAllCategories();
+            var categories = await _query.GetAllCategories();
 
             return categories.Select(c => new CategoryResponse
             {

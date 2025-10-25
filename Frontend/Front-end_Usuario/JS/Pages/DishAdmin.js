@@ -125,6 +125,49 @@ async function inicializar() {
             currentFilters.onlyActive = onlyActiveCheckbox.checked ? true : null;
             applyFiltersAndRender();
         });
+        // === INICIO: CÓDIGO NUEVO PARA INPUTS DE TIPO DE ENTREGA ===
+        // ===================================================================
+
+        // 1. Obtenemos referencias a los contenedores de los inputs
+        const tableInputContainer = document.getElementById('input-container-table');
+        const nameInputContainer = document.getElementById('input-container-name');
+        const addressInputContainer = document.getElementById('input-container-address');
+
+        // 2. Obtenemos referencias a TODOS los radio buttons de tipo de entrega
+        const deliveryTypeRadios = document.querySelectorAll('input[name="deliveryType"]');
+
+        // 3. Creamos una función para actualizar la visibilidad
+        function actualizarVisibilidadInputs() {
+            // Obtenemos el valor (1, 2 o 3) del radio button que está SELECCIONADO
+            const selectedValue = document.querySelector('input[name="deliveryType"]:checked').value;
+
+            // Ocultamos todos los contenedores primero (para "resetear")
+            tableInputContainer.style.display = 'none';
+            nameInputContainer.style.display = 'none';
+            addressInputContainer.style.display = 'none';
+
+            // 4. Mostramos SOLO el contenedor correspondiente al valor
+            if (selectedValue === '3') { // 3 = Consumir en el Salón
+                tableInputContainer.style.display = 'block';
+            } else if (selectedValue === '2') { // 2 = Para Llevar
+                nameInputContainer.style.display = 'block';
+            } else if (selectedValue === '1') { // 1 = Delivery
+                addressInputContainer.style.display = 'block';
+            }
+        }
+
+        // 5. Asignamos el listener a CADA radio button
+        // Usamos 'change' para que se active cuando cambie la selección
+        deliveryTypeRadios.forEach(radio => {
+            radio.addEventListener('change', actualizarVisibilidadInputs);
+        });
+        
+        // NOTA: No es necesario llamar a la función al inicio porque
+        // tu HTML ya tiene 'checked' el radio 'Consumir en el Salón' (value="3")
+        // y el 'input-container-table' es visible por defecto, así que ya coinciden.
+
+        // ===================================================================
+        // === FIN: CÓDIGO NUEVO PARA INPUTS DE TIPO DE ENTREGA ===
         // Listener para los botones "Agregar al pedido"
         contenedorDishes.addEventListener('click', (event) => {
             const botonAgregar = event.target.closest('.btn-agregar-pedido');
@@ -143,7 +186,7 @@ async function inicializar() {
             }
         });
             
-        // Listener para los botones DENTRO del modal del carrito
+        // Listener para los botones DENTRO del modal del Order
         const carritoModalBody = document.getElementById('carrito-items-container');
         carritoModalBody.addEventListener('click', (event) => {
             const target = event.target;

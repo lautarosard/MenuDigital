@@ -15,14 +15,16 @@ namespace Application.Services.OrderService
 {
     public class GetOrderByIdUseCase : IGetOrderByIdUseCase
     {
-        private readonly IOrderRepository _orderRepository;
-        public GetOrderByIdUseCase(IOrderRepository orderRepository)
+        private readonly IOrderCommand _orderCommand;
+        private readonly IOrderQuery _orderQuery;
+        public GetOrderByIdUseCase(IOrderCommand orderCommand, IOrderQuery orderQuery)
         {
-            _orderRepository = orderRepository;
+            _orderCommand = orderCommand;
+            _orderQuery = orderQuery;
         }
         public async Task<OrderDetailsResponse?> GetOrderById(long id)
         {
-            var order = await _orderRepository.GetOrderById(id);
+            var order = await _orderQuery.GetOrderById(id);
             if (order == null)
             {
                 throw new NotFoundException($"Order with ID {id} not found.");

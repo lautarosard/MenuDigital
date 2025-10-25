@@ -10,7 +10,7 @@ export function renderCardDish(dish) {
     // Dentro de tu función renderCarddish, reemplaza el HTML por este:
     wrapper.innerHTML = `
         <div class="card h-100 text-center">
-            <img src="${dish.imageUrl}" class="card-img-top" alt="${dish.name}">
+            <img src="${dish.imageUrl}" class="card-img-top Text-image" alt="${dish.name}">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">${dish.name}</h5>
                 <p class="card-text">${dish.description}</p>

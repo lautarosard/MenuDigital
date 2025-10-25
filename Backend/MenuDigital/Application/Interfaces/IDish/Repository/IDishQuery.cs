@@ -18,7 +18,7 @@ namespace Application.Interfaces.IDish.Repository
             OrderPrice? priceOrder = OrderPrice.ASC,
             bool? onlyActive = true
             );
-
+        Task<List<Dish>> GetDishesByIds(List<Guid> dishIds);
         Task<bool> DishExists(string name, Guid? id);
     }
 }

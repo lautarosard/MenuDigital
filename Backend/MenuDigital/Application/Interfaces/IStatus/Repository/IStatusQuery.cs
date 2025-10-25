@@ -9,7 +9,7 @@ namespace Application.Interfaces.IStatus.Repository
 {
     public interface IStatusQuery
     {
-        Task<string> GetStatusById(int id);
+        Task<Status> GetStatusById(int id);
         Task<List<Status>> GetAllStatuses();
     }
 }

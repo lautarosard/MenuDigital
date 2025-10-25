@@ -15,27 +15,41 @@ namespace Application.Services.DishServices
 {
     public class UpdateDishUseCase : IUpdateDishUseCase
     {
-        private readonly IDishRepository _dishRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        public UpdateDishUseCase(IDishRepository dishRepository, ICategoryRepository categoryRepository)
+        private readonly IDishCommand _dishCommand;
+        private readonly IDishQuery _dishQuery;
+        private readonly ICategoryQuery _categoryQuery;
+        private readonly ICategoryCommand _categoryCommand;
+        public UpdateDishUseCase(
+            ICategoryQuery categoryQuery,
+            ICategoryCommand categoryCommand,
+            IDishCommand dishCommand,
+            IDishQuery dishQuery
+            )
         {
-            _dishRepository = dishRepository;
-            _categoryRepository = categoryRepository;
+            _categoryQuery = categoryQuery;
+            _categoryCommand = categoryCommand;
+            _dishCommand = dishCommand;
+            _dishQuery = dishQuery;
         }
         public async Task<DishResponse> UpdateDish(Guid id, DishUpdateRequest DishUpdateRequest)
         {
-            var existingDish = await _dishRepository.GetDishById(id);
+            var existingDish = await _dishQuery.GetDishById(id);
 
             if (existingDish == null)
             {//que retorne null si no encuantre
                 throw new NotFoundException($"Dish with ID {id} not found.");
             }
-            var alreadyExist = await _dishRepository.DishExists(DishUpdateRequest.Name, id);
+            var categoryExists = await _categoryQuery.CategoryExistAsync(DishUpdateRequest.Category);
+            if (!categoryExists)
+            {
+                throw new NotFoundException($"Category with ID {DishUpdateRequest.Category} not found.");
+            }
+            var alreadyExist = await _dishQuery.DishExists(DishUpdateRequest.Name, id);
             if (alreadyExist)
             {//buscar tirar la exception al controller
                 throw new ConflictException($"dish {DishUpdateRequest.Name} already exists");
             }
-            var category = await _categoryRepository.GetCategoryById(DishUpdateRequest.Category);
+            var category = await _categoryQuery.GetCategoryById(DishUpdateRequest.Category);
 
             existingDish.Name = DishUpdateRequest.Name;
             existingDish.Description = DishUpdateRequest.Description;
@@ -45,7 +59,7 @@ namespace Application.Services.DishServices
             existingDish.ImageUrl = DishUpdateRequest.Image;
             existingDish.UpdateDate = DateTime.UtcNow;
 
-            await _dishRepository.UpdateDish(existingDish);
+            await _dishCommand.UpdateDish(existingDish);
 
             return new DishResponse
             {

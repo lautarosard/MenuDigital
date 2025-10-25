@@ -58,13 +58,6 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDish([FromBody] DishRequest dishRequest)
         {
-            
-            var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
-            //mover al service
-            if (!categoryExists)
-            {
-                throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
-            }
             var createdDish = await _createDish.CreateDish(dishRequest);
             
             return CreatedAtAction(nameof(GetDishById), new { id = createdDish.Id }, createdDish);
@@ -93,14 +86,6 @@ namespace MenuDigital.Controllers
             [FromQuery] OrderPrice? sortByPrice = OrderPrice.ASC,
             [FromQuery] bool? onlyActive = null)
         {
-            if (category != 0 && category != null)
-            {
-                var categoryExists = await _CategoryExist.CategoryExist(category.Value);
-                if (!categoryExists)
-                {
-                    throw new NotFoundException($"Category with ID {category} not found.");
-                }
-            }
             var list = await _SearchAsync.SearchAsync(name, category, sortByPrice, onlyActive);
             //if (list == null || !list.Any())
             ///{
@@ -108,7 +93,6 @@ namespace MenuDigital.Controllers
             //}combiene que retorne una lista vacia
 
             return Ok(list);
-
         }
 
         //GET by ID
@@ -151,13 +135,7 @@ namespace MenuDigital.Controllers
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
         public async Task<IActionResult> UpdateDish(Guid id, [FromBody] DishUpdateRequest dishRequest)
         {
-            var categoryExists = await _CategoryExist.CategoryExist(dishRequest.Category);
-            if (!categoryExists)
-            {
-                throw new NotFoundException($"Category with ID {dishRequest.Category} not found.");
-            }
             var result = await _UpdateDish.UpdateDish(id, dishRequest);
-
             return Ok(result);
         }
 

@@ -24,7 +24,6 @@ using FluentValidation.AspNetCore;
 using Infrastructure.Command;
 using Infrastructure.Data;
 using Infrastructure.Querys;
-using Infrastructure.Repositories;
 using MenuDigital.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -44,14 +43,12 @@ builder.Services.AddDbContext<MenuDigitalDbContext>(options =>
 //builder Dish
 builder.Services.AddScoped<IDishCommand, DishCommand>();
 builder.Services.AddScoped<IDishQuery, DishQuery>();
-builder.Services.AddScoped<IDishRepository, DishRepositories>();
 builder.Services.AddScoped<ISearchAsyncUseCase, SearchAsyncUseCase>();
 builder.Services.AddScoped<IUpdateDishUseCase, UpdateDishUseCase>();
 builder.Services.AddScoped<ICreateDishUseCase, CreateDishUseCase>();
 builder.Services.AddScoped<IDeleteDishUseCase, DeleteDishUseCase>();
 builder.Services.AddScoped<IGetDishByIdUseCase, GetDishByIdUseCase>();
 //builder Category
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
 builder.Services.AddScoped<ICategoryCommand, CategoryCommand>();
 builder.Services.AddScoped<ICategoryExistUseCase, CategoryExistUseCase>();
@@ -65,7 +62,6 @@ builder.Services.AddScoped<IGetAllDeliveryAsyncUseCase, GetAllDeliveryAsyncUseCa
 //builder Order
 builder.Services.AddScoped<IOrderCommand, OrderCommand>();
 builder.Services.AddScoped<IOrderQuery,OrderQuery>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ICreateOrderUseCase, CreateOrderUseCase>();
 builder.Services.AddScoped<IGetOrderWithFilterUseCase, GetOrderWithFilterUseCase>();
 builder.Services.AddScoped<IGetOrderByIdUseCase, GetOrderByIdUseCase>();
@@ -79,7 +75,6 @@ builder.Services.AddScoped<IGetAllStatusAsyncUseCase, GetAllStatusAsyncUseCase>(
 //builder OrderItem
 builder.Services.AddScoped<IOrderItemCommand, OrderItemCommand>();
 builder.Services.AddScoped<IOrderItemQuery, OrderItemQuery>();
-builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
 //
 builder.Services.AddControllers();
