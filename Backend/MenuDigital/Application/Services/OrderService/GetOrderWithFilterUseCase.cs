@@ -53,7 +53,7 @@ namespace Application.Services.OrderService
                 {
                     Id = (int)item.OrderItemId,
                     Quantity = item.Quantity,
-                    notes = item.Dish?.Name,
+                    notes = item.Notes,
                     dish = new DishShortResponse { Id = item.DishId, Name = item.Dish?.Name ?? "Desconocido", Image = item.Dish?.ImageUrl ?? "No encontrada"},
                     status = new GenericResponse { Id = item.Status.Id, Name = item.Status?.Name ?? "Desconocido" }
                 }).ToList(),

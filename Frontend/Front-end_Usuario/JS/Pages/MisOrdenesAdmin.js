@@ -1,9 +1,9 @@
 // En: JS/Pages/MisOrdenes.js
 
 import { getOrders, updateOrderItems } from "./../APIs/OrderApi.js";import { renderOrderCard, statusConfig, formatLocalDate } from "./../Components/Orders/renderOrderCard.js";
-
 import { renderOrderItemDetail } from "./../Components/Orders/renderOrderItemDetail.js";
-
+import { getDishes } from "./../APIs/DishApi.js";
+import { renderAddDishItem } from "./../Components/Orders/renderAddDishItem.js";
 
 // Referencias a los contenedores del HTML
 const activeOrdersContainer = document.getElementById('active-orders-container');
@@ -13,11 +13,58 @@ const modalElement = document.getElementById('orderDetailModal');
 const modalTitle = document.getElementById('orderDetailModalTitle'); // <-- ESTA ES LA LÍNEA QUE TE FALTA
 const itemsContainer = document.getElementById('order-items-container');
 const detailsContainer = document.getElementById('order-summary-details');
+
+const addDishModalElement = document.getElementById('addDishModal');
+const addDishSearchInput = document.getElementById('add-dish-search-input');
+const addDishListContainer = document.getElementById('add-dish-list-container');
+let addDishModalInstance = null; // Instancia del modal de Bootstrap
 // Hacemos 'allOrders' accesible para los listeners
 let allOrders = [];
 let orderModalInstance = null;
 let currentEditingOrderNumber = null;
 
+async function loadDishesForAdding(searchTerm = '') {
+    addDishListContainer.innerHTML = '<p class="text-center text-muted">Buscando...</p>';
+    
+    const dishes = await getDishes(searchTerm);
+    
+    addDishListContainer.innerHTML = ''; // Limpiamos
+    
+    if (dishes.length === 0) {
+        addDishListContainer.innerHTML = '<p class="text-center text-muted">No se encontraron platos.</p>';
+        return;
+    }
+    
+    dishes.forEach(dish => {
+        const dishElement = renderAddDishItem(dish);
+        addDishListContainer.appendChild(dishElement);
+    });
+}
+function handleAddDishClick(event) {
+    event.preventDefault(); // Evita que el '#' del link recargue la pág.
+    
+    const dishElement = event.target.closest('.btn-add-dish-to-order');
+    if (!dishElement) return;
+
+    // 1. Creamos un objeto 'item' simulado
+    const newItem = {
+        dish: {
+            id: dishElement.dataset.dishId,
+            name: dishElement.dataset.dishName
+        },
+        quantity: 1, // Por defecto empieza en 1
+        notes: '',
+        id: null // No tiene 'item.id' porque aún no existe en la BD
+    };
+
+    // 2. Lo añadimos visualmente al modal de detalles
+    // (Usamos el 'itemsContainer' del modal principal)
+    const itemElement = renderOrderItemDetail(newItem);
+    itemsContainer.appendChild(itemElement);
+
+    // 3. Cerramos el modal de búsqueda
+    addDishModalInstance.hide();
+}
 async function handleSaveChanges() {
     if (!currentEditingOrderNumber) {
         console.error("No hay un ID de orden para actualizar.");
@@ -37,10 +84,11 @@ async function handleSaveChanges() {
             // Leemos los valores de los inputs dentro de este ítem
             const quantityInput = itemEl.querySelector('.item-quantity-input');
             const notesInput = itemEl.querySelector('.item-notes-input');
-            
+            const parsedQuantity = parseInt(quantityInput.value);
+            const finalQuantity = isNaN(parsedQuantity) ? 0 : parsedQuantity;
             return {
-                id: parseInt(itemEl.dataset.itemId), // El ID del item (ej: 7, 8, 9)
-                quantity: parseInt(quantityInput.value) || 1, // La nueva cantidad
+                id: itemEl.dataset.dishId, // El ID del item (ej: 7, 8, 9)
+                quantity: finalQuantity, // La nueva cantidad
                 notes: notesInput.value || "" // Las nuevas notas
             };
         });
@@ -91,9 +139,25 @@ function renderOrders(container, orders, emptyMessage) {
     container.appendChild(fragment);
 }
 
-// === INICIO: NUEVA FUNCIÓN PARA POBLAR EL MODAL ===
-// ===============================================
+function normalizeStatusName(name) {
+    if (!name) return '';
+    return name.toString().toUpperCase().trim();
+}
 
+// Helper: obtener configuración (color/text) a partir del estado
+function getStatusConfig(status) {
+    // status puede ser { id, name } o string
+    const rawName = (typeof status === 'string') ? status : (status && status.name) ? status.name : '';
+    const key = normalizeStatusName(rawName);
+
+    // Intentamos buscar en statusConfig con la clave normalizada
+    const cfg = statusConfig[key];
+    if (cfg) return cfg;
+
+    // Si no hay configuración, devolvemos un fallback legible
+    const fallbackText = rawName || 'DESCONOCIDO';
+    return { text: fallbackText, color: 'secondary' }; // color 'secondary' para fallback gris
+}
 function populateOrderModal(order) {
     // 1. Rellenar Título
     modalTitle.textContent = `Detalles de la Orden #${order.orderNumber}`;
@@ -111,8 +175,6 @@ function populateOrderModal(order) {
 
     // 3. Rellenar Detalles del Pedido (al final)
     
-    // Obtenemos los valores formateados (reutilizando la lógica)
-    const statusKey = (order.status && order.status.name) ? order.status.name.toUpperCase() : 'DEFAULT';
     const config = statusConfig[statusKey] || statusConfig['DEFAULT'];
     
     const totalValue = (typeof order.totalAmount === 'number') ? order.totalAmount : 0;
@@ -150,6 +212,57 @@ async function inicializarMisOrdenes(isRefresh = false) {
         // Listener para el botón GUARDAR CAMBIOS
         document.getElementById('btn-guardar-cambios').addEventListener('click', handleSaveChanges);
 
+        // Listener para los clics DENTRO del modal de detalles
+        modalElement.addEventListener('click', (event) => {
+            const target = event.target;
+            
+            // 1. Encontrar el input de cantidad más cercano
+            const inputGroup = target.closest('.input-group');
+            if (!inputGroup) return; // No se hizo clic en un grupo de botones
+
+            const quantityInput = inputGroup.querySelector('.item-quantity-input');
+            if (!quantityInput) return; // No hay input de cantidad
+
+            let currentValue = parseInt(quantityInput.value, 10);
+
+            // 2. Comprobar si se hizo clic en '+' o '-'
+            if (target.classList.contains('btn-item-increase')) {
+                currentValue++;
+                quantityInput.value = currentValue;
+            }
+
+            if (target.classList.contains('btn-item-decrease')) {
+                if (currentValue > 0) { // No permitimos bajar de 0
+                    currentValue--;
+                    quantityInput.value = currentValue;
+                }
+            }
+        });
+        // 1. Inicializamos la instancia del modal de búsqueda
+        addDishModalInstance = new bootstrap.Modal(addDishModalElement);
+
+        // 2. Listener para el botón "Agregar Platos" (del modal principal)
+        const btnAgregarPlatos = document.querySelector('#orderDetailModal .btn-success');
+        if (btnAgregarPlatos) {
+            btnAgregarPlatos.addEventListener('click', () => {
+                // Mostramos el modal de búsqueda
+                addDishModalInstance.show();
+                // Cargamos la lista inicial de platos
+                loadDishesForAdding('');
+            });
+        }
+        
+        // 3. Listener para el input de búsqueda (con debounce)
+        let debounceTimeout;
+        addDishSearchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(() => {
+                loadDishesForAdding(addDishSearchInput.value);
+            }, 300); // Espera 300ms después de teclear
+        });
+
+        // 4. Listener para la lista de platos (delegación de eventos)
+        addDishListContainer.addEventListener('click', handleAddDishClick);
         // Listener para los botones VER DETALLE (manejador de clics)
         const handleDetailClick = (event) => {
             const detailButton = event.target.closest('.btn-ver-detalle');
@@ -187,7 +300,7 @@ async function inicializarMisOrdenes(isRefresh = false) {
         // === ¡Importante! Hacemos suposiciones sobre los estados ===
         // Ajusta estos arrays si tus estados se llaman diferente
         const activeStates = ['PENDING', 'READY'];
-        const historyStates = ['DELIVERED', 'CANCELLED'];
+        const historyStates = ['DELIVERY', 'CLOSED'];
 
         const activeOrders = allOrders.filter(order => 
             order.status && // 1. Comprueba que 'status' no sea null

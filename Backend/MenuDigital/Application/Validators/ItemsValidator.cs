@@ -15,7 +15,7 @@ namespace Application.Validators
             RuleFor(x => x.id)
                 .NotEmpty().WithMessage("El ID del ítem no puede estar vacío.");
             RuleFor(x => x.quantity)
-                .GreaterThan(0).WithMessage("La cantidad debe ser mayor a 0.");
+                .GreaterThanOrEqualTo(0).WithMessage("La cantidad debe ser mayor a 0.");
             RuleFor(x => x.notes)
                 .MaximumLength(250).WithMessage("Las notas no pueden exceder los 250 caracteres.");
         }

@@ -59,3 +59,15 @@ main {
     align-items: center;
     gap: 0.5rem; 
 }
+
+/* Ocultar flechas en inputs de tipo number para Chrome, Safari, Edge */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ocultar flechas en inputs de tipo number para Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}

@@ -10,7 +10,26 @@ export const statusConfig = {
     'CANCELLED': { text: 'Cancelado', color: 'danger' },
     'DEFAULT': { text: 'Desconocido', color: 'dark' }
 };
+// Helper: normaliza un string para hacer el lookup
+function normalizeStatusName(name) {
+    if (!name) return '';
+    return name.toString().toUpperCase().trim();
+}
 
+// Helper: obtener configuración (color/text) a partir del estado
+function getStatusConfig(status) {
+    // status puede ser { id, name } o string
+    const rawName = (typeof status === 'string') ? status : (status && status.name) ? status.name : '';
+    const key = normalizeStatusName(rawName);
+
+    // Intentamos buscar en statusConfig con la clave normalizada
+    const cfg = statusConfig[key];
+    if (cfg) return cfg;
+
+    // Si no hay configuración, devolvemos un fallback legible
+    const fallbackText = rawName || 'DESCONOCIDO';
+    return { text: fallbackText, color: 'secondary' }; // color 'secondary' para fallback gris
+}
 /**
  * Formatea la fecha a un formato legible (ej: 14/10/2025)
  */
@@ -43,6 +62,9 @@ export function formatLocalDate(dateString) {
 
 export function renderOrderCard(order) {
     
+    const cfg = getStatusConfig(order.status);
+    const estadoTexto = cfg.text;
+    const estadoColor = cfg.color;
     // 1. Obtener la configuración de estado (o usar DEFAULT)
     // Obtenemos la clave del estado (ej: 'PENDING') de forma segura
     const statusKey = (order.status && order.status.name) 
@@ -76,7 +98,7 @@ export function renderOrderCard(order) {
             </div>
 
             <div class="text-end">
-                <span class="badge bg-${config.color} mb-2">${config.text}</span>
+                <span class="badge bg-${estadoColor} mb-2">${estadoTexto}</span>
                 <br>
                 <button 
                     class="btn btn-primary btn-sm btn-ver-detalle" 

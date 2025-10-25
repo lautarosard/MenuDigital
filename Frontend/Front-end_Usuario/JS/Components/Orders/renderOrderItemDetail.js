@@ -9,10 +9,8 @@ export function renderOrderItemDetail(item) {
     const itemCard = document.createElement('div');
     itemCard.className = 'p-3 border rounded shadow-sm bg-light item-card-container';
     
-    // ==========================================================
-    // === 1. ASEGÚRATE DE QUE ESTA LÍNEA EXISTA ===
-    // ==========================================================
-    itemCard.dataset.itemId = item.id; 
+    
+    itemCard.dataset.dishId = item.dish.id;
 
     
     // ==========================================================
@@ -30,7 +28,7 @@ export function renderOrderItemDetail(item) {
                     type="number" 
                     class="form-control text-center item-quantity-input" 
                     value="${item.quantity}" 
-                    min="1">
+                    min="0">
                 
                 <button class="btn btn-outline-secondary btn-item-increase" type="button" data-item-id="${item.id}">+</button>
             </div>
