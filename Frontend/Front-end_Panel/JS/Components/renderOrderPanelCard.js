@@ -34,7 +34,7 @@ export function renderOrderPanelCard(order) {
             <button class="btn btn-sm btn-primary btn-view-details" title="Ver Detalles">Ver Detalle</button>
         `;
     } else if (order.status.id === 2) { // En Preparación
-         orderActionButtonsHtml = `<button class="btn btn-sm btn-primary btn-view-details" title="Ver Detalles">Ver Detalle</button>`;
+            orderActionButtonsHtml = `<button class="btn btn-sm btn-primary btn-view-details" title="Ver Detalles">Ver Detalle</button>`;
     } else if (order.status.id === 3) { // Listo para Entregar
         orderActionButtonsHtml = `
             <button class="btn btn-sm btn-dark btn-deliver-order" title="Marcar Orden como Entregada">Entregar</button>

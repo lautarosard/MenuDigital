@@ -175,6 +175,8 @@ function populateOrderModal(order) {
 
     // 3. Rellenar Detalles del Pedido (al final)
     
+    const statusKey = (order.status && order.status.name) ? order.status.name.toUpperCase() : 'DEFAULT';
+    // Luego, usamos 'statusKey' para obtener 'config'
     const config = statusConfig[statusKey] || statusConfig['DEFAULT'];
     
     const totalValue = (typeof order.totalAmount === 'number') ? order.totalAmount : 0;

@@ -19,7 +19,7 @@ export function renderOrderItemDetail(item) {
     // ==========================================================
     itemCard.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="mb-0">${item.dish.name || 'Nombre no disponible'}</h6>
+            <h6 class="mb-0 text-truncate">${item.dish.name || 'Nombre no disponible'}</h6>
             
             <div class="input-group" style="width: 130px;">
                 <button class="btn btn-outline-secondary btn-item-decrease" type="button" data-item-id="${item.id}">-</button>

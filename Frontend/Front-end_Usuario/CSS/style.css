@@ -1,33 +1,189 @@
+/* ======== ESTILOS GENERALES ======== */
 body {
+    background-color: #121212;
+    color: #f8f9fa;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* vh = viewport height */
 }
 
-main {
-    flex-grow: 1;
+/* ======== HEADER / NAVBAR ======== */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #f8f9fa !important;
 }
 
-/* HEADER */
+.navbar-nav .nav-link {
+    color: #f8f9fa !important;
+    transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important;
+}
+
 .header-content-custom {
-    max-width: 100%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    padding: 0.5rem 1rem;
 }
 
-/* MAIN */
+/* ======== MAIN ======== */
 .main-content-custom {
-    max-width: 100%; 
-    margin-left: auto; 
-    margin-right: auto;
-    padding: 1rem; 
+    flex: 1;
 }
 
-/* FOOTER */
-.main-content-custom {
-    max-width: 100%; 
-    padding: 1rem; 
+/* Buscador */
+#input-busqueda {
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    color: #f8f9fa;
+    border: 1px solid #333;
 }
+
+#input-busqueda::placeholder {
+    color: #aaa;
+}
+
+/* Filtros */
+#filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+#category-filters-container .btn {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+#category-filters-container .btn:hover,
+#category-filters-container .btn.active {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* ======== TARJETAS DE PLATOS ======== */
+#dishes-container .card {
+    background-color: #1c1c1c;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#dishes-container .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-body {
+    color: #fff;
+}
+
+.card-body .card-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.card-body .card-text {
+    color: #ccc;
+}
+
+/* ======== MODALES ======== */
+.modal-content {
+    background-color: #181818;
+    border-radius: 10px;
+    color: #fff;
+    border: 1px solid #333;
+}
+.text-truncate{
+    color: #000;
+}
+.Text-image{
+    color: #fff;
+
+}
+
+.modal-header, .modal-footer {
+    border-color: #333;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+/* ======== BOTONES ======== */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-secondary {
+    background-color: #343a40;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #23272b;
+}
+
+/* ======== PESTAÑAS (Mis Órdenes) ======== */
+.nav-tabs .nav-link {
+    background-color: #1c1c1c;
+    color: #ccc;
+    border: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* ======== FOOTER ======== */
+footer {
+    background-color: #0d0d0d !important;
+    color: #f8f9fa;
+    border-top: 1px solid #222;
+}
+
+/* ======== SCROLLBAR PERSONALIZADO ======== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+}
+
 
 /* ================================== */
 /* Estilos FINALES para Fila de Filtros */
@@ -70,4 +226,27 @@ input[type=number]::-webkit-outer-spin-button {
 /* Ocultar flechas en inputs de tipo number para Firefox */
 input[type=number] {
     -moz-appearance: textfield;
+}
+.card-footer{
+    color: #fff;
+}
+
+/* Selecciona inputs, textareas y selects DENTRO de cualquier modal */
+.modal .form-control,
+.modal .form-select,
+.modal textarea.form-control {
+    color: #212529; /* Color de texto oscuro estándar de Bootstrap */
+    background-color: #fff; /* Asegura un fondo blanco */
+    border: 1px solid #dee2e6; /* Borde estándar para que se vean */
+}
+
+/* (Opcional) Estilo para el texto placeholder si lo usas */
+.modal .form-control::placeholder {
+    color: #6c757d; /* Gris para el placeholder */
+}
+
+/* Asegura que las etiquetas (labels) fuera de los inputs sigan siendo claras */
+.modal .form-label,
+.modal .form-check-label {
+    color: #f8f9fa; /* Mantiene el color claro original del modal */
 }
