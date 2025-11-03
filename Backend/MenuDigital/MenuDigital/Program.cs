@@ -85,7 +85,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy => policy
-            .WithOrigins("http://127.0.0.1:5500", "http://localhost:5500") // dirección del frontend
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod()
     );
@@ -131,7 +131,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-app.UseCors(MyAllowSpecificOrigins);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -172,8 +171,13 @@ using (var scope = app.Services.CreateScope())
 // Middleware custom for exception handling
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
+
 //Desconmentar despues de terminar las pruebas 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
